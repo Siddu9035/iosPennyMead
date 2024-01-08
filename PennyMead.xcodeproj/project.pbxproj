@@ -9,21 +9,43 @@
 /* Begin PBXBuildFile section */
 		EC3D10962B46BC2A002C8D40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10952B46BC2A002C8D40 /* AppDelegate.swift */; };
 		EC3D10982B46BC2A002C8D40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10972B46BC2A002C8D40 /* SceneDelegate.swift */; };
-		EC3D109A2B46BC2A002C8D40 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10992B46BC2A002C8D40 /* ViewController.swift */; };
 		EC3D109D2B46BC2A002C8D40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC3D109B2B46BC2A002C8D40 /* Main.storyboard */; };
 		EC3D109F2B46BC2C002C8D40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC3D109E2B46BC2C002C8D40 /* Assets.xcassets */; };
 		EC3D10A22B46BC2C002C8D40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC3D10A02B46BC2C002C8D40 /* LaunchScreen.storyboard */; };
+		EC3D10AB2B46BCB5002C8D40 /* HomeVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10AA2B46BCB5002C8D40 /* HomeVc.swift */; };
+		EC3D10B02B46E370002C8D40 /* SplashVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10AF2B46E370002C8D40 /* SplashVc.swift */; };
+		EC3D10B42B46EDDA002C8D40 /* RobotoSlab-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC3D10B32B46EDD9002C8D40 /* RobotoSlab-VariableFont_wght.ttf */; };
+		EC3D10B62B473296002C8D40 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10B52B473296002C8D40 /* CategoryData.swift */; };
+		EC810C632B47CFD300CF9EED /* CollectionVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC810C612B47CFD300CF9EED /* CollectionVc.swift */; };
+		EC810C642B47CFD300CF9EED /* CollectionVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC810C622B47CFD300CF9EED /* CollectionVc.xib */; };
+		EC810C6B2B47D2D700CF9EED /* OpenSans-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC810C692B47D2D700CF9EED /* OpenSans-VariableFont_wdth,wght.ttf */; };
+		EC810C6C2B47D2D700CF9EED /* OpenSans-Italic-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC810C6A2B47D2D700CF9EED /* OpenSans-Italic-VariableFont_wdth,wght.ttf */; };
+		EC810C6E2B49E12C00CF9EED /* FIlterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC810C6D2B49E12C00CF9EED /* FIlterData.swift */; };
+		EC810C702B49E42E00CF9EED /* FilterTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC810C6F2B49E42E00CF9EED /* FilterTableCell.swift */; };
+		EC810C782B4AA02100CF9EED /* CollectibleTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC810C762B4AA02100CF9EED /* CollectibleTBCell.swift */; };
+		EC810C792B4AA02100CF9EED /* CollectibleTBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC810C772B4AA02100CF9EED /* CollectibleTBCell.xib */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		EC3D10922B46BC2A002C8D40 /* PennyMead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PennyMead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC3D10952B46BC2A002C8D40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC3D10972B46BC2A002C8D40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		EC3D10992B46BC2A002C8D40 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		EC3D109C2B46BC2A002C8D40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		EC3D109E2B46BC2C002C8D40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC3D10A12B46BC2C002C8D40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC3D10A32B46BC2C002C8D40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		EC3D10AA2B46BCB5002C8D40 /* HomeVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVc.swift; sourceTree = "<group>"; };
+		EC3D10AF2B46E370002C8D40 /* SplashVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVc.swift; sourceTree = "<group>"; };
+		EC3D10B32B46EDD9002C8D40 /* RobotoSlab-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-VariableFont_wght.ttf"; sourceTree = "<group>"; };
+		EC3D10B52B473296002C8D40 /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
+		EC810C612B47CFD300CF9EED /* CollectionVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVc.swift; sourceTree = "<group>"; };
+		EC810C622B47CFD300CF9EED /* CollectionVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionVc.xib; sourceTree = "<group>"; };
+		EC810C692B47D2D700CF9EED /* OpenSans-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		EC810C6A2B47D2D700CF9EED /* OpenSans-Italic-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
+		EC810C6D2B49E12C00CF9EED /* FIlterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIlterData.swift; sourceTree = "<group>"; };
+		EC810C6F2B49E42E00CF9EED /* FilterTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableCell.swift; sourceTree = "<group>"; };
+		EC810C762B4AA02100CF9EED /* CollectibleTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectibleTBCell.swift; sourceTree = "<group>"; };
+		EC810C772B4AA02100CF9EED /* CollectibleTBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectibleTBCell.xib; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -56,15 +78,82 @@
 		EC3D10942B46BC2A002C8D40 /* PennyMead */ = {
 			isa = PBXGroup;
 			children = (
+				EC3D10B12B46ED16002C8D40 /* utils */,
+				EC3D10AC2B46BF1C002C8D40 /* Modal */,
+				EC3D10AD2B46BF34002C8D40 /* View */,
+				EC3D10AE2B46BF3C002C8D40 /* Controller */,
 				EC3D10952B46BC2A002C8D40 /* AppDelegate.swift */,
 				EC3D10972B46BC2A002C8D40 /* SceneDelegate.swift */,
-				EC3D10992B46BC2A002C8D40 /* ViewController.swift */,
-				EC3D109B2B46BC2A002C8D40 /* Main.storyboard */,
 				EC3D109E2B46BC2C002C8D40 /* Assets.xcassets */,
 				EC3D10A02B46BC2C002C8D40 /* LaunchScreen.storyboard */,
 				EC3D10A32B46BC2C002C8D40 /* Info.plist */,
 			);
 			path = PennyMead;
+			sourceTree = "<group>";
+		};
+		EC3D10AC2B46BF1C002C8D40 /* Modal */ = {
+			isa = PBXGroup;
+			children = (
+				EC810C712B4A8E6D00CF9EED /* tableCell */,
+				EC3D10B52B473296002C8D40 /* CategoryData.swift */,
+				EC810C6D2B49E12C00CF9EED /* FIlterData.swift */,
+				EC810C6F2B49E42E00CF9EED /* FilterTableCell.swift */,
+				EC810C602B47CF8000CF9EED /* collectionCell */,
+			);
+			path = Modal;
+			sourceTree = "<group>";
+		};
+		EC3D10AD2B46BF34002C8D40 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				EC3D109B2B46BC2A002C8D40 /* Main.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		EC3D10AE2B46BF3C002C8D40 /* Controller */ = {
+			isa = PBXGroup;
+			children = (
+				EC3D10AA2B46BCB5002C8D40 /* HomeVc.swift */,
+				EC3D10AF2B46E370002C8D40 /* SplashVc.swift */,
+			);
+			path = Controller;
+			sourceTree = "<group>";
+		};
+		EC3D10B12B46ED16002C8D40 /* utils */ = {
+			isa = PBXGroup;
+			children = (
+				EC3D10B22B46ED20002C8D40 /* fonts */,
+			);
+			path = utils;
+			sourceTree = "<group>";
+		};
+		EC3D10B22B46ED20002C8D40 /* fonts */ = {
+			isa = PBXGroup;
+			children = (
+				EC810C6A2B47D2D700CF9EED /* OpenSans-Italic-VariableFont_wdth,wght.ttf */,
+				EC810C692B47D2D700CF9EED /* OpenSans-VariableFont_wdth,wght.ttf */,
+				EC3D10B32B46EDD9002C8D40 /* RobotoSlab-VariableFont_wght.ttf */,
+			);
+			path = fonts;
+			sourceTree = "<group>";
+		};
+		EC810C602B47CF8000CF9EED /* collectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				EC810C612B47CFD300CF9EED /* CollectionVc.swift */,
+				EC810C622B47CFD300CF9EED /* CollectionVc.xib */,
+			);
+			path = collectionCell;
+			sourceTree = "<group>";
+		};
+		EC810C712B4A8E6D00CF9EED /* tableCell */ = {
+			isa = PBXGroup;
+			children = (
+				EC810C762B4AA02100CF9EED /* CollectibleTBCell.swift */,
+				EC810C772B4AA02100CF9EED /* CollectibleTBCell.xib */,
+			);
+			path = tableCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -125,9 +214,14 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC3D10B42B46EDDA002C8D40 /* RobotoSlab-VariableFont_wght.ttf in Resources */,
 				EC3D10A22B46BC2C002C8D40 /* LaunchScreen.storyboard in Resources */,
 				EC3D109F2B46BC2C002C8D40 /* Assets.xcassets in Resources */,
 				EC3D109D2B46BC2A002C8D40 /* Main.storyboard in Resources */,
+				EC810C6C2B47D2D700CF9EED /* OpenSans-Italic-VariableFont_wdth,wght.ttf in Resources */,
+				EC810C6B2B47D2D700CF9EED /* OpenSans-VariableFont_wdth,wght.ttf in Resources */,
+				EC810C792B4AA02100CF9EED /* CollectibleTBCell.xib in Resources */,
+				EC810C642B47CFD300CF9EED /* CollectionVc.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,8 +232,14 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				EC3D109A2B46BC2A002C8D40 /* ViewController.swift in Sources */,
+				EC3D10AB2B46BCB5002C8D40 /* HomeVc.swift in Sources */,
+				EC3D10B62B473296002C8D40 /* CategoryData.swift in Sources */,
+				EC810C632B47CFD300CF9EED /* CollectionVc.swift in Sources */,
+				EC810C782B4AA02100CF9EED /* CollectibleTBCell.swift in Sources */,
+				EC3D10B02B46E370002C8D40 /* SplashVc.swift in Sources */,
+				EC810C6E2B49E12C00CF9EED /* FIlterData.swift in Sources */,
 				EC3D10962B46BC2A002C8D40 /* AppDelegate.swift in Sources */,
+				EC810C702B49E42E00CF9EED /* FilterTableCell.swift in Sources */,
 				EC3D10982B46BC2A002C8D40 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -291,8 +391,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PennyMead/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -319,8 +420,9 @@
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = PennyMead/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
-				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
+				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen.storyboard;
 				INFOPLIST_KEY_UIMainStoryboardFile = Main;
+				INFOPLIST_KEY_UIStatusBarStyle = "";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (

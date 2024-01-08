@@ -10,15 +10,31 @@ import UIKit
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
+    var window: UIWindow?
 
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
+//        Thread.sleep(forTimeInterval: 3)
+//        splashScreen()
         return true
     }
+    
+//    func splashScreen() {
+//        let storyBoard = UIStoryboard.init(name: "LaunchScreen", bundle: nil)
+//        let rootVc = storyBoard.instantiateViewController(withIdentifier: "launchScreen")
+//        self.window?.rootViewController = rootVc
+//        self.window?.makeKeyAndVisible()
+//        Timer.scheduledTimer(timeInterval: 3, target: self, selector: #selector(dissMissSplash), userInfo: nil, repeats: false)
+//    }
+//
+//    @objc func dissMissSplash() {
+//        let storyBoard = UIStoryboard.init(name: "Main", bundle: nil)
+//        let homeVc = storyBoard.instantiateViewController(withIdentifier: "HomeVc") as! HomeVc
+//        self.window?.rootViewController = homeVc
+//        self.window?.makeKeyAndVisible()
+//    }
 
     // MARK: UISceneSession Lifecycle
-
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
         // Called when a new scene session is being created.
         // Use this method to select a configuration to create the new scene with.
