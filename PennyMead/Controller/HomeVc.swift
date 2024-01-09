@@ -7,7 +7,7 @@
 
 import UIKit
 
-class HomeVc: UIViewController {
+class HomeVc: UIViewController, UIScrollViewDelegate {
     
     @IBOutlet var categoryCollection: UICollectionView!
     @IBOutlet var collectionViewHeight: NSLayoutConstraint!
@@ -15,14 +15,16 @@ class HomeVc: UIViewController {
     @IBOutlet var filterTable: UITableView!
     @IBOutlet var filterTableViewHeight: NSLayoutConstraint!
     //    @IBOutlet var viewForTableview: UIView!
-    //    @IBOutlet var collectiblesTableView: UITableView!
-    //    @IBOutlet var tableViewHeight: NSLayoutConstraint!
-    @IBOutlet var contentViewHeight: NSLayoutConstraint!
+    @IBOutlet var collectiblesTableView: UITableView!
+    @IBOutlet var tableViewHeight: NSLayoutConstraint!
+    //    @IBOutlet var contentViewHeight: NSLayoutConstraint!
     @IBOutlet var contentView: UIView!
+    @IBOutlet var scrollView: UIScrollView!
+    
     
     
     var categories: [Book] = []
-    var collectiblesBooks: [Collectibles] = []
+    var collectiblesBooks: [CollectibleItem] = []
     
     var items: [FilterData] = [
         FilterData(name: "Newest Items", type: "newlyUpdated"),
@@ -36,10 +38,9 @@ class HomeVc: UIViewController {
         super.viewDidLoad()
         
         registerCollectionCell()
+        registerCollectibleTable()
         getCategories()
-        //        addImageToButton()
-        
-        //        viewForTableview.layer.borderWidth = 1
+        getCollectibles(filterType: "newlyUpdated")
         
         filterTable.dataSource = self
         filterTable.delegate = self
@@ -48,15 +49,22 @@ class HomeVc: UIViewController {
         filterTable.layer.borderColor = UIColor(named: "borderColor")?.cgColor
         filterTable.layer.cornerRadius = 5
         filterTableViewHeight.constant = 0
-        filterTable.layer.zPosition = 10
+        filterTable.layer.zPosition = 1
         filterButton.layer.borderWidth = 1
         filterButton.layer.borderColor = UIColor(named: "borderColor")?.cgColor
         filterButton.layer.cornerRadius = 5
+        
+        scrollView.delegate = self
     }
     
     override func viewDidLayoutSubviews() {
         self.changeCollectionHeight()
-        //        self.changeTableViewHeight()
+        self.changeTableViewHeight()
+        self.updateScrollViewContentSize()
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        contentView.frame = scrollView.bounds
     }
     
     func getCategories() {
@@ -71,7 +79,6 @@ class HomeVc: UIViewController {
                     // Access categories
                     self.categories = categoryResponse.data
                     DispatchQueue.main.async {
-                        //                        print(self.categories)
                         self.categoryCollection.reloadData()
                     }
                 } catch {
@@ -98,83 +105,74 @@ class HomeVc: UIViewController {
         layout.minimumLineSpacing = 0
         categoryCollection.collectionViewLayout = layout
     }
-    //    func registerCollectibleTable() {
-    //        collectiblesTableView.register(UINib(nibName: "CollectibleCell", bundle: nil), forCellReuseIdentifier: "collectibleCell")
-    //    }
+    
+    func registerCollectibleTable() {
+        collectiblesTableView.register(UINib(nibName: "CollectibleTBCell", bundle: nil), forCellReuseIdentifier: "collectibleCell")
+        collectiblesTableView.delegate = self
+        collectiblesTableView.dataSource = self
+    }
     
     func changeCollectionHeight() {
         self.collectionViewHeight.constant = self.categoryCollection.contentSize.height
     }
     
     //setting tableview height based on the content
-    //        func changeTableViewHeight() {
-    //            self.tableViewHeight.constant = self.collectiblesTableView.contentSize.height
-    //        }
+    func changeTableViewHeight() {
+        self.tableViewHeight.constant = self.collectiblesTableView.contentSize.height
+    }
     
-    //    func addImageToButton() {
-    //        // Assuming 'yourButton' is your UIButton instance
-    //        let image = UIImage(named: "Vector-Up") // Replace 'yourImageName' with the name of your image asset
-    //        // Create a button configuration
-    //        var config = UIButton.Configuration.plain()
-    //        // Set the image for the button
-    //        config.image = image
-    //        config.imagePadding = 70
-    //        // Set the position of the image to the trailing side of the button
-    //        config.imagePlacement = .trailing
-    //        // Apply the configuration to yourButton
-    //        filterButton.configuration = config
-    //        filterButton.layer.borderWidth = 1
-    //        filterButton.layer.borderColor = UIColor(named: "borderColor")?.cgColor
-    //        filterButton.layer.cornerRadius = 5
-    //    }
+    func updateScrollViewContentSize() {
+        scrollView.contentSize = CGSize(width: scrollView.frame.width, height: contentView.frame.height)
+    }
     
-        //function for the toggle of dropdown
-        func animate(togle: Bool) {
-            if togle {
-                UIView.animate(withDuration: 0.3, delay: 0.1) {
-                    self.filterTable.isHidden = false
-                }
-            } else {
-                UIView.animate(withDuration: 0.3, delay: 0.1) {
-                    self.filterTable.isHidden = true
-                }
+    //function for the toggle of dropdown
+    func animate(togle: Bool) {
+        if togle {
+            UIView.animate(withDuration: 0.3, delay: 0.1) {
+                self.filterTable.isHidden = false
+            }
+        } else {
+            UIView.animate(withDuration: 0.3, delay: 0.1) {
+                self.filterTable.isHidden = true
             }
         }
+    }
     
-        @IBAction func onPressFilterButton(_ sender: UIButton) {
-            if filterTable.isHidden {
-                animate(togle: true)
-                filterTableViewHeight.constant = 200
-            } else {
-                animate(togle: false)
-                filterTableViewHeight.constant = 0
-            }
-            print("--------------")
+    @IBAction func onPressFilterButton(_ sender: UIButton) {
+        if filterTable.isHidden {
+            animate(togle: true)
+            filterTableViewHeight.constant = 200
+        } else {
+            animate(togle: false)
+            filterTableViewHeight.constant = 0
         }
+    }
     
     //    //Mark: Collectibles
-    //    func getCollectibles() {
-    //        let url = URL(string: "https://stagingapi.pennymead.com/view/allCategoryData/newlyUpdated/1/")!
-    //        let task = URLSession.shared.dataTask(with: url) { data, response, error in
-    //            if let data = data {
-    //                do {
-    //                    let collectiblesResponse = try JSONDecoder().decode(CollectibleResposnse.self, from: data)
-    //                    //                    self.collectiblesBooks = collectiblesResponse.data
-    //                    //                    DispatchQueue.main.async {
-    //                    //                        self.collectiblesTableView.reloadData()
-    //                    //                    }
-    //                    print(collectiblesResponse)
-    //
-    //                } catch {
-    //                    print("error in fetching jasonData \(error)")
-    //                }
-    //            } else if let error = error {
-    //                print("error in fetching data \(error)")
-    //            }
-    //        }
-    //        task.resume()
-    //    }
-    
+    func getCollectibles(filterType: String) {
+        let url = URL(string: "https://stagingapi.pennymead.com/view/allCategoryData/\(filterType)/1/")!
+        let task = URLSession.shared.dataTask(with: url) { data, response, error in
+            if let data = data {
+                do {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase // If your JSON keys use snake_case
+                    let collectiblesResponse = try decoder.decode(CollectibleResponse.self, from: data)
+                    let collectiblesData = collectiblesResponse.data
+                    let collectibles = collectiblesData.data
+                    self.collectiblesBooks = collectibles
+                    // Access collectibles array
+                    DispatchQueue.main.async {
+                        self.collectiblesTableView.reloadData()
+                    }
+                } catch {
+                    print("Error decoding JSON: \(error)")
+                }
+            } else if let error = error {
+                print("Error fetching data: \(error)")
+            }
+        }
+        task.resume()
+    }
 }
 
 extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
@@ -224,47 +222,60 @@ extension HomeVc: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         if tableView == filterTable {
             return items.count
+        } else if tableView == collectiblesTableView {
+            return collectiblesBooks.count
         }
-//        else if tableView == collectiblesTableView {
-//            return collectiblesBooks.count
-//        }
         return 0
     }
-
+    
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-//        if tableView == filterTable {
-            let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as! FilterTableCell
+        if tableView == filterTable {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "dropdownCell", for: indexPath) as! FilterTableCell
             let item = items[indexPath.row]
             cell.nameText.text = item.name
             return cell
-//        }
-//        else if tableView == collectiblesTableView {
-//            let cell = tableView.dequeueReusableCell(withIdentifier: "collectibleCell", for: indexPath) as! CollectibleCell
-//            let books = collectiblesBooks[indexPath.row]
-////            cell.bookImage.image = UIImage(named: books.image)
-//            cell.authorText.text = books.author
-//            cell.titleText.text = books.title
-//            cell.priceText.text = books.price
-//            cell.bookDescription.text = books.description
-//            return cell
-//        }
-//        return UITableViewCell()
-    }
-
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-//        return 40
-//        if tableView == filterTable {
-            return 40
+        } else if tableView == collectiblesTableView {
+            let cell = tableView.dequeueReusableCell(withIdentifier: "collectibleCell", for: indexPath) as! CollectibleTBCell
+            let books = collectiblesBooks[indexPath.row]
+            cell.authorText.text = books.author
+            cell.titleText.text = books.title
+            cell.priceText.text = books.price
+            cell.bookDescription.text = books.description
+            if let imageURLString = books.image.first, let imageURL = URL(string: imageURLString) {
+                URLSession.shared.dataTask(with: imageURL) { data, _, error in
+                    if let data = data, let image = UIImage(data: data) {
+                        DispatchQueue.main.async {
+                            cell.bookImage.image = image
+                        }
+                    } else {
+                        // Handle error or placeholder image if needed
+                        print("Error loading image: \(error?.localizedDescription ?? "Unknown error")")
+                    }
+                }.resume()
+            } else {
+                // Set a placeholder image or handle the case where the image URL is nil
+                cell.bookImage.image = UIImage(named: "placeholderimg")
+            }
+            return cell
         }
-//        else if tableView == collectiblesTableView {
-//            return 400
-//        }
-//        return 0
-//    }
-
+        return UITableViewCell()
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        if tableView == filterTable {
+            return 40
+        } else if tableView == collectiblesTableView {
+            return 500
+        }
+        return 0
+    }
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        filterButton.setTitle("\(items[indexPath.row].name)", for: .normal)
+        let selectedFilterType = items[indexPath.row]
+        getCollectibles(filterType: selectedFilterType.type)
+        filterButton.setTitle("\(selectedFilterType.name)", for: .normal)
         animate(togle: false)
+        filterTableViewHeight.constant = 0
     }
 }
 

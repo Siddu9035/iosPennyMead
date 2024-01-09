@@ -23,16 +23,21 @@ struct Book: Codable {
 
 //Mark: COllectibles
 
-struct CollectibleResposnse: Codable {
+struct CollectibleResponse: Codable {
     let status: Int
     let message: String
-    let data: [Collectibles]
+    let data: CollectiblesBook
+}
+struct CollectiblesBook: Codable {
+    let totalpages: Int
+    let data: [CollectibleItem]
 }
 
-struct Collectibles: Codable {
+struct CollectibleItem: Codable {
     let author: String
     let title: String
     let description: String
     let price: String
     let image: [String]
 }
+

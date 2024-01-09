@@ -15,11 +15,22 @@ class CollectibleTBCell: UITableViewCell {
     @IBOutlet var titleText: UILabel!
     @IBOutlet var bookDescription: UILabel!
     @IBOutlet var addToCartButton: UIButton!
-    
+    @IBOutlet var containerView: UIView!
+    @IBOutlet var subContainerView: UIView!
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+//        containerView.layer.borderWidth = 1
+//        subContainerView.layer.borderWidth = 1
+//        priceText.layer.borderWidth = 1
+//        authorText.layer.borderWidth = 1
+        
+        subContainerView.layer.cornerRadius = 5
+        subContainerView.layer.shadowColor = UIColor.black.cgColor
+        subContainerView.layer.shadowOpacity = 0.5
+        subContainerView.layer.shadowOffset = CGSize(width: 0, height: 3)
+        subContainerView.layer.shadowRadius = 4.0
+        subContainerView.layer.masksToBounds = false // if needed
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
