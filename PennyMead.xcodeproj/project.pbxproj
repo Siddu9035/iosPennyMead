@@ -16,10 +16,15 @@
 		EC3D10B02B46E370002C8D40 /* SplashVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10AF2B46E370002C8D40 /* SplashVc.swift */; };
 		EC3D10B42B46EDDA002C8D40 /* RobotoSlab-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC3D10B32B46EDD9002C8D40 /* RobotoSlab-VariableFont_wght.ttf */; };
 		EC3D10B62B473296002C8D40 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10B52B473296002C8D40 /* CategoryData.swift */; };
+		EC4FAA972B4D2BD40068BA88 /* CollectibleCvCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC4FAA952B4D2BD40068BA88 /* CollectibleCvCell.swift */; };
+		EC4FAA982B4D2BD40068BA88 /* CollectibleCvCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC4FAA962B4D2BD40068BA88 /* CollectibleCvCell.xib */; };
+		EC4FAA9E2B4D58210068BA88 /* OpenSans-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4FAA992B4D58210068BA88 /* OpenSans-SemiBold.ttf */; };
+		EC4FAA9F2B4D58210068BA88 /* OpenSans-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4FAA9A2B4D58210068BA88 /* OpenSans-Light.ttf */; };
+		EC4FAAA02B4D58210068BA88 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4FAA9B2B4D58210068BA88 /* OpenSans-Medium.ttf */; };
+		EC4FAAA12B4D58210068BA88 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4FAA9C2B4D58210068BA88 /* OpenSans-Bold.ttf */; };
+		EC4FAAA22B4D58210068BA88 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4FAA9D2B4D58210068BA88 /* OpenSans-Regular.ttf */; };
 		EC810C632B47CFD300CF9EED /* CollectionVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC810C612B47CFD300CF9EED /* CollectionVc.swift */; };
 		EC810C642B47CFD300CF9EED /* CollectionVc.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC810C622B47CFD300CF9EED /* CollectionVc.xib */; };
-		EC810C6B2B47D2D700CF9EED /* OpenSans-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC810C692B47D2D700CF9EED /* OpenSans-VariableFont_wdth,wght.ttf */; };
-		EC810C6C2B47D2D700CF9EED /* OpenSans-Italic-VariableFont_wdth,wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC810C6A2B47D2D700CF9EED /* OpenSans-Italic-VariableFont_wdth,wght.ttf */; };
 		EC810C6E2B49E12C00CF9EED /* FIlterData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC810C6D2B49E12C00CF9EED /* FIlterData.swift */; };
 		EC810C702B49E42E00CF9EED /* FilterTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC810C6F2B49E42E00CF9EED /* FilterTableCell.swift */; };
 		EC810C782B4AA02100CF9EED /* CollectibleTBCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC810C762B4AA02100CF9EED /* CollectibleTBCell.swift */; };
@@ -38,10 +43,15 @@
 		EC3D10AF2B46E370002C8D40 /* SplashVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVc.swift; sourceTree = "<group>"; };
 		EC3D10B32B46EDD9002C8D40 /* RobotoSlab-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		EC3D10B52B473296002C8D40 /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
+		EC4FAA952B4D2BD40068BA88 /* CollectibleCvCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectibleCvCell.swift; sourceTree = "<group>"; };
+		EC4FAA962B4D2BD40068BA88 /* CollectibleCvCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectibleCvCell.xib; sourceTree = "<group>"; };
+		EC4FAA992B4D58210068BA88 /* OpenSans-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-SemiBold.ttf"; sourceTree = "<group>"; };
+		EC4FAA9A2B4D58210068BA88 /* OpenSans-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Light.ttf"; sourceTree = "<group>"; };
+		EC4FAA9B2B4D58210068BA88 /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Medium.ttf"; sourceTree = "<group>"; };
+		EC4FAA9C2B4D58210068BA88 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
+		EC4FAA9D2B4D58210068BA88 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
 		EC810C612B47CFD300CF9EED /* CollectionVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionVc.swift; sourceTree = "<group>"; };
 		EC810C622B47CFD300CF9EED /* CollectionVc.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectionVc.xib; sourceTree = "<group>"; };
-		EC810C692B47D2D700CF9EED /* OpenSans-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
-		EC810C6A2B47D2D700CF9EED /* OpenSans-Italic-VariableFont_wdth,wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Italic-VariableFont_wdth,wght.ttf"; sourceTree = "<group>"; };
 		EC810C6D2B49E12C00CF9EED /* FIlterData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FIlterData.swift; sourceTree = "<group>"; };
 		EC810C6F2B49E42E00CF9EED /* FilterTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterTableCell.swift; sourceTree = "<group>"; };
 		EC810C762B4AA02100CF9EED /* CollectibleTBCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectibleTBCell.swift; sourceTree = "<group>"; };
@@ -131,9 +141,12 @@
 		EC3D10B22B46ED20002C8D40 /* fonts */ = {
 			isa = PBXGroup;
 			children = (
-				EC810C6A2B47D2D700CF9EED /* OpenSans-Italic-VariableFont_wdth,wght.ttf */,
-				EC810C692B47D2D700CF9EED /* OpenSans-VariableFont_wdth,wght.ttf */,
 				EC3D10B32B46EDD9002C8D40 /* RobotoSlab-VariableFont_wght.ttf */,
+				EC4FAA9C2B4D58210068BA88 /* OpenSans-Bold.ttf */,
+				EC4FAA9A2B4D58210068BA88 /* OpenSans-Light.ttf */,
+				EC4FAA9B2B4D58210068BA88 /* OpenSans-Medium.ttf */,
+				EC4FAA9D2B4D58210068BA88 /* OpenSans-Regular.ttf */,
+				EC4FAA992B4D58210068BA88 /* OpenSans-SemiBold.ttf */,
 			);
 			path = fonts;
 			sourceTree = "<group>";
@@ -143,6 +156,8 @@
 			children = (
 				EC810C612B47CFD300CF9EED /* CollectionVc.swift */,
 				EC810C622B47CFD300CF9EED /* CollectionVc.xib */,
+				EC4FAA952B4D2BD40068BA88 /* CollectibleCvCell.swift */,
+				EC4FAA962B4D2BD40068BA88 /* CollectibleCvCell.xib */,
 			);
 			path = collectionCell;
 			sourceTree = "<group>";
@@ -214,13 +229,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC4FAAA12B4D58210068BA88 /* OpenSans-Bold.ttf in Resources */,
 				EC3D10B42B46EDDA002C8D40 /* RobotoSlab-VariableFont_wght.ttf in Resources */,
 				EC3D10A22B46BC2C002C8D40 /* LaunchScreen.storyboard in Resources */,
 				EC3D109F2B46BC2C002C8D40 /* Assets.xcassets in Resources */,
 				EC3D109D2B46BC2A002C8D40 /* Main.storyboard in Resources */,
-				EC810C6C2B47D2D700CF9EED /* OpenSans-Italic-VariableFont_wdth,wght.ttf in Resources */,
-				EC810C6B2B47D2D700CF9EED /* OpenSans-VariableFont_wdth,wght.ttf in Resources */,
+				EC4FAA9E2B4D58210068BA88 /* OpenSans-SemiBold.ttf in Resources */,
+				EC4FAA982B4D2BD40068BA88 /* CollectibleCvCell.xib in Resources */,
+				EC4FAA9F2B4D58210068BA88 /* OpenSans-Light.ttf in Resources */,
 				EC810C792B4AA02100CF9EED /* CollectibleTBCell.xib in Resources */,
+				EC4FAAA02B4D58210068BA88 /* OpenSans-Medium.ttf in Resources */,
+				EC4FAAA22B4D58210068BA88 /* OpenSans-Regular.ttf in Resources */,
 				EC810C642B47CFD300CF9EED /* CollectionVc.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -237,6 +256,7 @@
 				EC810C632B47CFD300CF9EED /* CollectionVc.swift in Sources */,
 				EC810C782B4AA02100CF9EED /* CollectibleTBCell.swift in Sources */,
 				EC3D10B02B46E370002C8D40 /* SplashVc.swift in Sources */,
+				EC4FAA972B4D2BD40068BA88 /* CollectibleCvCell.swift in Sources */,
 				EC810C6E2B49E12C00CF9EED /* FIlterData.swift in Sources */,
 				EC3D10962B46BC2A002C8D40 /* AppDelegate.swift in Sources */,
 				EC810C702B49E42E00CF9EED /* FilterTableCell.swift in Sources */,
