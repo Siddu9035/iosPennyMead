@@ -14,6 +14,7 @@ class FilterTableCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        nameText.textColor = UIColor(named: "borderColor")
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

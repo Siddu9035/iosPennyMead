@@ -20,11 +20,13 @@ class CollectionVc: UICollectionViewCell {
         
         cardView.layer.cornerRadius = 5
 //        cardView.addShadow()
-        cardView.layer.shadowColor = UIColor.black.cgColor
+        cardView.layer.shadowColor = UIColor.gray.cgColor
         cardView.layer.shadowOpacity = 0.5
         cardView.layer.shadowOffset = CGSize(width: 0, height: 3)
         cardView.layer.shadowRadius = 4.0
         cardView.layer.masksToBounds = false // if needed
+        
+//        contentView.layer.borderWidth = 1
         
     }
     

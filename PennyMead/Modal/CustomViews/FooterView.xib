@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.XIB" version="3.0" toolsVersion="21225" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES">
+    <device id="retina6_0" orientation="portrait" appearance="light"/>
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="21207"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
+        <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <customFonts key="customFonts">
+        <array key="OpenSans-Medium.ttf">
+            <string>OpenSans-Medium</string>
+        </array>
+    </customFonts>
+    <objects>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="FooterView" customModule="PennyMead" customModuleProvider="target"/>
+        <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
+        <view contentMode="scaleToFill" id="iN0-l3-epB">
+            <rect key="frame" x="0.0" y="0.0" width="390" height="844"/>
+            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+            <subviews>
+                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="bAb-PE-w0c">
+                    <rect key="frame" x="10" y="30" width="370" height="130"/>
+                    <subviews>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ReL-wq-X0R">
+                            <rect key="frame" x="0.0" y="0.0" width="180" height="130"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="paypal" translatesAutoresizingMaskIntoConstraints="NO" id="MHZ-7T-CjR">
+                                    <rect key="frame" x="40" y="6" width="100" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="height" constant="30" id="KTk-PN-7pT"/>
+                                        <constraint firstAttribute="width" constant="100" id="okB-8M-ijn"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="groupimage2" translatesAutoresizingMaskIntoConstraints="NO" id="zfz-7e-Ne0">
+                                    <rect key="frame" x="7.6666666666666714" y="46" width="165" height="70"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="165" id="KqK-Qg-cnU"/>
+                                        <constraint firstAttribute="height" constant="70" id="q5L-0j-uRo"/>
+                                    </constraints>
+                                </imageView>
+                            </subviews>
+                            <color key="backgroundColor" name="CardColor"/>
+                            <constraints>
+                                <constraint firstItem="zfz-7e-Ne0" firstAttribute="centerX" secondItem="ReL-wq-X0R" secondAttribute="centerX" id="6lR-Ya-hAn"/>
+                                <constraint firstItem="MHZ-7T-CjR" firstAttribute="centerX" secondItem="ReL-wq-X0R" secondAttribute="centerX" id="NpT-Dz-tcS"/>
+                                <constraint firstItem="MHZ-7T-CjR" firstAttribute="top" secondItem="ReL-wq-X0R" secondAttribute="top" constant="6" id="enK-jY-DPY"/>
+                                <constraint firstItem="zfz-7e-Ne0" firstAttribute="top" secondItem="MHZ-7T-CjR" secondAttribute="bottom" constant="10" id="q0b-mz-2hW"/>
+                            </constraints>
+                        </view>
+                        <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="cmf-H7-bh9">
+                            <rect key="frame" x="190" y="0.0" width="180" height="130"/>
+                            <subviews>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="groupImage2 1" translatesAutoresizingMaskIntoConstraints="NO" id="lqb-jQ-126">
+                                    <rect key="frame" x="7.6666666666666572" y="5" width="165" height="40"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="165" id="AYz-HQ-9p4"/>
+                                        <constraint firstAttribute="height" constant="40" id="rB2-bh-H7p"/>
+                                    </constraints>
+                                </imageView>
+                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" image="tructPilotlogo" translatesAutoresizingMaskIntoConstraints="NO" id="fa2-XP-lFl">
+                                    <rect key="frame" x="22.666666666666657" y="50" width="135" height="30"/>
+                                    <constraints>
+                                        <constraint firstAttribute="width" constant="135" id="Dh0-7a-9Uk"/>
+                                        <constraint firstAttribute="height" constant="30" id="MZo-pZ-dsd"/>
+                                    </constraints>
+                                </imageView>
+                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="See our 44 reviews on " textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZO4-MD-ewh">
+                                    <rect key="frame" x="15" y="90" width="150" height="19.333333333333329"/>
+                                    <fontDescription key="fontDescription" name="OpenSans-Medium" family="Open Sans" pointSize="14"/>
+                                    <nil key="textColor"/>
+                                    <nil key="highlightedColor"/>
+                                </label>
+                            </subviews>
+                            <color key="backgroundColor" name="CardColor"/>
+                            <constraints>
+                                <constraint firstItem="lqb-jQ-126" firstAttribute="centerX" secondItem="cmf-H7-bh9" secondAttribute="centerX" id="8jR-Bc-FHM"/>
+                                <constraint firstItem="fa2-XP-lFl" firstAttribute="centerX" secondItem="cmf-H7-bh9" secondAttribute="centerX" id="Cx9-kx-Vsl"/>
+                                <constraint firstItem="ZO4-MD-ewh" firstAttribute="leading" secondItem="cmf-H7-bh9" secondAttribute="leading" constant="15" id="Lkt-Rq-DwR"/>
+                                <constraint firstItem="fa2-XP-lFl" firstAttribute="top" secondItem="lqb-jQ-126" secondAttribute="bottom" constant="5" id="eHJ-0k-iFN"/>
+                                <constraint firstItem="ZO4-MD-ewh" firstAttribute="top" secondItem="fa2-XP-lFl" secondAttribute="bottom" constant="10" id="iVu-dZ-jMR"/>
+                                <constraint firstAttribute="trailing" secondItem="ZO4-MD-ewh" secondAttribute="trailing" constant="15" id="t6E-4M-PwW"/>
+                                <constraint firstItem="lqb-jQ-126" firstAttribute="top" secondItem="cmf-H7-bh9" secondAttribute="top" constant="5" id="vEz-Y8-PqY"/>
+                            </constraints>
+                        </view>
+                    </subviews>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="130" id="yql-XV-GUR"/>
+                    </constraints>
+                </stackView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Follow us on" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="YCY-6s-CI5">
+                    <rect key="frame" x="30" y="220" width="330" height="20.333333333333343"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                    <color key="textColor" name="CardColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="facebookLogo" translatesAutoresizingMaskIntoConstraints="NO" id="VN7-wJ-sRY">
+                    <rect key="frame" x="180" y="255.33333333333337" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="width" constant="30" id="OBp-EZ-SCG"/>
+                        <constraint firstAttribute="height" constant="30" id="pei-Ha-EjD"/>
+                    </constraints>
+                </imageView>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Copyright © 2023, Pemmymead | All Rights Reserved |" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="69E-MZ-I44">
+                    <rect key="frame" x="30" y="325.33333333333331" width="330" height="15.666666666666686"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" name="CardColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms &amp; Conditions  |  Privacy Policy" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="nD3-Yg-DHa">
+                    <rect key="frame" x="50" y="351" width="290" height="15.666666666666686"/>
+                    <fontDescription key="fontDescription" type="system" pointSize="13"/>
+                    <color key="textColor" name="CardColor"/>
+                    <nil key="highlightedColor"/>
+                </label>
+            </subviews>
+            <viewLayoutGuide key="safeArea" id="vUN-kp-3ea"/>
+            <color key="backgroundColor" name="borderColor"/>
+            <constraints>
+                <constraint firstItem="nD3-Yg-DHa" firstAttribute="top" secondItem="69E-MZ-I44" secondAttribute="bottom" constant="10" id="02H-r5-gNa"/>
+                <constraint firstItem="YCY-6s-CI5" firstAttribute="top" secondItem="bAb-PE-w0c" secondAttribute="bottom" constant="60" id="1F3-Gq-MPW"/>
+                <constraint firstAttribute="trailing" secondItem="nD3-Yg-DHa" secondAttribute="trailing" constant="50" id="6hG-2a-XIW"/>
+                <constraint firstAttribute="trailing" secondItem="bAb-PE-w0c" secondAttribute="trailing" constant="10" id="Hkl-5I-acp"/>
+                <constraint firstItem="VN7-wJ-sRY" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="ItI-zn-GCM"/>
+                <constraint firstItem="YCY-6s-CI5" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="MqO-0I-k8O"/>
+                <constraint firstItem="69E-MZ-I44" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="30" id="SUH-bj-OQ4"/>
+                <constraint firstItem="bAb-PE-w0c" firstAttribute="top" secondItem="iN0-l3-epB" secondAttribute="top" constant="30" id="See-U5-C8s"/>
+                <constraint firstItem="YCY-6s-CI5" firstAttribute="centerX" secondItem="iN0-l3-epB" secondAttribute="centerX" id="VTl-3Q-dPz"/>
+                <constraint firstItem="VN7-wJ-sRY" firstAttribute="top" secondItem="YCY-6s-CI5" secondAttribute="bottom" constant="15" id="WZR-6S-KaA"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="YCY-6s-CI5" secondAttribute="trailing" constant="30" id="Wq5-sU-t5F"/>
+                <constraint firstItem="bAb-PE-w0c" firstAttribute="leading" secondItem="iN0-l3-epB" secondAttribute="leading" constant="10" id="dw3-N7-cWp"/>
+                <constraint firstItem="69E-MZ-I44" firstAttribute="top" secondItem="VN7-wJ-sRY" secondAttribute="bottom" constant="40" id="kaX-PL-HTg"/>
+                <constraint firstItem="vUN-kp-3ea" firstAttribute="trailing" secondItem="69E-MZ-I44" secondAttribute="trailing" constant="30" id="woF-St-31K"/>
+                <constraint firstItem="nD3-Yg-DHa" firstAttribute="leading" secondItem="vUN-kp-3ea" secondAttribute="leading" constant="50" id="yee-Oo-bHi"/>
+            </constraints>
+            <freeformSimulatedSizeMetrics key="simulatedDestinationMetrics"/>
+            <point key="canvasLocation" x="21.538461538461537" y="20.616113744075829"/>
+        </view>
+    </objects>
+    <resources>
+        <image name="facebookLogo" width="20" height="20"/>
+        <image name="groupImage2 1" width="176" height="43"/>
+        <image name="groupimage2" width="166" height="52"/>
+        <image name="paypal" width="91" height="26"/>
+        <image name="tructPilotlogo" width="131" height="32"/>
+        <namedColor name="CardColor">
+            <color red="1" green="0.97299998998641968" blue="0.94900000095367432" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+        <namedColor name="borderColor">
+            <color red="0.52899998426437378" green="0.22400000691413879" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
+    </resources>
+</document>
