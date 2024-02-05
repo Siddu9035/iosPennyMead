@@ -38,7 +38,6 @@ struct CollectiblesManager {
                     
                     let totalPage = collectibleData.totalpages
                     self.delegate?.didUpdateTotalPages(totalPage)
-                    print("--------->>\(totalPage)")
                 } catch {
                     self.delegate?.didGetError(error: error)
                 }

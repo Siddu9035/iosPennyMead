@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		AFFC0287F7C8F9847C322630 /* Pods_PennyMead.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3A09DE55A28E45141F5A8FF /* Pods_PennyMead.framework */; };
+		EC38E28C2B68E3820057C8E2 /* CustomDropdown.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC38E28B2B68E3820057C8E2 /* CustomDropdown.swift */; };
+		EC38E28E2B68E3960057C8E2 /* CustomDropdown.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC38E28D2B68E3960057C8E2 /* CustomDropdown.xib */; };
+		EC38E2912B68E4D90057C8E2 /* CustomDropdownCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC38E28F2B68E4D90057C8E2 /* CustomDropdownCell.swift */; };
+		EC38E2922B68E4D90057C8E2 /* CustomDropdownCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC38E2902B68E4D90057C8E2 /* CustomDropdownCell.xib */; };
+		EC38E2942B69667B0057C8E2 /* DropdownTableVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC38E2932B69667B0057C8E2 /* DropdownTableVc.swift */; };
+		EC38E2962B6981FB0057C8E2 /* ElementConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC38E2952B6981FB0057C8E2 /* ElementConfiguration.swift */; };
 		EC3D10962B46BC2A002C8D40 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10952B46BC2A002C8D40 /* AppDelegate.swift */; };
 		EC3D10982B46BC2A002C8D40 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10972B46BC2A002C8D40 /* SceneDelegate.swift */; };
 		EC3D109D2B46BC2A002C8D40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC3D109B2B46BC2A002C8D40 /* Main.storyboard */; };
@@ -23,6 +30,9 @@
 		EC4FAAA02B4D58210068BA88 /* OpenSans-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4FAA9B2B4D58210068BA88 /* OpenSans-Medium.ttf */; };
 		EC4FAAA12B4D58210068BA88 /* OpenSans-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4FAA9C2B4D58210068BA88 /* OpenSans-Bold.ttf */; };
 		EC4FAAA22B4D58210068BA88 /* OpenSans-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC4FAA9D2B4D58210068BA88 /* OpenSans-Regular.ttf */; };
+		EC5412DC2B5EE94F0072F3CA /* GradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5412DB2B5EE94F0072F3CA /* GradientButton.swift */; };
+		EC55C2972B60D859000994F7 /* FetchPerticularManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC55C2962B60D859000994F7 /* FetchPerticularManager.swift */; };
+		EC55C2992B60E785000994F7 /* Testing.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC55C2982B60E785000994F7 /* Testing.swift */; };
 		EC5858562B510ECB006C5D78 /* CategoryManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5858552B510ECB006C5D78 /* CategoryManager.swift */; };
 		EC5858582B51238C006C5D78 /* CollectiblesManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5858572B51238C006C5D78 /* CollectiblesManager.swift */; };
 		EC58585A2B51541A006C5D78 /* ApiConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC5858592B51541A006C5D78 /* ApiConstants.swift */; };
@@ -37,12 +47,24 @@
 		EC810C792B4AA02100CF9EED /* CollectibleTBCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC810C772B4AA02100CF9EED /* CollectibleTBCell.xib */; };
 		EC8460482B4E709A00561424 /* FooterView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC8460472B4E709A00561424 /* FooterView.swift */; };
 		EC84604A2B4E70CC00561424 /* FooterView.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC8460492B4E70CC00561424 /* FooterView.xib */; };
+		EC96FFD62B639EEF0096025B /* SearchBookManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC96FFD52B639EEF0096025B /* SearchBookManager.swift */; };
+		EC9C5FCE2B6BD01500AE0A07 /* GetSubDropDownsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9C5FCD2B6BD01500AE0A07 /* GetSubDropDownsManager.swift */; };
+		EC9DEC472B6BB319002D08E4 /* DropDownCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC9DEC452B6BB319002D08E4 /* DropDownCollection.swift */; };
+		EC9DEC482B6BB319002D08E4 /* DropDownCollection.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC9DEC462B6BB319002D08E4 /* DropDownCollection.xib */; };
 		ECB35B902B56EE4A00384B46 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB35B8F2B56EE4A00384B46 /* Drawer.swift */; };
 		ECB35B932B57036100384B46 /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB35B922B57036100384B46 /* SideMenuManager.swift */; };
 		ECB35B952B5708A400384B46 /* CatalougeListVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB35B942B5708A400384B46 /* CatalougeListVc.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		74A5E6684E7078EFF326D088 /* Pods-PennyMead.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PennyMead.release.xcconfig"; path = "Target Support Files/Pods-PennyMead/Pods-PennyMead.release.xcconfig"; sourceTree = "<group>"; };
+		87FEFACCD58E1EB40DFA6282 /* Pods-PennyMead.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-PennyMead.debug.xcconfig"; path = "Target Support Files/Pods-PennyMead/Pods-PennyMead.debug.xcconfig"; sourceTree = "<group>"; };
+		EC38E28B2B68E3820057C8E2 /* CustomDropdown.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropdown.swift; sourceTree = "<group>"; };
+		EC38E28D2B68E3960057C8E2 /* CustomDropdown.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropdown.xib; sourceTree = "<group>"; };
+		EC38E28F2B68E4D90057C8E2 /* CustomDropdownCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomDropdownCell.swift; sourceTree = "<group>"; };
+		EC38E2902B68E4D90057C8E2 /* CustomDropdownCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CustomDropdownCell.xib; sourceTree = "<group>"; };
+		EC38E2932B69667B0057C8E2 /* DropdownTableVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownTableVc.swift; sourceTree = "<group>"; };
+		EC38E2952B6981FB0057C8E2 /* ElementConfiguration.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ElementConfiguration.swift; sourceTree = "<group>"; };
 		EC3D10922B46BC2A002C8D40 /* PennyMead.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PennyMead.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC3D10952B46BC2A002C8D40 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		EC3D10972B46BC2A002C8D40 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -61,6 +83,9 @@
 		EC4FAA9B2B4D58210068BA88 /* OpenSans-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Medium.ttf"; sourceTree = "<group>"; };
 		EC4FAA9C2B4D58210068BA88 /* OpenSans-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Bold.ttf"; sourceTree = "<group>"; };
 		EC4FAA9D2B4D58210068BA88 /* OpenSans-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "OpenSans-Regular.ttf"; sourceTree = "<group>"; };
+		EC5412DB2B5EE94F0072F3CA /* GradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientButton.swift; sourceTree = "<group>"; };
+		EC55C2962B60D859000994F7 /* FetchPerticularManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FetchPerticularManager.swift; sourceTree = "<group>"; };
+		EC55C2982B60E785000994F7 /* Testing.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Testing.swift; sourceTree = "<group>"; };
 		EC5858552B510ECB006C5D78 /* CategoryManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryManager.swift; sourceTree = "<group>"; };
 		EC5858572B51238C006C5D78 /* CollectiblesManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectiblesManager.swift; sourceTree = "<group>"; };
 		EC5858592B51541A006C5D78 /* ApiConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApiConstants.swift; sourceTree = "<group>"; };
@@ -75,9 +100,14 @@
 		EC810C772B4AA02100CF9EED /* CollectibleTBCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CollectibleTBCell.xib; sourceTree = "<group>"; };
 		EC8460472B4E709A00561424 /* FooterView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FooterView.swift; sourceTree = "<group>"; };
 		EC8460492B4E70CC00561424 /* FooterView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = FooterView.xib; sourceTree = "<group>"; };
+		EC96FFD52B639EEF0096025B /* SearchBookManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchBookManager.swift; sourceTree = "<group>"; };
+		EC9C5FCD2B6BD01500AE0A07 /* GetSubDropDownsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GetSubDropDownsManager.swift; sourceTree = "<group>"; };
+		EC9DEC452B6BB319002D08E4 /* DropDownCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropDownCollection.swift; sourceTree = "<group>"; };
+		EC9DEC462B6BB319002D08E4 /* DropDownCollection.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropDownCollection.xib; sourceTree = "<group>"; };
 		ECB35B8F2B56EE4A00384B46 /* Drawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
 		ECB35B922B57036100384B46 /* SideMenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
 		ECB35B942B5708A400384B46 /* CatalougeListVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalougeListVc.swift; sourceTree = "<group>"; };
+		F3A09DE55A28E45141F5A8FF /* Pods_PennyMead.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PennyMead.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,17 +115,37 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AFFC0287F7C8F9847C322630 /* Pods_PennyMead.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		5613499DAFF08597A7F285C2 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3A09DE55A28E45141F5A8FF /* Pods_PennyMead.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E4484E4CA2E0A2380DB9DD5C /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				87FEFACCD58E1EB40DFA6282 /* Pods-PennyMead.debug.xcconfig */,
+				74A5E6684E7078EFF326D088 /* Pods-PennyMead.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 		EC3D10892B46BC2A002C8D40 = {
 			isa = PBXGroup;
 			children = (
 				EC3D10942B46BC2A002C8D40 /* PennyMead */,
 				EC3D10932B46BC2A002C8D40 /* Products */,
+				E4484E4CA2E0A2380DB9DD5C /* Pods */,
+				5613499DAFF08597A7F285C2 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -119,6 +169,11 @@
 				EC3D109E2B46BC2C002C8D40 /* Assets.xcassets */,
 				EC3D10A02B46BC2C002C8D40 /* LaunchScreen.storyboard */,
 				EC3D10A32B46BC2C002C8D40 /* Info.plist */,
+				EC55C2982B60E785000994F7 /* Testing.swift */,
+				EC38E2932B69667B0057C8E2 /* DropdownTableVc.swift */,
+				EC38E28F2B68E4D90057C8E2 /* CustomDropdownCell.swift */,
+				EC38E2902B68E4D90057C8E2 /* CustomDropdownCell.xib */,
+				EC38E2952B6981FB0057C8E2 /* ElementConfiguration.swift */,
 			);
 			path = PennyMead;
 			sourceTree = "<group>";
@@ -137,6 +192,10 @@
 				EC5858572B51238C006C5D78 /* CollectiblesManager.swift */,
 				EC5858592B51541A006C5D78 /* ApiConstants.swift */,
 				EC58585B2B51607E006C5D78 /* ActivityIndicator.swift */,
+				EC5412DB2B5EE94F0072F3CA /* GradientButton.swift */,
+				EC55C2962B60D859000994F7 /* FetchPerticularManager.swift */,
+				EC96FFD52B639EEF0096025B /* SearchBookManager.swift */,
+				EC9C5FCD2B6BD01500AE0A07 /* GetSubDropDownsManager.swift */,
 			);
 			path = Modal;
 			sourceTree = "<group>";
@@ -187,6 +246,8 @@
 				EC810C622B47CFD300CF9EED /* CollectionVc.xib */,
 				EC4FAA952B4D2BD40068BA88 /* CollectibleCvCell.swift */,
 				EC4FAA962B4D2BD40068BA88 /* CollectibleCvCell.xib */,
+				EC9DEC452B6BB319002D08E4 /* DropDownCollection.swift */,
+				EC9DEC462B6BB319002D08E4 /* DropDownCollection.xib */,
 			);
 			path = collectionCell;
 			sourceTree = "<group>";
@@ -203,6 +264,8 @@
 		EC84604B2B4E710400561424 /* CustomViews */ = {
 			isa = PBXGroup;
 			children = (
+				EC38E28B2B68E3820057C8E2 /* CustomDropdown.swift */,
+				EC38E28D2B68E3960057C8E2 /* CustomDropdown.xib */,
 				EC8460472B4E709A00561424 /* FooterView.swift */,
 				EC8460492B4E70CC00561424 /* FooterView.xib */,
 				EC58585D2B554866006C5D78 /* CustomPopUp.swift */,
@@ -227,9 +290,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = EC3D10A62B46BC2C002C8D40 /* Build configuration list for PBXNativeTarget "PennyMead" */;
 			buildPhases = (
+				FCF853E660E364B4269950C4 /* [CP] Check Pods Manifest.lock */,
 				EC3D108E2B46BC2A002C8D40 /* Sources */,
 				EC3D108F2B46BC2A002C8D40 /* Frameworks */,
 				EC3D10902B46BC2A002C8D40 /* Resources */,
+				CF6F24AD19370F6790109B2A /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -280,8 +345,10 @@
 			files = (
 				EC4FAAA12B4D58210068BA88 /* OpenSans-Bold.ttf in Resources */,
 				EC5858602B554866006C5D78 /* CustomPopUp.xib in Resources */,
+				EC38E28E2B68E3960057C8E2 /* CustomDropdown.xib in Resources */,
 				EC3D10B42B46EDDA002C8D40 /* RobotoSlab-VariableFont_wght.ttf in Resources */,
 				EC3D10A22B46BC2C002C8D40 /* LaunchScreen.storyboard in Resources */,
+				EC9DEC482B6BB319002D08E4 /* DropDownCollection.xib in Resources */,
 				EC84604A2B4E70CC00561424 /* FooterView.xib in Resources */,
 				EC3D109F2B46BC2C002C8D40 /* Assets.xcassets in Resources */,
 				EC3D109D2B46BC2A002C8D40 /* Main.storyboard in Resources */,
@@ -292,32 +359,85 @@
 				EC4FAAA02B4D58210068BA88 /* OpenSans-Medium.ttf in Resources */,
 				EC4FAAA22B4D58210068BA88 /* OpenSans-Regular.ttf in Resources */,
 				EC810C642B47CFD300CF9EED /* CollectionVc.xib in Resources */,
+				EC38E2922B68E4D90057C8E2 /* CustomDropdownCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		CF6F24AD19370F6790109B2A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PennyMead/Pods-PennyMead-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-PennyMead/Pods-PennyMead-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-PennyMead/Pods-PennyMead-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		FCF853E660E364B4269950C4 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-PennyMead-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		EC3D108E2B46BC2A002C8D40 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				EC9DEC472B6BB319002D08E4 /* DropDownCollection.swift in Sources */,
+				EC38E2962B6981FB0057C8E2 /* ElementConfiguration.swift in Sources */,
+				EC96FFD62B639EEF0096025B /* SearchBookManager.swift in Sources */,
 				EC3D10AB2B46BCB5002C8D40 /* HomeVc.swift in Sources */,
 				EC3D10B62B473296002C8D40 /* CategoryData.swift in Sources */,
 				EC58585A2B51541A006C5D78 /* ApiConstants.swift in Sources */,
 				EC5858582B51238C006C5D78 /* CollectiblesManager.swift in Sources */,
 				EC810C632B47CFD300CF9EED /* CollectionVc.swift in Sources */,
 				EC810C782B4AA02100CF9EED /* CollectibleTBCell.swift in Sources */,
+				EC38E28C2B68E3820057C8E2 /* CustomDropdown.swift in Sources */,
+				EC38E2912B68E4D90057C8E2 /* CustomDropdownCell.swift in Sources */,
 				EC3D10B02B46E370002C8D40 /* SplashVc.swift in Sources */,
+				EC9C5FCE2B6BD01500AE0A07 /* GetSubDropDownsManager.swift in Sources */,
 				ECB35B932B57036100384B46 /* SideMenuManager.swift in Sources */,
 				ECB35B902B56EE4A00384B46 /* Drawer.swift in Sources */,
 				EC4FAA972B4D2BD40068BA88 /* CollectibleCvCell.swift in Sources */,
 				EC8460482B4E709A00561424 /* FooterView.swift in Sources */,
 				EC810C6E2B49E12C00CF9EED /* FIlterData.swift in Sources */,
+				EC55C2972B60D859000994F7 /* FetchPerticularManager.swift in Sources */,
+				EC38E2942B69667B0057C8E2 /* DropdownTableVc.swift in Sources */,
 				EC5858562B510ECB006C5D78 /* CategoryManager.swift in Sources */,
+				EC5412DC2B5EE94F0072F3CA /* GradientButton.swift in Sources */,
 				EC58585C2B51607E006C5D78 /* ActivityIndicator.swift in Sources */,
 				EC3D10962B46BC2A002C8D40 /* AppDelegate.swift in Sources */,
 				EC810C702B49E42E00CF9EED /* FilterTableCell.swift in Sources */,
+				EC55C2992B60E785000994F7 /* Testing.swift in Sources */,
 				EC3D10982B46BC2A002C8D40 /* SceneDelegate.swift in Sources */,
 				EC58585F2B554866006C5D78 /* CustomPopUp.swift in Sources */,
 				ECB35B952B5708A400384B46 /* CatalougeListVc.swift in Sources */,
@@ -462,6 +582,7 @@
 		};
 		EC3D10A72B46BC2C002C8D40 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 87FEFACCD58E1EB40DFA6282 /* Pods-PennyMead.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -490,6 +611,7 @@
 		};
 		EC3D10A82B46BC2C002C8D40 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 74A5E6684E7078EFF326D088 /* Pods-PennyMead.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;

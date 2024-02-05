@@ -6,8 +6,12 @@
 //
 
 import UIKit
+import Kingfisher
 
 class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, collectibleManagerDelegate, DrawerDelegate {
+    func didGoToHomeVc() {
+        self.navigationController?.popViewController(animated: true)
+    }
     
     @IBOutlet var categoryCollection: UICollectionView!
     @IBOutlet var collectionViewHeight: NSLayoutConstraint!
@@ -47,6 +51,7 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
         FilterData(name: "Price-High", type: "price_high"),
         FilterData(name: "Price-Low", type: "price_low")
     ]
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -118,13 +123,16 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
         let selectedFilterType = items[defaultIndexPath.row]
         collectibleManager.getCollectibles(with: selectedFilterType.type, page: page)
         
-        SideMenuManager.shared.configureSideMenu(parentViewController: self)
-        SideMenuManager.shared.sideMenuVc.delegate = self
+        hideKeyboardWhenTappedAround()
     }
-    
     override func viewDidLayoutSubviews() {
         self.changeCollectionHeight()
         self.changeCollectionHeight2()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        SideMenuManager.shared.configureSideMenu(parentViewController: self)
+        SideMenuManager.shared.sideMenuVc.delegate = self
     }
     
     //MARK: Category Collection
@@ -201,7 +209,6 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
         collectible_CollectionVC.register(UINib(nibName: "CollectibleCvCell", bundle: nil), forCellWithReuseIdentifier: "cellItems")
         
         let layout = UICollectionViewFlowLayout()
-        //layout.itemSize = CGSize(width: 180, height: categoryCollection.frame.height)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         collectible_CollectionVC.collectionViewLayout = layout
@@ -424,18 +431,15 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cell.authorName.text = book.author
             cell.title.text = book.name
             if let imageURLString = book.image?.first, let imageURL = URL(string: imageURLString) {
-                URLSession.shared.dataTask(with: imageURL) { data, _, error in
-                    if let data = data, let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            cell.bookImage.image = image
-                        }
-                    } else {
-                        // Handle error or placeholder image if needed
-                        print("Error loading image: \(error?.localizedDescription ?? "Unknown error")")
+                cell.bookImage.kf.setImage(with: imageURL, placeholder: UIImage(named: "placeholderimg"), options: nil) { result in
+                    switch result {
+                    case .success(_): break
+                        //                        print("Image loaded: categories")
+                    case .failure(let error):
+                        print("Error loading image: \(error)")
                     }
-                }.resume()
+                }
             } else {
-                // Set a placeholder image or handle the case where the image URL is nil
                 cell.bookImage.image = UIImage(named: "placeholderimg")
             }
             return cell
@@ -446,23 +450,18 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             cell2.cardPrice.text = ("£ \(books.price)")
             cell2.cardTitle.text = books.title
             cell2.cardDescription.text = books.description
-            
             if let imageURLString = books.image.first, let imageURL = URL(string: imageURLString) {
-                URLSession.shared.dataTask(with: imageURL) { data, _, error in
-                    if let data = data, let image = UIImage(data: data) {
-                        DispatchQueue.main.async {
-                            cell2.cardImage1.image = image
-                        }
-                    } else {
-                        // Handle error or placeholder image if needed
-                        print("Error loading image: \(error?.localizedDescription ?? "Unknown error")")
+                cell2.cardImage1.kf.setImage(with: imageURL, placeholder: UIImage(named: "placeholderimg"), options: nil) { result in
+                    switch result {
+                    case .success(_): break
+                        //                        print("Image loaded: collectibles")
+                    case .failure(let error):
+                        print("Error loading image: \(error)")
                     }
-                }.resume()
+                }
             } else {
-                // Set a placeholder image or handle the case where the image URL is nil
                 cell2.cardImage1.image = UIImage(named: "placeholderimg")
             }
-            
             return cell2
         }
         return UICollectionViewCell()
@@ -476,10 +475,20 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
     
     func selectedData(with category: Book) {
-        print("selectedCategory from Home vc \(category)")
+//        print("selectedCategory from Home vc \(category)")
+//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
+//        if let catalougePage = storyBoard.instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
+//            catalougePage.selectedBook = category
+//            catalougePage.books = categories
+//            navigationController?.pushViewController(catalougePage, animated: true)
+//        }
+        
+        
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         if let catalougePage = storyBoard.instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
-            catalougePage.selectedBook = category
+            let categoryInfo = categories.map{(number: $0.category, name: $0.name)}
+            catalougePage.categoryInfoArray = categoryInfo
+            catalougePage.selectedCategoryName = (name: category.name, category: category.category)
             navigationController?.pushViewController(catalougePage, animated: true)
         }
     }
@@ -503,8 +512,6 @@ extension HomeVc: UITableViewDelegate, UITableViewDataSource {
             cell.contentView.backgroundColor = UIColor.white
             cell.nameText.textColor = UIColor(named: "borderColor")
         }
-        
-        
         return cell
     }
     
@@ -527,7 +534,16 @@ extension HomeVc: UITableViewDelegate, UITableViewDataSource {
         } else {
             stopLoading()
         }
-        //        selectedIndexPath = indexPath
+    }
+}
+extension UIViewController {
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
     }
     
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
 }

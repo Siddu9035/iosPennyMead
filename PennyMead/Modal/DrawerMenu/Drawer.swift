@@ -22,8 +22,6 @@ class Drawer: UIViewController {
         super.viewDidLoad()
         lineView.layer.borderWidth = 1
         lineView.layer.borderColor = UIColor(named: "CardColor")?.cgColor
-        
-
     }
     @IBAction func onPressBackButton(_ sender: UIButton) {
         delegate?.didPressBacbutton()
@@ -35,7 +33,7 @@ class Drawer: UIViewController {
         } else {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
             let catLouge = storyBoard.instantiateViewController(withIdentifier: "HomeVc") as! HomeVc
-            navigationController?.pushViewController(catLouge, animated: true)
+            navigationController?.popViewController(animated: true)
         }
     }
     
