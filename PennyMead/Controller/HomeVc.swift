@@ -196,7 +196,6 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
         categoryCollection.register(UINib(nibName: "CollectionVc", bundle: nil), forCellWithReuseIdentifier: "collectionCell")
         
         let layout = UICollectionViewFlowLayout()
-        //layout.itemSize = CGSize(width: 180, height: categoryCollection.frame.height)
         layout.minimumInteritemSpacing = 0
         layout.minimumLineSpacing = 0
         categoryCollection.collectionViewLayout = layout
@@ -494,7 +493,6 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
     
 }
-
 //MARK: extension for the tableview
 extension HomeVc: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

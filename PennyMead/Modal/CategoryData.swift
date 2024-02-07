@@ -71,27 +71,21 @@ struct SearchResults: Codable {
 }
 
 //MARK: subdropdowncat
-// MARK: - Welcome
-struct Welcome: Codable {
+
+struct ResponseData: Codable {
     let status: Int
     let message: String
-    let data: [Datum]
+    let data: [DropdownGroup]
 }
-
-// MARK: - Datum
-struct Datum: Codable {
-    let name: Name
-    let dropdownlist: [Dropdownlist]
-}
-
-// MARK: - Dropdownlist
-struct Dropdownlist: Codable {
+struct DropdownGroup: Codable {
     let name: String
-    let thegroup: Name
-    let reference: String
+    let dropdownlist: [DropdownItem]
 }
-
-enum Name: String, Codable {
-    case subject = "Subject"
-    case wIIslands = "W. I. islands"
+struct DropdownItem: Codable {
+    let name: String
+    let keywords: String
+    let toshow: String
+    let thegroup: String
+    let reference: String
+    let icount: String
 }

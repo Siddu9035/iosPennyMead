@@ -1,0 +1,339 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Bucket
+   uuid = "2F6FEBB2-11E9-43AE-A14B-78BBF51A44CA"
+   type = "0"
+   version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "EC81B9EC-465F-4014-9ABB-00050663D206"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Modal/DrawerMenu/SideMenuManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "43"
+            endingLineNumber = "43"
+            landmarkName = "configureSideMenu(parentViewController:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "70B266E2-3900-444B-9C49-826BA84F7DF6"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Modal/DrawerMenu/SideMenuManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "42"
+            endingLineNumber = "42"
+            landmarkName = "configureSideMenu(parentViewController:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5987F329-336D-4511-8C07-86DC852CFE1A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Modal/SearchBookManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "17"
+            endingLineNumber = "17"
+            landmarkName = "SearchBookManager"
+            landmarkType = "14">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6A4478E4-F116-4F0C-AF38-42BCB4AAB233"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Controller/CatalougeListVc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "60"
+            endingLineNumber = "60"
+            landmarkName = "CatalougeListVc"
+            landmarkType = "3">
+            <Locations>
+               <Location
+                  uuid = "6A4478E4-F116-4F0C-AF38-42BCB4AAB233 - b62710cd1a84b402"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PennyMead.CatalougeListVc.isSearching.getter : Swift.Bool"
+                  moduleName = "PennyMead"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "67">
+               </Location>
+               <Location
+                  uuid = "6A4478E4-F116-4F0C-AF38-42BCB4AAB233 - 19e1f9377bb19c1e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PennyMead.CatalougeListVc.isSearching.setter : Swift.Bool"
+                  moduleName = "PennyMead"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "95">
+               </Location>
+               <Location
+                  uuid = "6A4478E4-F116-4F0C-AF38-42BCB4AAB233 - f42fd95974649e0f"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PennyMead.CatalougeListVc.isSearching.modify : Swift.Bool"
+                  moduleName = "PennyMead"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "0">
+               </Location>
+               <Location
+                  uuid = "6A4478E4-F116-4F0C-AF38-42BCB4AAB233 - 8d25a1431fa6e21e"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PennyMead.CatalougeListVc.isSearching.modify : Swift.Bool with unmangled suffix &quot;.resume.0&quot;"
+                  moduleName = "PennyMead"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "15">
+               </Location>
+               <Location
+                  uuid = "6A4478E4-F116-4F0C-AF38-42BCB4AAB233 - 2ac883691b511f95"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PennyMead.CatalougeListVc.init(nibName: Swift.Optional&lt;Swift.String&gt;, bundle: Swift.Optional&lt;__C.NSBundle&gt;) -&gt; PennyMead.CatalougeListVc"
+                  moduleName = "PennyMead"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "2004">
+               </Location>
+               <Location
+                  uuid = "6A4478E4-F116-4F0C-AF38-42BCB4AAB233 - 1d6a8efbf2c577e6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PennyMead.CatalougeListVc.init(coder: __C.NSCoder) -&gt; Swift.Optional&lt;PennyMead.CatalougeListVc&gt;"
+                  moduleName = "PennyMead"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "52"
+                  endingLineNumber = "52"
+                  offsetFromSymbolStart = "1946">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "322C0054-9A98-496F-A014-6B014FF0E089"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Controller/HomeVc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "244"
+            endingLineNumber = "244"
+            landmarkName = "onPressMenuButton(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "59EA25A6-EC2B-436B-8E97-30A41C0EC04B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Modal/DrawerMenu/SideMenuManager.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "88"
+            endingLineNumber = "88"
+            landmarkName = "toggleSideMenu(expanded:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "6C194FCD-2387-4186-A5A1-AD46E7A4FD58"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Controller/CatalougeListVc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "328"
+            endingLineNumber = "328"
+            landmarkName = "updatePaginationUi(with:totalPage:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "6C194FCD-2387-4186-A5A1-AD46E7A4FD58 - e0870d62ef64ec05"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PennyMead.CatalougeListVc.updatePaginationUi(with: Swift.Int, totalPage: Swift.Int) -&gt; ()"
+                  moduleName = "PennyMead"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "320"
+                  endingLineNumber = "320"
+                  offsetFromSymbolStart = "216">
+               </Location>
+               <Location
+                  uuid = "6C194FCD-2387-4186-A5A1-AD46E7A4FD58 - e0870d62ef64ec05"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "PennyMead.CatalougeListVc.updatePaginationUi(with: Swift.Int, totalPage: Swift.Int) -&gt; ()"
+                  moduleName = "PennyMead"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "320"
+                  endingLineNumber = "320"
+                  offsetFromSymbolStart = "240">
+               </Location>
+               <Location
+                  uuid = "6C194FCD-2387-4186-A5A1-AD46E7A4FD58 - 7cbfb920c0236065"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in PennyMead.CatalougeListVc.updatePaginationUi(with: Swift.Int, totalPage: Swift.Int) -&gt; ()"
+                  moduleName = "PennyMead"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "321"
+                  endingLineNumber = "321"
+                  offsetFromSymbolStart = "233">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "E9CBED18-4246-461C-981B-FCA693A16BC2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/CustomDropdownView.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "setupDropdown()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5CF08CC1-25DF-4CC8-8787-B7B4E782F8EA"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Controller/CatalougeListVc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "300"
+            endingLineNumber = "300"
+            landmarkName = "didUpdateTotalPages(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B80BEE0D-83D2-419F-AD93-6EBD55E284C2"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Controller/CatalougeListVc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "298"
+            endingLineNumber = "298"
+            landmarkName = "didUpdateTotalPages(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "1BA1D752-B61A-4974-A028-BCEDFA66C78B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Controller/CatalougeListVc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "327"
+            endingLineNumber = "327"
+            landmarkName = "updatePaginationUi(with:totalPage:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4D021251-D068-48C7-BFAE-A7C18463D04C"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Controller/CatalougeListVc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "329"
+            endingLineNumber = "329"
+            landmarkName = "updatePaginationUi(with:totalPage:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
+</Bucket>

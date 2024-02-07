@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DropDownCollectionDelegate: AnyObject {
-    func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton)
+    func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton, frame: CGRect)
 }
 
 class DropDownCollection: UICollectionViewCell, CustomDropdownDelegate {
@@ -27,14 +27,15 @@ class DropDownCollection: UICollectionViewCell, CustomDropdownDelegate {
     }
     
     @IBAction func onPressDropdownButtons(_ sender: UIButton) {
-        delegate?.didTapButton(with: title, forCell: self, sender: sender)
+        let frame = sender.convert(sender.bounds, to: nil)
+        delegate?.didTapButton(with: title, forCell: self, sender: sender, frame: frame)
     }
     
     func setupDropdownView() {
         // Create and configure your custom dropdown view
         dropdownView = CustomDropdown(frame: CGRect(x: 0, y: dropdownButtons.frame.maxY + 5, width: dropdownButtons.frame.width, height: 200))
         dropdownView?.delegate = self
-        dropdownView?.options = ["Option 1", "Option 2", "Option 3"]
+//        dropdownView?.options = ["Option 1", "Option 2", "Option 3"]
         addSubview(dropdownView!) // Add dropdownView to the superview
         
         // Set up Auto Layout constraints in the superview

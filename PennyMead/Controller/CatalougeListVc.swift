@@ -65,8 +65,13 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     var selectedCategoryName: (name: String, category: String)?
     var expandedCellIndex = -1
     
+    let customView = UIView()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        customView.backgroundColor = UIColor.lightGray
+        customView.isHidden = true
+        view.addSubview(customView)
         
         showIndicator()
         //        SideMenuManager.shared.configureSideMenu(parentViewController: self)
@@ -80,7 +85,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         perticularBookData.delegate = self
         let selectedFilter = filterData[selectedIndexPath?.row ?? 0]
         perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "0", filterType: selectedFilter.type, page: page)
-        print("1 \(selectedCategoryName?.category)")
         searchedBooks.delegate = self
         
         updatePaginationUi(with: page, totalPage: totalPage)
@@ -143,6 +147,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     override func viewDidLayoutSubviews() {
         self.updateCollectionViewHeight()
     }
+    //MARK: give pagination Styles
     func paginationStyles() {
         firstButton.layer.borderColor = UIColor(named: "borderColor")?.cgColor
         firstButton.layer.borderWidth = 1
@@ -182,10 +187,11 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         filterButton.layer.borderColor = UIColor(named: "borderColor")?.cgColor
         filterButton.layer.cornerRadius = 5
     }
-    
+    //MARK: update the heights of the collectionview
     func updateCollectionViewHeight() {
         self.bookCollectionHeight.constant = self.bookCollectionView.contentSize.height
     }
+    //MARK: registercell for the bookcollectionview
     func registerCell1() {
         bookCollectionView.delegate = self
         bookCollectionView.dataSource = self
@@ -196,7 +202,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         layout.minimumLineSpacing = 0
         bookCollectionView.collectionViewLayout = layout
     }
-    
+    //MARK: registercell for the multipledropdownscv
     func registerCell2() {
         //MARK: register the multipledropdowns collection cell
         multipleDropdownsCV.delegate = self
@@ -214,6 +220,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         //        SideMenuManager.shared.toggleSideMenu(expanded: false)
         print("didpress drawerclose")
     }
+    //MARK: Drawer open
     @IBAction func onPressDrawerMenu(_ sender: Any) {
         //        SideMenuManager.shared.toggleSideMenu(expanded: true)
         print("didpress open")
@@ -248,7 +255,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 upDatePerticularBooks()
                 configureText()
                 bookCollectionView.reloadData()
-               
+                
             }
         }
     }
@@ -281,13 +288,13 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             }
         }
     }
-    
+    //MARK: show the popup for any errors
     func showPopUp(title: String) {
         let customPop = CustomPopUp()
         customPop.networkErrorTextTitle = title
         customPop.show()
     }
-    
+    //MARK: totalPage
     func didUpdateTotalPages(_ totalPages: Int) {
         DispatchQueue.main.async {
             self.totalPage = totalPages
@@ -295,7 +302,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             self.updatePaginationUi(with: self.page, totalPage: self.totalPage)
         }
     }
-    
+    //MARK: category description
     func didGetTheCatDes(_ categorydescription: [CategoryDescription]) {
         DispatchQueue.main.async { [self] in
             if let firstDescription = categorydescription.first {
@@ -304,6 +311,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             }
         }
     }
+    //MARK: show text for no data found
     func upDatePerticularBooks() {
         if perticularBooks.isEmpty {
             noDataFoundText.text = "No Data Found"
@@ -397,7 +405,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryName?.category ?? "0")" : "0"
             let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
             searchedBooks.searchCat(with: searchTerm, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType.type, page: page)
-            print("3 \(selectedCategoryName?.category)")
         } else {
             stopLoading()
             upDatePerticularBooks()
@@ -429,7 +436,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
                 page = intValue
                 searchedBooks.searchCat(with: searchTerm!, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType.type, page: intValue)
-                print("4 \(selectedCategoryName?.category)")
             } else {
                 stopLoading()
             }
@@ -438,7 +444,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
                 page = intValue
                 perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "1", filterType: selectedFilterType.type, page: intValue)
-                print("5 \(selectedCategoryName?.category)")
             } else {
                 stopLoading()
             }
@@ -455,7 +460,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryName?.category ?? "0")" : "0"
                 let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
                 searchedBooks.searchCat(with: searchField.text!, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType.type, page: intValue)
-                print("6 \(selectedCategoryName?.category)")
             } else {
                 stopLoading()
             }
@@ -466,7 +470,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 page = intValue
                 let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
                 perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "1", filterType: selectedFilterType.type, page: intValue)
-                print("7 \(selectedCategoryName?.category)")
                 
             } else {
                 stopLoading()
@@ -483,7 +486,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryName?.category ?? "0")" : "0"
                 let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
                 searchedBooks.searchCat(with: searchField.text!, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType.type, page: intValue)
-                print("8 \(selectedCategoryName?.category)")
             } else {
                 stopLoading()
             }
@@ -493,7 +495,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 let intValue = page
                 let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
                 perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "1", filterType: selectedFilterType.type, page: intValue)
-                print("9 \(selectedCategoryName?.category)")
                 page = intValue
             } else {
                 stopLoading()
@@ -509,10 +510,8 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                     let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
                     if isSearching {
                         searchedBooks.searchCat(with: searchField.text!, adesc: adesc, categoryNumber: Int(selectedCategoryName?.category ?? "0")!, sortby: selectedFilterType.type, page: pageNumber)
-                        print("10 \(selectedCategoryName?.category)")
                     } else {
                         perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "1", filterType: selectedFilterType.type, page: pageNumber)
-                        print("11 \(selectedCategoryName?.category)")
                     }
                     numberTextField.text = ""
                     errorText.text = ""
@@ -530,7 +529,15 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         }
     }
 }
+//MARK: COllectionView Datasource and Delegate
 extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DropDownCollectionDelegate {
+    
+    func showCustomTableView() {
+        let customDropdownView = CustomDropdown()
+        view.addSubview(customDropdownView)
+        customDropdownView.frame = CGRect(x: 0, y: view.bounds.height - customDropdownView.bounds.height, width: view.bounds.width, height: customDropdownView.bounds.height)
+    }
+    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == bookCollectionView {
             return perticularBooks.count
@@ -580,14 +587,25 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
         }
         return CGSize(width: 0, height: 0)
     }
-    func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton) {
-        if let indexPath = multipleDropdownsCV.indexPath(for: cell) {
-            expandedCellIndex = expandedCellIndex == indexPath.item ? -1 : indexPath.item
-            multipleDropdownsCV.reloadData()
+    func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton, frame: CGRect) {
+        func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton) {
+            if let indexPath = multipleDropdownsCV.indexPath(for: cell) {
+                expandedCellIndex = expandedCellIndex == indexPath.item ? -1 : indexPath.item
+                multipleDropdownsCV.reloadData()
+            }
         }
+        //        var indexPath = IndexPath()
+        //
+        //        for i in 0..<items.count {
+        //            if title == items[i] {
+        //                indexPath = IndexPath(item: i, section: 0)
+        //            }
+        //        }
+        //        let attributes = multipleDropdownsCV.layoutAttributesForItem(at: indexPath)
+        //        print(attributes?.frame.origin.x)
     }
 }
-
+//MARK: Converting html to normal string
 extension Data {
     var html2AttributedString: NSAttributedString? {
         do {
@@ -607,6 +625,7 @@ extension StringProtocol {
         html2AttributedString?.string ?? ""
     }
 }
+//MARK: didtap for the dropdowns
 extension CatalougeListVc: CustomDropdownDelegate {
     func didSelectOption(option: String) {
         showIndicator()
@@ -620,14 +639,12 @@ extension CatalougeListVc: CustomDropdownDelegate {
                 let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
                 if isSearching {
                     searchedBooks.searchCat(with: searchField.text! , adesc: adesc, categoryNumber: Int(selectedCategoryName?.category ?? "0")!, sortby: selectedFilterType.type, page: page)
-                    print("13 \(selectedCategoryName?.category)")
                 } else {
                     perticularBookData.getPerticularCategories(
                         with: selectedCategoryName?.category ?? "0",
                         filterType: selectedFilterType.type,
                         page: page
                     )
-                    print("14 \(selectedCategoryName?.category)")
                 }
                 firstDropdownImage.image = UIImage(named: "Vector-Down")
                 customDropdown1.isHidden = true
@@ -652,7 +669,6 @@ extension CatalougeListVc: CustomDropdownDelegate {
                         sortby: selectedFilterType,
                         page: page
                     )
-                    print("15 \(selectedCategoryName?.category)")
                 } else {
                     // Handle regular API call
                     perticularBookData.getPerticularCategories(
@@ -660,9 +676,7 @@ extension CatalougeListVc: CustomDropdownDelegate {
                         filterType: selectedFilterType,
                         page: page
                     )
-                    print("16 \(selectedCategoryName?.category)")
                 }
-                print(selectedCategoryName?.category)
                 customDropdown2.isHidden = true
                 filterDropdownImage.image = UIImage(named: "Vector-Down")
                 customDropdown2.reloadTableView()

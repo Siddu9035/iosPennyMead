@@ -1,0 +1,6 @@
+framework module Pods_PennyMead {
+  umbrella header "Pods-PennyMead-umbrella.h"
+
+  export *
+  module * { export * }
+}

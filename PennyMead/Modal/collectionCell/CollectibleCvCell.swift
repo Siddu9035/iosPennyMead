@@ -29,5 +29,9 @@ class CollectibleCvCell: UICollectionViewCell {
         cardView.translatesAutoresizingMaskIntoConstraints = false
         
     }
-
+    
+    @IBAction func onPressAddCartButton(_ sender: UIButton) {
+        
+    }
+    
 }

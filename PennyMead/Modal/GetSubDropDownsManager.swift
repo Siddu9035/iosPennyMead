@@ -8,6 +8,7 @@
 import Foundation
 
 protocol GetSubDropdownsManagerDelegate {
+    func didGetSubDropdowns(response: [ResponseData])
     func didGetError(error: Error)
 }
 
@@ -16,7 +17,7 @@ struct GetSubDropdownsManager {
     
     func getSubDropdowns(with category: String) {
         
-        let url = URL(string: "\(ApiConstants.baseUrl)view/getsubcat_dropdownlist/\(category)")
+        let url = URL(string: "\(ApiConstants.baseUrl)view/getsubcat_dropdownlist/\(category)/")
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url!) { data, response, error in
             if let error = error {
@@ -26,14 +27,17 @@ struct GetSubDropdownsManager {
             
             if let safeData = data {
                 do {
-                   let decode = JSONDecoder()
-                    decode.keyDecodingStrategy = .convertFromSnakeCase
-                    let response = try decode.decode(Welcome.self, from: safeData)
-                    print(response)
-                } catch {
+                    let decoder = JSONDecoder()
+                    decoder.keyDecodingStrategy = .convertFromSnakeCase
+                    let responseData = try decoder.decode(ResponseData.self, from: safeData)
+                    print(responseData.data)
+                    delegate?.didGetSubDropdowns(response: [responseData])
+                } catch let error {
+                    print("Error decoding JSON: \(error)")
                     delegate?.didGetError(error: error)
                 }
             }
         }
+        task.resume()
     }
 }
