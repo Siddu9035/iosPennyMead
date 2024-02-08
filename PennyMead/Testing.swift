@@ -7,8 +7,7 @@
 
 import UIKit
 
-class Testing: UIViewController, GetSubDropdownsManagerDelegate {
-    
+class Testing: UIViewController {
     
     //    @IBOutlet var dropdownView: CustomDropdown!
     @IBOutlet var dropdownButton: UIButton!
@@ -18,7 +17,9 @@ class Testing: UIViewController, GetSubDropdownsManagerDelegate {
     @IBOutlet var dropdown1Height: NSLayoutConstraint!
     @IBOutlet var dropdown2Height: NSLayoutConstraint!
     @IBOutlet var dropDownImage1: UIImageView!
-    @IBOutlet var buttonsContainerView: UIView!
+    //    @IBOutlet var buttonsContainerView: UIView!
+    
+    @IBOutlet var testView: UIView!
     
     var categoryInfoArray: [(number: String, name: String)]?
     var selectedCategoryName: (name: String, category: String)?
@@ -37,6 +38,13 @@ class Testing: UIViewController, GetSubDropdownsManagerDelegate {
         FilterData(name: "Price-Low", type: "price_low")
     ]
     
+    let dummyArray = ["US": "United States",
+                      "BE": "Belgium",
+                      "CN": "China",
+                      "CN1": "China",
+                      "CN2": "China",
+                      "CN3": "China",
+                      "CN4": "China"]
     override func viewDidLoad() {
         super.viewDidLoad()
         customDropdown2.options = filterData.map{ $0.name }
@@ -70,8 +78,67 @@ class Testing: UIViewController, GetSubDropdownsManagerDelegate {
             customDropdown2.isHidden = true
             customDropdown2.highlightCell(at: 0)
         }
-        dropdownsManager.delegate = self
-        dropdownsManager.getSubDropdowns(with: "1")
+        
+        let numberOfViews = 10 // Set the number of views you want to render
+        
+        // Create a UIScrollView
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(scrollView)
+        
+        // Configure UIScrollView constraints
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
+            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
+            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
+            scrollView.heightAnchor.constraint(equalToConstant: 40)
+        ])
+        
+        // Create a horizontal UIStackView
+        let stackView = UIStackView()
+        stackView.axis = .horizontal
+        stackView.spacing = 10 // Set spacing between views
+        stackView.alignment = .center // Align views in the center horizontally
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        
+        // Add the stack view to the scroll view
+        scrollView.addSubview(stackView)
+        
+        // Configure stack view constraints
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
+        ])
+        
+        for index in 0..<numberOfViews {
+            // Instantiate UIButton
+            let button = UIButton(type: .system)
+            
+            // Configure UIButton
+            button.setTitle("Button \(index + 1)", for: .normal)
+            button.backgroundColor = UIColor.blue
+            button.widthAnchor.constraint(equalToConstant: 100).isActive = true // Set button width
+            button.heightAnchor.constraint(equalToConstant: 40).isActive = true // Set button height
+            button.layer.cornerRadius = 8
+            
+            // Add UIButton to the stack view
+            stackView.addArrangedSubview(button)
+            
+            // Instantiate UIView
+            let newView = UIView()
+            
+            // Configure UIView
+            newView.backgroundColor = UIColor.red
+            newView.widthAnchor.constraint(equalToConstant: 100).isActive = true // Set view width
+            newView.heightAnchor.constraint(equalToConstant: 40).isActive = true // Set view height
+            newView.layer.cornerRadius = 8
+            
+            // Add UIView to the stack view
+            stackView.addArrangedSubview(newView)
+        }
         
     }
     
@@ -90,81 +157,7 @@ class Testing: UIViewController, GetSubDropdownsManagerDelegate {
         toggleDropdown(dropdown: customDropdown2, isVisible: customDropdown2.isHidden, height: 200, dropdownImage: UIImageView())
         toggleDropdown(dropdown: customDropdown1, isVisible: false, height: 0, dropdownImage: UIImageView())
     }
-    func createButtons(response: ResponseData) {
-        // Create a UIScrollView
-        scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        buttonsContainerView.addSubview(scrollView)
-        
-        // Set scrollView constraints
-        scrollView.leadingAnchor.constraint(equalTo: buttonsContainerView.leadingAnchor).isActive = true
-        scrollView.trailingAnchor.constraint(equalTo: buttonsContainerView.trailingAnchor).isActive = true
-        scrollView.topAnchor.constraint(equalTo: buttonsContainerView.topAnchor).isActive = true
-        scrollView.bottomAnchor.constraint(equalTo: buttonsContainerView.bottomAnchor).isActive = true
-        
-        // Create buttons dynamically based on the API response
-        var xOffset: CGFloat = 10.0 // Initial X offset for buttons
-        let buttonHeight: CGFloat = 40.0 // You can adjust the height as needed
-        
-        for item in response.data {
-            let button = GradientButton(type: .custom)
-            button.setTitle("\(item.name)", for: .normal)
-            button.titleLabel?.adjustsFontSizeToFitWidth = true
-            button.titleLabel?.lineBreakMode = .byTruncatingTail
-            button.frame = CGRect(x: xOffset, y: 0, width: 200, height: buttonHeight)
-            button.addTarget(self, action: #selector(buttonTapped(_:)), for: .touchUpInside)
-            button.startColor = UIColor(named: "gradientColor1")!
-            button.endColor = UIColor(named: "gradientColor2")!
-            button.contentHorizontalAlignment = .left
-            button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 10, bottom: 0, right: 40)
-            button.cornerRadius = 5
-            // Add the button to the scrollView
-            scrollView.addSubview(button)
-            let chevronImage = UIImageView(image: UIImage(named: "Vector-Down"))
-            chevronImage.frame = CGRect(x: button.frame.width - 40, y: button.frame.height / 2 - 10, width: 28, height: 20)
-            chevronImage.contentMode = .scaleToFill
-            chevronImage.tintColor = UIColor(named: "CardColor")
-            button.addSubview(chevronImage)
-            
-            // Create a dropdown view below the button
-            let dropdownView = UIView(frame: CGRect(x: 0, y: button.frame.maxY + 5, width: 200, height: 200))
-            dropdownView.backgroundColor = UIColor.lightGray // Set your desired background color
-            
-            // Add dropdown view below the button
-            scrollView.addSubview(dropdownView)
-            dropdownView.isHidden = true // Initially hide dropdown
-            
-            // Update X offset for the next button
-            xOffset += button.frame.width + 10
-        }
-        
-        // Set the content size of the scrollView
-        scrollView.contentSize = CGSize(width: xOffset, height: buttonHeight)
-    }
     
-    @objc func buttonTapped(_ sender: UIButton) {
-        print("Button tapped: \(sender.currentTitle)")
-        if let dropdownView = sender.superview?.subviews.first(where: { $0 is UIView }) {
-            dropdownView.isHidden = !dropdownView.isHidden
-        }
-    }
-    func didGetSubDropdowns(response: [ResponseData]) {
-        DispatchQueue.main.async {
-            if let responseData = response.first { // Assuming you're expecting only one ResponseData object
-                print("Received data from server:")
-                print(responseData)
-                
-                DispatchQueue.main.async {
-                    self.createButtons(response: responseData)
-                }
-            } else {
-                print("No response data received from server")
-            }
-        }
-    }
-    func didGetError(error: Error) {
-        print("Error: \(error.localizedDescription)")
-    }
     
 }
 extension Testing: CustomDropdownDelegate {

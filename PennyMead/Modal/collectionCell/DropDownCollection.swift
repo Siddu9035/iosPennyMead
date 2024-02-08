@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DropDownCollectionDelegate: AnyObject {
-    func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton, frame: CGRect)
+    func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton)
 }
 
 class DropDownCollection: UICollectionViewCell, CustomDropdownDelegate {
@@ -17,44 +17,28 @@ class DropDownCollection: UICollectionViewCell, CustomDropdownDelegate {
     
     @IBOutlet var dropdownButtons: GradientButton!
     @IBOutlet var dropdownImage: UIImageView!
+    @IBOutlet var dropdownView: CustomDropdown!
     
-    var dropdownView: CustomDropdown?
     var title: String = ""
     
     override func awakeFromNib() {
         super.awakeFromNib()
-        setupDropdownView()
+        dropdownView.isHidden = true
+        dropdownView.delegate = self
+        dropdownButtons.tag = 100
     }
-    
     @IBAction func onPressDropdownButtons(_ sender: UIButton) {
-        let frame = sender.convert(sender.bounds, to: nil)
-        delegate?.didTapButton(with: title, forCell: self, sender: sender, frame: frame)
+        delegate?.didTapButton(with: title, forCell: self, sender: sender)
+        dropdownView.isHidden = false
+        
     }
     
-    func setupDropdownView() {
-        // Create and configure your custom dropdown view
-        dropdownView = CustomDropdown(frame: CGRect(x: 0, y: dropdownButtons.frame.maxY + 5, width: dropdownButtons.frame.width, height: 200))
-        dropdownView?.delegate = self
-//        dropdownView?.options = ["Option 1", "Option 2", "Option 3"]
-        addSubview(dropdownView!) // Add dropdownView to the superview
-        
-        // Set up Auto Layout constraints in the superview
-        dropdownView?.translatesAutoresizingMaskIntoConstraints = false
-        NSLayoutConstraint.activate([
-            dropdownView!.topAnchor.constraint(equalTo: dropdownButtons.bottomAnchor, constant: 5),
-            dropdownView!.leadingAnchor.constraint(equalTo: dropdownButtons.leadingAnchor),
-            dropdownView!.widthAnchor.constraint(equalTo: dropdownButtons.widthAnchor),
-            dropdownView!.heightAnchor.constraint(equalToConstant: 200),
-        ])
-        
-        dropdownView?.isHidden = true
-    }
     func configure(with title: String) {
         self.title = title
         dropdownButtons.setTitle(title, for: .normal)
     }
     func didSelectOption(option: String) {
         print("selected option \(option)")
-        dropdownView?.isHidden = true
+        dropdownView.isHidden = true
     }
 }

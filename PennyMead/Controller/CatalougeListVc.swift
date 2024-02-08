@@ -1,9 +1,3 @@
-//
-//  CatalougeListVc.swift
-//  PennyMead
-//
-//  Created by siddappa tambakad on 17/01/24.
-//
 
 import UIKit
 import Kingfisher
@@ -32,7 +26,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     @IBOutlet var errorText: UILabel!
     @IBOutlet var noDataFoundText: UILabel!
     @IBOutlet var paginationView: UIView!
-    @IBOutlet var dropDownImage: UIImageView!
     @IBOutlet var filterButton: UIButton!
     @IBOutlet var filterDropdownImage: UIImageView!
     @IBOutlet var customDropdown2: CustomDropdown!
@@ -41,9 +34,8 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     @IBOutlet var dropdownHeight1: NSLayoutConstraint!
     @IBOutlet var firstDropdownImage: UIImageView!
     @IBOutlet var multipleDropdownsCV: UICollectionView!
+    @IBOutlet var multipleDropdownHeight: NSLayoutConstraint!
     
-    //    var selectedBook: Book?
-    //    var books: [Book] = []
     var perticularBooks: [PerticularItemsFetch] = []
     var perticularBookData = FetchPerticularManager()
     var searchedBooks = SearchBookManager()
@@ -64,6 +56,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     var categoryInfoArray: [(number: String, name: String)]?
     var selectedCategoryName: (name: String, category: String)?
     var expandedCellIndex = -1
+    var isCellExpanded: Bool = false
     
     let customView = UIView()
     
@@ -90,6 +83,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         updatePaginationUi(with: page, totalPage: totalPage)
         self.hideKeyboardWhenTappedAround()
         upDatePerticularBooks()
+        multipleDropdownsCV.layer.borderWidth = 1
         
     }
     
@@ -208,6 +202,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         multipleDropdownsCV.delegate = self
         multipleDropdownsCV.dataSource = self
         multipleDropdownsCV.register(UINib(nibName: "DropDownCollection", bundle: nil), forCellWithReuseIdentifier: "dropdownCell")
+        
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
         layout.minimumInteritemSpacing = 0
@@ -532,12 +527,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
 //MARK: COllectionView Datasource and Delegate
 extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DropDownCollectionDelegate {
     
-    func showCustomTableView() {
-        let customDropdownView = CustomDropdown()
-        view.addSubview(customDropdownView)
-        customDropdownView.frame = CGRect(x: 0, y: view.bounds.height - customDropdownView.bounds.height, width: view.bounds.width, height: customDropdownView.bounds.height)
-    }
-    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == bookCollectionView {
             return perticularBooks.count
@@ -559,7 +548,6 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
                 cell.cardImage1.kf.setImage(with: imageUrl, placeholder: UIImage(named: "placeholderimg"), options: nil) { result in
                     switch result {
                     case .success(_): break
-                        // print("Image Loaded catlouge vc")
                     case .failure(let error):
                         print("Error in loading image \(error)")
                     }
@@ -570,9 +558,7 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "dropdownCell", for: indexPath) as! DropDownCollection
             cell2.delegate = self
             cell2.configure(with: "Your Dropdown Title \(indexPath.item)")
-            let isExpanded = indexPath.item == expandedCellIndex
-            cell2.dropdownView?.isHidden = !isExpanded
-            
+            cell2.dropdownView?.isHidden = !isCellExpanded
             return cell2
         }
         return UICollectionViewCell()
@@ -583,27 +569,30 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
             let cellWidth = collectionWidth * 0.84
             return CGSize(width: cellWidth, height: 445)
         } else if collectionView == multipleDropdownsCV {
-            return CGSize(width: 200, height: 80)
+            if isCellExpanded == true {
+                multipleDropdownHeight.constant = 240
+                return CGSize(width: 200, height: 240)
+            } else {
+                multipleDropdownHeight.constant = 50
+                return CGSize(width: 200, height: 50)
+            }
         }
         return CGSize(width: 0, height: 0)
     }
-    func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton, frame: CGRect) {
-        func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton) {
-            if let indexPath = multipleDropdownsCV.indexPath(for: cell) {
-                expandedCellIndex = expandedCellIndex == indexPath.item ? -1 : indexPath.item
-                multipleDropdownsCV.reloadData()
-            }
+    func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton) {
+        if sender.tag == 100 {
+            sender.tag = 200
+            isCellExpanded = true
+            
+            multipleDropdownsCV.reloadData()
+            
+        } else if sender.tag == 200 {
+            sender.tag = 100
+            isCellExpanded = false
+            multipleDropdownsCV.reloadData()
         }
-        //        var indexPath = IndexPath()
-        //
-        //        for i in 0..<items.count {
-        //            if title == items[i] {
-        //                indexPath = IndexPath(item: i, section: 0)
-        //            }
-        //        }
-        //        let attributes = multipleDropdownsCV.layoutAttributesForItem(at: indexPath)
-        //        print(attributes?.frame.origin.x)
     }
+    
 }
 //MARK: Converting html to normal string
 extension Data {
