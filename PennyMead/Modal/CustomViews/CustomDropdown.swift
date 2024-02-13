@@ -37,6 +37,9 @@ class CustomDropdown: UIView, UITableViewDelegate, UITableViewDataSource {
         super.init(coder: aDecoder)
         setupUI()
     }
+    func hideDropdown() {
+        self.isHidden = true
+    }
     
     private func setupUI() {
         addSubview(tableView)
@@ -79,9 +82,8 @@ class CustomDropdown: UIView, UITableViewDelegate, UITableViewDataSource {
         if indexPath != selectedIndexPath {
             selectedIndexPath = indexPath
             delegate?.didSelectOption(option: options[indexPath.row])
+            hideDropdown() // Hide the dropdown after an option is selected
         }
-        //        removeFromSuperview()
-        
     }
     func reloadTableView() {
         tableView.reloadData()

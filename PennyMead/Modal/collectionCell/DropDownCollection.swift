@@ -20,6 +20,7 @@ class DropDownCollection: UICollectionViewCell, CustomDropdownDelegate {
     @IBOutlet var dropdownView: CustomDropdown!
     
     var title: String = ""
+    var indexPath: IndexPath!
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -28,13 +29,14 @@ class DropDownCollection: UICollectionViewCell, CustomDropdownDelegate {
         dropdownButtons.tag = 100
     }
     @IBAction func onPressDropdownButtons(_ sender: UIButton) {
+        let frame = sender.frame
         delegate?.didTapButton(with: title, forCell: self, sender: sender)
         dropdownView.isHidden = false
-        
     }
     
     func configure(with title: String) {
         self.title = title
+//        self.indexPath = indexPath
         dropdownButtons.setTitle(title, for: .normal)
     }
     func didSelectOption(option: String) {

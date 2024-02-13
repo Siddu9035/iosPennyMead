@@ -8,7 +8,7 @@
 import Foundation
 
 protocol GetSubDropdownsManagerDelegate {
-    func didGetSubDropdowns(response: [ResponseData])
+    func didGetSubDropdowns(response: [DropdownGroup])
     func didGetError(error: Error)
 }
 
@@ -30,8 +30,9 @@ struct GetSubDropdownsManager {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let responseData = try decoder.decode(ResponseData.self, from: safeData)
-                    print(responseData.data)
-                    delegate?.didGetSubDropdowns(response: [responseData])
+                    let categoryData = responseData
+//                    print(categoryData.data[1].dropdownlist)
+                    delegate?.didGetSubDropdowns(response: categoryData.data)
                 } catch let error {
                     print("Error decoding JSON: \(error)")
                     delegate?.didGetError(error: error)

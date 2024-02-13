@@ -12,10 +12,10 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="dropdownCell" id="gTV-IL-0wX" customClass="DropDownCollection" customModule="PennyMead" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="281" height="154"/>
+            <rect key="frame" x="0.0" y="0.0" width="281" height="165"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="281" height="154"/>
+                <rect key="frame" x="0.0" y="0.0" width="281" height="165"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RvB-Xv-Y9P">
@@ -66,8 +66,8 @@
                             <constraint firstItem="dC3-9l-5EY" firstAttribute="centerY" secondItem="eh0-bU-5Wp" secondAttribute="centerY" id="ocb-d5-mC2"/>
                         </constraints>
                     </view>
-                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="lhP-kU-Jlq" customClass="CustomDropdown" customModule="PennyMead" customModuleProvider="target">
-                        <rect key="frame" x="5" y="50" width="271" height="99"/>
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="2QN-l8-7BQ" customClass="CustomDropdown" customModule="PennyMead" customModuleProvider="target">
+                        <rect key="frame" x="5" y="49" width="271" height="116"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                     </view>
                 </subviews>
@@ -75,21 +75,21 @@
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
             <constraints>
+                <constraint firstItem="2QN-l8-7BQ" firstAttribute="top" secondItem="dC3-9l-5EY" secondAttribute="bottom" constant="4" id="B1g-4R-Ykk"/>
                 <constraint firstAttribute="trailing" secondItem="RvB-Xv-Y9P" secondAttribute="trailing" constant="5" id="F8O-kG-Bha"/>
+                <constraint firstItem="2QN-l8-7BQ" firstAttribute="leading" secondItem="dC3-9l-5EY" secondAttribute="leading" id="Hb2-wH-5Je"/>
                 <constraint firstItem="RvB-Xv-Y9P" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="IMi-go-WGf"/>
-                <constraint firstItem="lhP-kU-Jlq" firstAttribute="centerX" secondItem="dC3-9l-5EY" secondAttribute="centerX" id="IUf-vB-wTu"/>
-                <constraint firstItem="lhP-kU-Jlq" firstAttribute="top" secondItem="dC3-9l-5EY" secondAttribute="bottom" constant="5" id="QsM-Ig-p9v"/>
-                <constraint firstAttribute="bottom" secondItem="lhP-kU-Jlq" secondAttribute="bottom" constant="5" id="ecU-ne-459"/>
-                <constraint firstItem="lhP-kU-Jlq" firstAttribute="trailing" secondItem="dC3-9l-5EY" secondAttribute="trailing" id="fR6-IC-Phv"/>
+                <constraint firstAttribute="bottom" secondItem="2QN-l8-7BQ" secondAttribute="bottom" id="V7W-74-L7H"/>
+                <constraint firstItem="2QN-l8-7BQ" firstAttribute="trailing" secondItem="dC3-9l-5EY" secondAttribute="trailing" id="hrR-pD-haN"/>
                 <constraint firstItem="RvB-Xv-Y9P" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="mve-UB-q26"/>
             </constraints>
-            <size key="customSize" width="281" height="154"/>
+            <size key="customSize" width="281" height="165"/>
             <connections>
                 <outlet property="dropdownButtons" destination="dC3-9l-5EY" id="7Bh-pf-QcF"/>
                 <outlet property="dropdownImage" destination="eh0-bU-5Wp" id="jI6-3Q-EJE"/>
-                <outlet property="dropdownView" destination="lhP-kU-Jlq" id="hSw-dp-L2Z"/>
+                <outlet property="dropdownView" destination="2QN-l8-7BQ" id="CxD-A5-SC3"/>
             </connections>
-            <point key="canvasLocation" x="190" y="54.739336492890992"/>
+            <point key="canvasLocation" x="190" y="57.938388625592417"/>
         </collectionViewCell>
     </objects>
     <designables>

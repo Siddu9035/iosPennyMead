@@ -7,7 +7,23 @@
 
 import UIKit
 
-class Testing: UIViewController {
+class Testing: UIViewController, UITextFieldDelegate, GetSubDropdownsManagerDelegate {
+    var dropdownlist: [DropdownItem] = []
+
+    
+    func didGetSubDropdowns(response: [DropdownGroup]) {
+            print("------->",response)
+        DispatchQueue.main.async { [self] in
+            getSubDropdownsList(response: response)
+        }
+        
+    }
+    
+    func didGetError(error: Error) {
+        print("------->",error)
+
+    }
+    
     
     //    @IBOutlet var dropdownView: CustomDropdown!
     @IBOutlet var dropdownButton: UIButton!
@@ -18,8 +34,9 @@ class Testing: UIViewController {
     @IBOutlet var dropdown2Height: NSLayoutConstraint!
     @IBOutlet var dropDownImage1: UIImageView!
     //    @IBOutlet var buttonsContainerView: UIView!
+    @IBOutlet var dropdown3: DropDown!
+    @IBOutlet var dummyView: UIView!
     
-    @IBOutlet var testView: UIView!
     
     var categoryInfoArray: [(number: String, name: String)]?
     var selectedCategoryName: (name: String, category: String)?
@@ -30,6 +47,8 @@ class Testing: UIViewController {
     var selectedDropDown1: String?
     var selectedDropDown2: FilterData?
     
+    var optionsArray = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]
+    
     var filterData: [FilterData] = [
         FilterData(name: "Newest Items", type: "newlyUpdated"),
         FilterData(name: "Author", type: "author"),
@@ -37,17 +56,12 @@ class Testing: UIViewController {
         FilterData(name: "Price-High", type: "price_high"),
         FilterData(name: "Price-Low", type: "price_low")
     ]
-    
-    let dummyArray = ["US": "United States",
-                      "BE": "Belgium",
-                      "CN": "China",
-                      "CN1": "China",
-                      "CN2": "China",
-                      "CN3": "China",
-                      "CN4": "China"]
     override func viewDidLoad() {
         super.viewDidLoad()
+        dropdownsManager.delegate = self
+        dropdownsManager.getSubDropdowns(with: "3")
         customDropdown2.options = filterData.map{ $0.name }
+        
         
         // Set the dropdown delegate
         customDropdown1.delegate = self
@@ -78,68 +92,79 @@ class Testing: UIViewController {
             customDropdown2.isHidden = true
             customDropdown2.highlightCell(at: 0)
         }
+        dropdown3.optionArray = filterData.map({$0.name})
         
-        let numberOfViews = 10 // Set the number of views you want to render
-        
-        // Create a UIScrollView
-        let scrollView = UIScrollView()
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(scrollView)
-        
-        // Configure UIScrollView constraints
-        NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 20),
-            scrollView.trailingAnchor.constraint(equalTo: view.trailingAnchor, constant: -20),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor, constant: 100),
-            scrollView.heightAnchor.constraint(equalToConstant: 40)
-        ])
-        
-        // Create a horizontal UIStackView
-        let stackView = UIStackView()
-        stackView.axis = .horizontal
-        stackView.spacing = 10 // Set spacing between views
-        stackView.alignment = .center // Align views in the center horizontally
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        // Add the stack view to the scroll view
-        scrollView.addSubview(stackView)
-        
-        // Configure stack view constraints
-        NSLayoutConstraint.activate([
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            stackView.heightAnchor.constraint(equalTo: scrollView.heightAnchor)
-        ])
-        
-        for index in 0..<numberOfViews {
-            // Instantiate UIButton
-            let button = UIButton(type: .system)
-            
-            // Configure UIButton
-            button.setTitle("Button \(index + 1)", for: .normal)
-            button.backgroundColor = UIColor.blue
-            button.widthAnchor.constraint(equalToConstant: 100).isActive = true // Set button width
-            button.heightAnchor.constraint(equalToConstant: 40).isActive = true // Set button height
-            button.layer.cornerRadius = 8
-            
-            // Add UIButton to the stack view
-            stackView.addArrangedSubview(button)
-            
-            // Instantiate UIView
-            let newView = UIView()
-            
-            // Configure UIView
-            newView.backgroundColor = UIColor.red
-            newView.widthAnchor.constraint(equalToConstant: 100).isActive = true // Set view width
-            newView.heightAnchor.constraint(equalToConstant: 40).isActive = true // Set view height
-            newView.layer.cornerRadius = 8
-            
-            // Add UIView to the stack view
-            stackView.addArrangedSubview(newView)
+        dropdown3.didSelect { (selectedText, index, id) in
+            print("Selected: \(selectedText), Index: \(index), ID: \(id)")
         }
         
+    }
+    func getSubDropdownsList(response: [DropdownGroup]) {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .brown
+        dummyView.addSubview(scrollView)
+        // Configure UIScrollView constraints
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: dummyView.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: dummyView.trailingAnchor, constant: 0),
+            scrollView.topAnchor.constraint(equalTo: dummyView.topAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: dummyView.bottomAnchor, constant: 0) // Added bottom constraint to make scrollView fill the remaining space
+        ])
+        // Create a contentView for the UIScrollView
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        contentView.backgroundColor = .red
+        scrollView.addSubview(contentView)
+        // Configure contentView constraints
+        NSLayoutConstraint.activate([
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor) // Content height same as scrollview height
+        ])
+        
+        // Create and add multiple text fields to the content view
+        var previousTextField: DropDown?
+        for i in 0..<response.count {// Create 5 text fields, you can adjust the count as needed
+            let textField = DropDown()
+            textField.translatesAutoresizingMaskIntoConstraints = false
+            textField.placeholder = response[i].name
+            textField.backgroundColor = .white
+            textField.optionArray = response[i].dropdownlist.map({
+                $0.name
+            })
+            textField.listHeight = 200
+            textField.isSearchEnable = false
+            textField.rowHeight = 30
+            contentView.addSubview(textField)
+            
+            dropdownlist.append(contentsOf: response[i].dropdownlist)
+
+            // Configure text field constraints
+            NSLayoutConstraint.activate([
+                textField.widthAnchor.constraint(equalToConstant: 150), // Set desired width
+                textField.heightAnchor.constraint(equalToConstant: 50), // Set desired height
+                textField.topAnchor.constraint(equalTo: contentView.topAnchor),
+                textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                textField.leadingAnchor.constraint(equalTo: previousTextField?.trailingAnchor ?? contentView.leadingAnchor, constant: 20), // Add spacing between text fields
+                textField.centerYAnchor.constraint(equalTo: contentView.centerYAnchor) // Center text field vertically in the content view
+            ])
+            
+            // Update the reference to the previous text field
+            previousTextField = textField
+            
+            textField.didSelect { (selectedText, index, id) in
+                print("Selected: \(selectedText), Index: \(index), ID: \(id)")
+                print("Selected reference --->",self.dropdownlist[index].reference)
+            }
+        }
+        
+        // Adjust the content size of the scroll view to fit the content view
+        if let lastTextField = previousTextField {
+            contentView.trailingAnchor.constraint(equalTo: lastTextField.trailingAnchor).isActive = true
+        }
     }
     
     func toggleDropdown(dropdown: CustomDropdown, isVisible: Bool, height: CGFloat, dropdownImage: UIImageView) {
@@ -157,7 +182,6 @@ class Testing: UIViewController {
         toggleDropdown(dropdown: customDropdown2, isVisible: customDropdown2.isHidden, height: 200, dropdownImage: UIImageView())
         toggleDropdown(dropdown: customDropdown1, isVisible: false, height: 0, dropdownImage: UIImageView())
     }
-    
     
 }
 extension Testing: CustomDropdownDelegate {

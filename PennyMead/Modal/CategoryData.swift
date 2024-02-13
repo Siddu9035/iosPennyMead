@@ -89,3 +89,15 @@ struct DropdownItem: Codable {
     let reference: String
     let icount: String
 }
+//MARK: onclick get subcat
+struct FilteredData: Codable {
+    let status: Int
+    let message: String
+    let data: SecondData
+}
+
+struct SecondData: Codable {
+    let data: [PerticularItemsFetch]
+    let relateddata: [PerticularItemsFetch]
+    let totalpages: Int
+}

@@ -34,6 +34,8 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
     @IBOutlet var dropdownimage: UIImageView!
     @IBOutlet var paginationCardView: UIView!
     @IBOutlet var errorText: UILabel!
+    @IBOutlet var addToCartButton: UIButton!
+    
     
     var categories: [Book] = []
     var collectiblesBooks: [CollectibleItem] = []

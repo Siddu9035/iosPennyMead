@@ -2,7 +2,7 @@
 import UIKit
 import Kingfisher
 
-class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerDelegate, SearchBookManagerDelegate {
+class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerDelegate, SearchBookManagerDelegate, GetSubDropdownsManagerDelegate, UITextFieldDelegate, FilterItemsBySubCatDelegate {
     
     @IBOutlet var booksNameButton: UIButton!
     @IBOutlet var searchField: UITextField!
@@ -33,8 +33,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     @IBOutlet var customDropdown1: CustomDropdown!
     @IBOutlet var dropdownHeight1: NSLayoutConstraint!
     @IBOutlet var firstDropdownImage: UIImageView!
-    @IBOutlet var multipleDropdownsCV: UICollectionView!
-    @IBOutlet var multipleDropdownHeight: NSLayoutConstraint!
+    @IBOutlet var dropdownView: UIView!
     
     var perticularBooks: [PerticularItemsFetch] = []
     var perticularBookData = FetchPerticularManager()
@@ -58,20 +57,20 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     var expandedCellIndex = -1
     var isCellExpanded: Bool = false
     
-    let customView = UIView()
+    let ankit = ["siddu", "mahesh"]
+    var dropdownManager = GetSubDropdownsManager()
+    var dropdownlist: [DropdownItem] = []
+    
+    var filterItems = FilterItemsBySubCat()
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        customView.backgroundColor = UIColor.lightGray
-        customView.isHidden = true
-        view.addSubview(customView)
         
         showIndicator()
-        //        SideMenuManager.shared.configureSideMenu(parentViewController: self)
+        SideMenuManager.shared.configureSideMenu(parentViewController: self)
         configureUI()
         configDropdowns()
         registerCell1()
-        registerCell2()
         paginationStyles()
         configureSearchStyles()
         
@@ -80,10 +79,13 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "0", filterType: selectedFilter.type, page: page)
         searchedBooks.delegate = self
         
-        updatePaginationUi(with: page, totalPage: totalPage)
         self.hideKeyboardWhenTappedAround()
         upDatePerticularBooks()
-        multipleDropdownsCV.layer.borderWidth = 1
+        
+        dropdownManager.delegate = self
+        dropdownManager.getSubDropdowns(with: selectedCategoryName?.category ?? "0")
+        
+        filterItems.delegate = self
         
     }
     
@@ -196,29 +198,13 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         layout.minimumLineSpacing = 0
         bookCollectionView.collectionViewLayout = layout
     }
-    //MARK: registercell for the multipledropdownscv
-    func registerCell2() {
-        //MARK: register the multipledropdowns collection cell
-        multipleDropdownsCV.delegate = self
-        multipleDropdownsCV.dataSource = self
-        multipleDropdownsCV.register(UINib(nibName: "DropDownCollection", bundle: nil), forCellWithReuseIdentifier: "dropdownCell")
-        
-        let layout = UICollectionViewFlowLayout()
-        layout.scrollDirection = .horizontal
-        layout.minimumInteritemSpacing = 0
-        layout.minimumLineSpacing = 0
-        multipleDropdownsCV.collectionViewLayout = layout
-    }
-    
     //MARK: Drawer close
     func didPressBacbutton() {
-        //        SideMenuManager.shared.toggleSideMenu(expanded: false)
-        print("didpress drawerclose")
+        SideMenuManager.shared.toggleSideMenu(expanded: false)
     }
     //MARK: Drawer open
     @IBAction func onPressDrawerMenu(_ sender: Any) {
-        //        SideMenuManager.shared.toggleSideMenu(expanded: true)
-        print("didpress open")
+        SideMenuManager.shared.toggleSideMenu(expanded: true)
     }
     
     //MARK: firstDropdown
@@ -243,21 +229,18 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     //MARK: searchCat api call
     func didUpdateThePerticularCatSearch(_ perticularCat: [PerticularItemsFetch]) {
         DispatchQueue.main.async { [self] in
-            print("isSearching value: search \(isSearching)")
             if isSearching {
                 perticularBooks = perticularCat
                 stopLoading()
                 upDatePerticularBooks()
                 configureText()
                 bookCollectionView.reloadData()
-                
             }
         }
     }
     //MARK: perticular api call
     func didUpdateThePerticularCat(_ perticularCat: [PerticularItemsFetch]) {
         DispatchQueue.main.async { [self] in
-            print("isSearching value: for perticular \(isSearching)")
             if !isSearching {
                 perticularBooks = perticularCat
                 upDatePerticularBooks()
@@ -266,6 +249,14 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             }
         }
     }
+    func didRecieveDataForGetSub(response: [PerticularItemsFetch]) {
+        DispatchQueue.main.async { [self] in
+            perticularBooks = response
+            stopLoading()
+            bookCollectionView.reloadData()
+        }
+    }
+    
     //MARK: error for both search and perticular
     func didGetErrors(error: Error) {
         DispatchQueue.main.async { [self] in
@@ -372,6 +363,91 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             }
             backWardButton.isHidden = page == 1 ? true : false
             forwardButton.isHidden = page == totalPage ? true : false
+        }
+    }
+    //MARK: Api call for the subdropdowns
+    func didGetSubDropdowns(response: [DropdownGroup]) {
+        DispatchQueue.main.async { [self] in
+            getSubDropdownsList(response: response)
+        }
+    }
+    
+    func didGetError(error: Error) {
+        print(error)
+    }
+    
+    //MARK: adding multipledropdowns through programatically
+    func getSubDropdownsList(response: [DropdownGroup]) {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        dropdownView.addSubview(scrollView)
+        // Configure UIScrollView constraints
+        NSLayoutConstraint.activate([
+            scrollView.leadingAnchor.constraint(equalTo: dropdownView.leadingAnchor, constant: 0),
+            scrollView.trailingAnchor.constraint(equalTo: dropdownView.trailingAnchor, constant: 0),
+            scrollView.topAnchor.constraint(equalTo: dropdownView.topAnchor, constant: 0),
+            scrollView.bottomAnchor.constraint(equalTo: dropdownView.bottomAnchor, constant: 0) // Added bottom constraint to make scrollView fill the remaining space
+        ])
+        // Create a contentView for the UIScrollView
+        let contentView = UIView()
+        contentView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.addSubview(contentView)
+        // Configure contentView constraints
+        NSLayoutConstraint.activate([
+            contentView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
+            contentView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
+            contentView.topAnchor.constraint(equalTo: scrollView.topAnchor),
+            contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
+            contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor) // Content height same as scrollview height
+        ])
+        
+        // Create and add multiple text fields to the content view
+        var previousTextField: DropDown?
+        for i in 0..<response.count {// Create 5 text fields, you can adjust the count as needed
+            let textField = DropDown()
+            textField.translatesAutoresizingMaskIntoConstraints = false
+            textField.delegate = self
+            textField.attributedPlaceholder = NSAttributedString(string: "\(response[i].name)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+            textField.backgroundColor = .white
+            textField.optionArray = response[i].dropdownlist.map({
+                $0.name
+            })
+            textField.checkMarkEnabled = false
+            textField.listHeight = 200
+            textField.isSearchEnable = false
+            textField.rowHeight = 30
+            textField.arrowSize = 25
+            textField.cornerRadius = 5
+            textField.textColor = .white
+            textField.startColor = UIColor(named: "gradientColor1")!
+            textField.endColor = UIColor(named: "gradientColor2")!
+            contentView.addSubview(textField)
+            
+            dropdownlist.append(contentsOf: response[i].dropdownlist)
+
+            // Configure text field constraints
+            NSLayoutConstraint.activate([
+                textField.widthAnchor.constraint(equalToConstant: 200), // Set desired width
+                textField.heightAnchor.constraint(equalToConstant: 50), // Set desired height
+                textField.topAnchor.constraint(equalTo: contentView.topAnchor),
+                textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+                textField.leadingAnchor.constraint(equalTo: previousTextField?.trailingAnchor ?? contentView.leadingAnchor, constant: 20),
+            ])
+            
+            // Update the reference to the previous text field
+            previousTextField = textField
+            
+            textField.didSelect { [self] (selectedText, index, id) in
+//                print("Selected: \(selectedText), Index: \(index), ID: \(id)")
+                print("Selected reference --->",self.dropdownlist[index].reference)
+                let selectedFilter = filterData[selectedIndexPath?.row ?? 0]
+                filterItems.getFilterItemsBySubCat(category: selectedCategoryName?.category ?? "0", referenceId: dropdownlist[index].reference, filterType: selectedFilter.type, page: page)
+            }
+        }
+        
+        // Adjust the content size of the scroll view to fit the content view
+        if let lastTextField = previousTextField {
+            contentView.trailingAnchor.constraint(equalTo: lastTextField.trailingAnchor).isActive = true
         }
     }
     
@@ -525,13 +601,11 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     }
 }
 //MARK: COllectionView Datasource and Delegate
-extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DropDownCollectionDelegate {
+extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == bookCollectionView {
             return perticularBooks.count
-        } else if collectionView == multipleDropdownsCV {
-            return 5
         }
         return 0
     }
@@ -554,12 +628,6 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
                 }
             }
             return cell
-        } else if collectionView == multipleDropdownsCV {
-            let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "dropdownCell", for: indexPath) as! DropDownCollection
-            cell2.delegate = self
-            cell2.configure(with: "Your Dropdown Title \(indexPath.item)")
-            cell2.dropdownView?.isHidden = !isCellExpanded
-            return cell2
         }
         return UICollectionViewCell()
     }
@@ -568,31 +636,9 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
             let collectionWidth = collectionView.frame.width
             let cellWidth = collectionWidth * 0.84
             return CGSize(width: cellWidth, height: 445)
-        } else if collectionView == multipleDropdownsCV {
-            if isCellExpanded == true {
-                multipleDropdownHeight.constant = 240
-                return CGSize(width: 200, height: 240)
-            } else {
-                multipleDropdownHeight.constant = 50
-                return CGSize(width: 200, height: 50)
-            }
         }
         return CGSize(width: 0, height: 0)
     }
-    func didTapButton(with title: String, forCell cell: DropDownCollection, sender: UIButton) {
-        if sender.tag == 100 {
-            sender.tag = 200
-            isCellExpanded = true
-            
-            multipleDropdownsCV.reloadData()
-            
-        } else if sender.tag == 200 {
-            sender.tag = 100
-            isCellExpanded = false
-            multipleDropdownsCV.reloadData()
-        }
-    }
-    
 }
 //MARK: Converting html to normal string
 extension Data {
