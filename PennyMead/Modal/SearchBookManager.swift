@@ -11,7 +11,7 @@ import UIKit
 protocol SearchBookManagerDelegate {
     func didUpdateThePerticularCatSearch(_ perticularCat: [PerticularItemsFetch])
     func didUpdateTotalPages(_ totalPages: Int)
-    func didGetErrors(error: Error)
+    func didGetErrors(error: Error, response: HTTPURLResponse?)
 }
 
 struct SearchBookManager {
@@ -28,7 +28,7 @@ struct SearchBookManager {
             "sortby": sortby,
             "page": page
         ]
-        
+        print(requestBody)
         do {
             let jsonData = try JSONSerialization.data(withJSONObject: requestBody)
             
@@ -41,7 +41,7 @@ struct SearchBookManager {
             let task = session.dataTask(with: request) { [self] data, response, error in
                 DispatchQueue.main.async {
                     if let error = error {
-                        self.delegate?.didGetErrors(error: error)
+                        self.delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
                         return
                     }
                     
@@ -55,7 +55,7 @@ struct SearchBookManager {
                             let totalPage = response.totalpages
                             self.delegate?.didUpdateTotalPages(totalPage)
                         } catch {
-                            self.delegate?.didGetErrors(error: error)
+                            self.delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
                         }
                     }
                 }
@@ -63,7 +63,7 @@ struct SearchBookManager {
             task.resume()
             
         } catch {
-            delegate?.didGetErrors(error: error)
+            delegate?.didGetErrors(error: error, response: nil)
         }
     }
 }

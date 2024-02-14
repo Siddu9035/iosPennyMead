@@ -79,7 +79,7 @@ open class DropDown : UITextField{
         layer.insertSublayer(gradientLayer, at: 0)
         layer.cornerRadius = cornerRadius
         layer.masksToBounds = true
-
+        
     }
     
     func updateGradient() {
@@ -128,11 +128,11 @@ open class DropDown : UITextField{
             arrow.frame = CGRect(x: center.x - arrowSize/2, y: center.y - arrowSize/2, width: arrowSize, height: arrowSize)
         }
     }
-    //    @IBInspectable public var arrowColor: UIColor = .black {
-    //        didSet{
-    //            arrow.arrowColor = arrowColor
-    //        }
-    //    }
+    @IBInspectable public var arrowColor: UIColor = .black {
+        didSet{
+            arrow.arrowColor = arrowColor
+        }
+    }
     @IBInspectable public var checkMarkEnabled: Bool = true {
         didSet{
             
@@ -167,21 +167,21 @@ open class DropDown : UITextField{
     
     func setupUI () {
         let size = self.frame.height
-        let rightView = UIView(frame: CGRect(x: -10.0, y: 0.0, width: size, height: size))
+        let rightView = UIView(frame: CGRect(x: 0.0, y: 0.0, width: size, height: size))
         self.rightView = rightView
         self.rightViewMode = .always
         let arrowContainerView = UIView(frame: rightView.frame)
         self.rightView?.addSubview(arrowContainerView)
-        //        let center = arrowContainerView.center
+        let center = arrowContainerView.center
         //        arrow = Arrow(origin: CGPoint(x: center.x - arrowSize/2,y: center.y - arrowSize/2),size: arrowSize  )
         //        arrowContainerView.addSubview(arrow)
         
-        arrow = Arrow(frame: CGRect(x: -10, y: 0, width: size, height: size))
+        arrow = Arrow(frame: CGRect(x: -5, y: 0, width: size, height: size))
         arrowContainerView.addSubview(arrow)
         
         // Set the arrow image and color
         arrow.image = UIImage(named: "Vector-Down")
-        arrow.tintColor = .white
+        //        arrow.tintColor = .white
         
         self.backgroundView = UIView(frame: .zero)
         self.backgroundView.backgroundColor = .clear
@@ -437,15 +437,17 @@ extension DropDown: UITableViewDataSource {
         
         var cell = tableView.dequeueReusableCell(withIdentifier: cellIdentifier)
         
-       
+        
         if cell == nil {
             cell = UITableViewCell(style: .default, reuseIdentifier: cellIdentifier)
         }
         
         if indexPath.row != selectedIndex{
             cell!.backgroundColor = rowBackgroundColor
+            cell!.textLabel?.textColor = .black
         }else {
             cell?.backgroundColor = selectedRowColor
+            cell?.textLabel?.textColor = .white
         }
         
         
@@ -457,7 +459,7 @@ extension DropDown: UITableViewDataSource {
         cell!.selectionStyle = .none
         cell?.textLabel?.font = self.font
         cell?.textLabel?.textAlignment = self.textAlignment
-        cell?.textLabel?.textColor = rowTextColor
+        //        cell?.textLabel?.textColor = rowTextColor
         return cell!
     }
 }
@@ -567,7 +569,14 @@ enum Position {
 //        }
 //    }
 //}
+
 class Arrow: UIImageView {
+    let shapeLayer = CAShapeLayer()
+    var arrowColor:UIColor = .black {
+        didSet{
+            shapeLayer.fillColor = arrowColor.cgColor
+        }
+    }
     var position: Position = .down {
         didSet {
             switch position {
@@ -618,16 +627,24 @@ extension UIView {
         return nil
     }
 }
-//extension UITextField {
-//    func setGradient(startColor: UIColor, endColor: UIColor) {
-//        let gradient = CAGradientLayer()
-//        gradient.colors = [startColor.cgColor, endColor.cgColor]
-//        gradient.locations = [0.0, 1.0]
-//        gradient.startPoint = CGPoint(x: 0.0, y: 0.0)
-//        gradient.endPoint = CGPoint(x: 0.0, y: 1.0)
-//        gradient.frame = self.bounds
-//        self.layer.addSublayer(gradient)
-//        // Bring text field's text to front
-//        self.layer.masksToBounds = true
-//    }
-//}
+
+extension UITextField {
+    func setPadding(left: CGFloat, right: CGFloat? = nil) {
+        setLeftPadding(left)
+        if let rightPadding = right {
+            setRightPadding(rightPadding)
+        }
+    }
+    
+    private func setLeftPadding(_ padding: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
+        self.leftView = paddingView
+        self.leftViewMode = .always
+    }
+    
+    private func setRightPadding(_ padding: CGFloat) {
+        let paddingView = UIView(frame: CGRect(x: 0, y: 0, width: padding, height: self.frame.size.height))
+        self.rightView = paddingView
+        self.rightViewMode = .always
+    }
+}

@@ -62,8 +62,8 @@
             filePath = "PennyMead/Controller/CatalougeListVc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "45"
+            endingLineNumber = "45"
             landmarkName = "CatalougeListVc"
             landmarkType = "3">
             <Locations>
@@ -170,8 +170,8 @@
             filePath = "PennyMead/Controller/HomeVc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "246"
-            endingLineNumber = "246"
+            startingLineNumber = "248"
+            endingLineNumber = "248"
             landmarkName = "onPressMenuButton(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -190,69 +190,6 @@
             endingLineNumber = "88"
             landmarkName = "toggleSideMenu(expanded:)"
             landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "6C194FCD-2387-4186-A5A1-AD46E7A4FD58"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PennyMead/Controller/CatalougeListVc.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "314"
-            endingLineNumber = "314"
-            landmarkName = "updatePaginationUi(with:totalPage:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "6C194FCD-2387-4186-A5A1-AD46E7A4FD58 - e0870d62ef64ec05"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PennyMead.CatalougeListVc.updatePaginationUi(with: Swift.Int, totalPage: Swift.Int) -&gt; ()"
-                  moduleName = "PennyMead"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "320"
-                  endingLineNumber = "320"
-                  offsetFromSymbolStart = "216">
-               </Location>
-               <Location
-                  uuid = "6C194FCD-2387-4186-A5A1-AD46E7A4FD58 - e0870d62ef64ec05"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "PennyMead.CatalougeListVc.updatePaginationUi(with: Swift.Int, totalPage: Swift.Int) -&gt; ()"
-                  moduleName = "PennyMead"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "320"
-                  endingLineNumber = "320"
-                  offsetFromSymbolStart = "240">
-               </Location>
-               <Location
-                  uuid = "6C194FCD-2387-4186-A5A1-AD46E7A4FD58 - 7cbfb920c0236065"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "closure #1 @Swift.MainActor () -&gt; () in PennyMead.CatalougeListVc.updatePaginationUi(with: Swift.Int, totalPage: Swift.Int) -&gt; ()"
-                  moduleName = "PennyMead"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/siddappatambakad/Desktop/PennyMead/PennyMead/Controller/CatalougeListVc.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "321"
-                  endingLineNumber = "321"
-                  offsetFromSymbolStart = "233">
-               </Location>
-            </Locations>
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -281,8 +218,8 @@
             filePath = "PennyMead/Controller/CatalougeListVc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "286"
-            endingLineNumber = "286"
+            startingLineNumber = "314"
+            endingLineNumber = "314"
             landmarkName = "didUpdateTotalPages(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -297,10 +234,10 @@
             filePath = "PennyMead/Controller/CatalougeListVc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "284"
-            endingLineNumber = "284"
-            landmarkName = "CatalougeListVc"
-            landmarkType = "3">
+            startingLineNumber = "312"
+            endingLineNumber = "312"
+            landmarkName = "didUpdateTotalPages(_:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -313,25 +250,9 @@
             filePath = "PennyMead/Controller/CatalougeListVc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
-            landmarkName = "CatalougeListVc"
-            landmarkType = "3">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4D021251-D068-48C7-BFAE-A7C18463D04C"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "PennyMead/Controller/CatalougeListVc.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "315"
-            endingLineNumber = "315"
-            landmarkName = "updatePaginationUi(with:totalPage:)"
+            startingLineNumber = "341"
+            endingLineNumber = "341"
+            landmarkName = "updatePaginationUi(with:totalPageNo:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -361,10 +282,42 @@
             filePath = "PennyMead/Controller/CatalougeListVc.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "605"
-            endingLineNumber = "605"
+            startingLineNumber = "576"
+            endingLineNumber = "576"
             landmarkName = "CatalougeListVc"
             landmarkType = "21">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "58D0041B-6FB8-43A8-AD14-92BCD13F6980"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Controller/HomeVc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "68"
+            endingLineNumber = "68"
+            landmarkName = "viewDidLoad()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D696F472-BAAD-4AE9-BFD4-50383B88AE59"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "PennyMead/Controller/CatalougeListVc.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "466"
+            endingLineNumber = "466"
+            landmarkName = "getSubDropdownsList(response:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
    </Breakpoints>

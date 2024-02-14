@@ -4,7 +4,6 @@ import Kingfisher
 
 class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerDelegate, SearchBookManagerDelegate, GetSubDropdownsManagerDelegate, UITextFieldDelegate, FilterItemsBySubCatDelegate {
     
-    @IBOutlet var booksNameButton: UIButton!
     @IBOutlet var searchField: UITextField!
     @IBOutlet var searchButton: UIButton!
     @IBOutlet var wholeCategoryButton: UIButton!
@@ -26,15 +25,10 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     @IBOutlet var errorText: UILabel!
     @IBOutlet var noDataFoundText: UILabel!
     @IBOutlet var paginationView: UIView!
-    @IBOutlet var filterButton: UIButton!
-    @IBOutlet var filterDropdownImage: UIImageView!
-    @IBOutlet var customDropdown2: CustomDropdown!
-    @IBOutlet var dropdownHeight2: NSLayoutConstraint!
-    @IBOutlet var customDropdown1: CustomDropdown!
-    @IBOutlet var dropdownHeight1: NSLayoutConstraint!
-    @IBOutlet var firstDropdownImage: UIImageView!
     @IBOutlet var dropdownView: UIView!
-    
+    @IBOutlet var dropdown1: DropDown!
+    @IBOutlet var filterDropdown: DropDown!
+
     var perticularBooks: [PerticularItemsFetch] = []
     var perticularBookData = FetchPerticularManager()
     var searchedBooks = SearchBookManager()
@@ -49,17 +43,16 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         FilterData(name: "Price-Low", type: "price_low")
     ]
     var isSearching: Bool = false
+    var isMainCategoryLastApiCalled: Bool = true
     var adesc = 0
-    var selectedDropDown1: String?
-    var selectedDropDown2: FilterData?
     var categoryInfoArray: [(number: String, name: String)]?
     var selectedCategoryName: (name: String, category: String)?
-    var expandedCellIndex = -1
-    var isCellExpanded: Bool = false
-    
-    let ankit = ["siddu", "mahesh"]
     var dropdownManager = GetSubDropdownsManager()
     var dropdownlist: [DropdownItem] = []
+    var selectedCategoryIndex: Int?
+    var selectedFilterType: String = "newlyUpdated"
+    var selectedFilterIndex: Int = 0
+    var selectedFirstDropdownIndex: Int = 0
     
     var filterItems = FilterItemsBySubCat()
     
@@ -69,14 +62,14 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         showIndicator()
         SideMenuManager.shared.configureSideMenu(parentViewController: self)
         configureUI()
-        configDropdowns()
         registerCell1()
         paginationStyles()
         configureSearchStyles()
         
         perticularBookData.delegate = self
         let selectedFilter = filterData[selectedIndexPath?.row ?? 0]
-        perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "0", filterType: selectedFilter.type, page: page)
+        
+        onClickFilter()
         searchedBooks.delegate = self
         
         self.hideKeyboardWhenTappedAround()
@@ -87,6 +80,85 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         
         filterItems.delegate = self
         
+        
+        firstDropdownSetUp()
+        filterDropdownSetUp()
+        
+        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+    }
+    
+    func onClickFilter() {
+        print("onClicked----> called")
+        
+        if isMainCategoryLastApiCalled {
+            perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "0", filterType: selectedFilterType, page: page)
+            print("first---- > called")
+        } else {
+            if let searchTerm = searchField.text, !searchTerm.isEmpty {
+                adesc = searchByDesButton.isSelected ? 1 : 0
+                let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryName?.category ?? "0")" : "0"
+                //                let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
+                searchedBooks.searchCat(with: searchTerm, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType, page: page)
+            }
+            print("searchApi---- > called")
+            filterDropdownSetUp()
+        }
+    }
+    
+    func firstDropdownSetUp() {
+        dropdown1.setPadding(left: 10)
+        
+        if let categoryInfoArray = categoryInfoArray {
+            dropdown1.placeholder = selectedCategoryName?.name
+            dropdown1.selectedIndex = selectedCategoryIndex
+            let categoryoptions = categoryInfoArray.map{ $0.name }
+            dropdown1.optionArray = categoryoptions
+        }
+        dropdown1.setGradient(startColor: UIColor.MyTheme.brandingColorGradient, endColor: UIColor.MyTheme.brandingColor)
+        
+        let categoryName = selectedCategoryName?.name ?? ""
+        dropdown1.attributedPlaceholder = NSAttributedString(string: "\(categoryName)", attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+        
+        dropdown1.didSelect { [self] (selectedText, index, id) in
+            if selectedFirstDropdownIndex != index {
+                showIndicator()
+                selectedFilterType = "newlyUpdated"
+                filterDropdownSetUp()
+                isMainCategoryLastApiCalled = true
+                if let selectedCategoryInfo = categoryInfoArray?.first(where: { $0.name == selectedText }) {
+                    selectedCategoryName = (name: selectedCategoryInfo.name, category: selectedCategoryInfo.number)
+                    dropdownManager.getSubDropdowns(with: selectedCategoryName?.category ?? "0")
+                    onClickFilter()
+                    configureUI()
+                }
+                selectedFirstDropdownIndex = index
+            } else {
+                stopLoading()
+            }
+            }
+        
+    }
+    func filterDropdownSetUp() {
+        filterDropdown.optionArray = filterData.map({$0.name})
+        filterDropdown.text = filterData[0].name
+        filterDropdown.checkMarkEnabled = false
+        if let defaultIndex = filterData.firstIndex(where: { $0.name == "Newest Items" }) {
+            filterDropdown.selectedIndex = defaultIndex
+        }
+        
+        filterDropdown.didSelect { [self] (selectedText, index, id) in
+            if selectedFilterIndex != index {
+                showIndicator()
+                filterDropdown.selectedIndex = index
+                selectedFilterIndex = index
+                if let selectedFilter = filterData.first(where: { $0.name == selectedText }) {
+                    selectedFilterType = selectedFilter.type
+                }
+                onClickFilter()
+            }else {
+                stopLoading()
+            }
+        }
     }
     
     func configureSearchStyles() {
@@ -105,40 +177,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         
         searchByDesButton.setImage(UIImage(named: "check"), for: .selected)
         searchByDesButton.setImage(UIImage(named: "unCheck"), for: .normal)
-    }
-    //MARK: configure border, cornerRadius
-    func configDropdowns() {
-        customDropdown1.layer.cornerRadius = 5
-        customDropdown1.addShadow()
-        
-        customDropdown2.layer.cornerRadius = 5
-        customDropdown2.addShadow()
-        
-        customDropdown2.options = filterData.map { $0.name }
-        
-        // Set the dropdown delegate
-        customDropdown1.delegate = self
-        customDropdown2.delegate = self
-        
-        // Hide dropdown initially
-        customDropdown1.isHidden = true
-        customDropdown2.isHidden = true
-        
-        // Set initial heights of dropdowns
-        dropdownHeight1.constant = 210
-        dropdownHeight2.constant = 210
-        
-        if let categoryInfoArray = categoryInfoArray {
-            // Set the button title using the selected category name
-            booksNameButton.setTitle(selectedCategoryName?.name, for: .normal)
-            let categoryoptions = categoryInfoArray.map{ $0.name }
-            customDropdown1.options = categoryoptions
-        }
-        if let initialSelectedCategory = categoryInfoArray?.first(where: { $0.name == selectedCategoryName?.name }) {
-            if let index = categoryInfoArray?.firstIndex(where: { $0 == initialSelectedCategory }) {
-                customDropdown1.highlightCell(at: index)
-            }
-        }
     }
     override func viewDidLayoutSubviews() {
         self.updateCollectionViewHeight()
@@ -178,10 +216,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         paginationView.layer.shadowOffset = CGSize(width: 0, height: 3)
         paginationView.layer.shadowRadius = 4.0
         paginationView.layer.shadowOpacity = 0.5
-        
-        filterButton.layer.borderWidth = 1
-        filterButton.layer.borderColor = UIColor(named: "borderColor")?.cgColor
-        filterButton.layer.cornerRadius = 5
     }
     //MARK: update the heights of the collectionview
     func updateCollectionViewHeight() {
@@ -210,43 +244,36 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     //MARK: firstDropdown
     func configureUI() {
         if let book = selectedCategoryName {
-            booksNameButton.setTitle(book.name, for: .normal)
             showingBookLabel.text = book.name
         } else {
             print("selectedBook is nil in CatalougeListVc")
         }
-        customDropdown2.highlightCell(at: 0)
     }
     //MARK: UPDATE Text when searching is done
     func configureText() {
         if let searchTerm = searchField.text, !searchTerm.isEmpty {
             showingBookLabel.text = "Showing results for '\(searchTerm)'"
         } else {
-            booksNameButton.setTitle(selectedCategoryName?.name, for: .normal)
             showingBookLabel.text = selectedCategoryName?.name
         }
     }
     //MARK: searchCat api call
     func didUpdateThePerticularCatSearch(_ perticularCat: [PerticularItemsFetch]) {
         DispatchQueue.main.async { [self] in
-            if isSearching {
-                perticularBooks = perticularCat
-                stopLoading()
-                upDatePerticularBooks()
-                configureText()
-                bookCollectionView.reloadData()
-            }
+            perticularBooks = perticularCat
+            stopLoading()
+            upDatePerticularBooks()
+            configureText()
+            bookCollectionView.reloadData()
         }
     }
     //MARK: perticular api call
     func didUpdateThePerticularCat(_ perticularCat: [PerticularItemsFetch]) {
         DispatchQueue.main.async { [self] in
-            if !isSearching {
-                perticularBooks = perticularCat
-                upDatePerticularBooks()
-                stopLoading()
-                bookCollectionView.reloadData()
-            }
+            perticularBooks = perticularCat
+            upDatePerticularBooks()
+            stopLoading()
+            bookCollectionView.reloadData()
         }
     }
     func didRecieveDataForGetSub(response: [PerticularItemsFetch]) {
@@ -258,19 +285,20 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     }
     
     //MARK: error for both search and perticular
-    func didGetErrors(error: Error) {
-        DispatchQueue.main.async { [self] in
+    func didGetErrors(error: Error, response: HTTPURLResponse?) {
+        DispatchQueue.main.async { [weak self] in
+            guard let self = self else { return }
+            
             self.stopLoading()
             
-            if !isSearching {
-                if let networkError = error as? URLError, networkError.code == .notConnectedToInternet {
-                    showPopUp(title: "No internet connection")
-                } else {
-                    print("Unexpected error: \(error)")
-                    showPopUp(title: "something went wrong")
-                }
+            if let networkError = error as? URLError, networkError.code == .notConnectedToInternet {
+                self.showPopUp(title: "No internet connection")
+            } else if let httpResponse = response, httpResponse.statusCode == 404 {
+                print(httpResponse.statusCode)
             } else {
-                
+                // Show popup for other errors
+                print("Unexpected error: \(error)")
+                self.showPopUp(title: "Something went wrong")
             }
         }
     }
@@ -284,8 +312,8 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     func didUpdateTotalPages(_ totalPages: Int) {
         DispatchQueue.main.async {
             self.totalPage = totalPages
-            print(self.totalPage)
-            self.updatePaginationUi(with: self.page, totalPage: self.totalPage)
+            print("===>",self.totalPage)
+            self.updatePaginationUi(with: self.page, totalPageNo: self.totalPage)
         }
     }
     //MARK: category description
@@ -310,15 +338,19 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     }
     
     //MARK: func for button pagination
-    func updatePaginationUi(with page: Int, totalPage: Int) {
+    func updatePaginationUi(with page: Int, totalPageNo: Int) {
+//        let
         DispatchQueue.main.async { [self] in
-            let halftotalPage = Int(round(Double(totalPage) / 2.0))
-            if totalPage < 6 {
-                self.totalPage = totalPage
-                secondButton.isHidden = totalPage == 1 ? true : false
-                midButton.isHidden = totalPage < 3 ? true : false
-                secondLastButton.isHidden = totalPage < 4 ? true : false
-                lastButton.isHidden = totalPage < 5 ? true : false
+            let halftotalPage = Int(round(Double(totalPageNo) / 2.0))
+            print("page-1-->updatePaginationUi",totalPageNo)
+
+            if totalPageNo < 6 {
+                print("page-2-->updatePaginationUi",totalPage)
+
+                secondButton.isHidden = totalPageNo == 1 ? true : false
+                midButton.isHidden = totalPageNo < 3 ? true : false
+                secondLastButton.isHidden = totalPageNo < 4 ? true : false
+                lastButton.isHidden = totalPageNo < 5 ? true : false
                 firstButton.setTitle("1", for: .normal)
                 secondButton.setTitle("2", for: .normal)
                 midButton.setTitle("3", for: .normal)
@@ -345,8 +377,8 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 secondButton.setTitle("\(page + 1)", for: .normal)
                 midButton.isHidden = false
                 midButton.isEnabled = false
-                secondLastButton.setTitle("\(totalPage - 1)", for: .normal)
-                lastButton.setTitle("\(totalPage)", for: .normal)
+                secondLastButton.setTitle("\(totalPageNo - 1)", for: .normal)
+                lastButton.setTitle("\(totalPageNo)", for: .normal)
                 lastButton.setTitleColor(UIColor(named: "borderColor"), for: .normal)
             } else {
                 // Display pages in the second half
@@ -362,24 +394,23 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 secondButton.setTitle("2", for: .normal)
             }
             backWardButton.isHidden = page == 1 ? true : false
-            forwardButton.isHidden = page == totalPage ? true : false
+            forwardButton.isHidden = page == totalPageNo ? true : false
         }
     }
     //MARK: Api call for the subdropdowns
     func didGetSubDropdowns(response: [DropdownGroup]) {
+        print(response)
         DispatchQueue.main.async { [self] in
             getSubDropdownsList(response: response)
         }
     }
-    
-    func didGetError(error: Error) {
-        print(error)
-    }
-    
     //MARK: adding multipledropdowns through programatically
     func getSubDropdownsList(response: [DropdownGroup]) {
+        dropdownView.clear()
+        
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.showsHorizontalScrollIndicator = false
         dropdownView.addSubview(scrollView)
         // Configure UIScrollView constraints
         NSLayoutConstraint.activate([
@@ -400,9 +431,19 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             contentView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
             contentView.heightAnchor.constraint(equalTo: scrollView.heightAnchor) // Content height same as scrollview height
         ])
+        let stackView = UIStackView()
+        stackView.translatesAutoresizingMaskIntoConstraints = false
+        stackView.axis = .horizontal
+        stackView.spacing = 10 // Adjust spacing between text fields as needed
+        contentView.addSubview(stackView)
         
-        // Create and add multiple text fields to the content view
-        var previousTextField: DropDown?
+        NSLayoutConstraint.activate([
+            stackView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 0),
+            stackView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: 0),
+            stackView.topAnchor.constraint(equalTo: contentView.topAnchor),
+            stackView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
+            stackView.heightAnchor.constraint(equalTo: contentView.heightAnchor) // Ensure stack view fills the height of the content view
+        ])
         for i in 0..<response.count {// Create 5 text fields, you can adjust the count as needed
             let textField = DropDown()
             textField.translatesAutoresizingMaskIntoConstraints = false
@@ -413,70 +454,49 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 $0.name
             })
             textField.checkMarkEnabled = false
-            textField.listHeight = 200
+            textField.listHeight = 150
             textField.isSearchEnable = false
             textField.rowHeight = 30
-            textField.arrowSize = 25
+            textField.arrowSize = 16
             textField.cornerRadius = 5
-            textField.textColor = .white
+            textField.tintColor = UIColor.white
+            textField.setPadding(left: 8)
+            textField.textColor = UIColor.MyTheme.whiteColor
+            textField.backgroundColor = .clear
             textField.startColor = UIColor(named: "gradientColor1")!
             textField.endColor = UIColor(named: "gradientColor2")!
-            contentView.addSubview(textField)
+            stackView.addArrangedSubview(textField)
             
             dropdownlist.append(contentsOf: response[i].dropdownlist)
-
-            // Configure text field constraints
+            
             NSLayoutConstraint.activate([
-                textField.widthAnchor.constraint(equalToConstant: 200), // Set desired width
-                textField.heightAnchor.constraint(equalToConstant: 50), // Set desired height
-                textField.topAnchor.constraint(equalTo: contentView.topAnchor),
-                textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor),
-                textField.leadingAnchor.constraint(equalTo: previousTextField?.trailingAnchor ?? contentView.leadingAnchor, constant: 20),
+                textField.widthAnchor.constraint(equalToConstant: 200),
+                textField.heightAnchor.constraint(equalToConstant: 50)
             ])
-            
-            // Update the reference to the previous text field
-            previousTextField = textField
-            
             textField.didSelect { [self] (selectedText, index, id) in
-//                print("Selected: \(selectedText), Index: \(index), ID: \(id)")
-                print("Selected reference --->",self.dropdownlist[index].reference)
-                let selectedFilter = filterData[selectedIndexPath?.row ?? 0]
-                filterItems.getFilterItemsBySubCat(category: selectedCategoryName?.category ?? "0", referenceId: dropdownlist[index].reference, filterType: selectedFilter.type, page: page)
+            
+                showIndicator()
+                isMainCategoryLastApiCalled = true
+                filterItems.getFilterItemsBySubCat(category: selectedCategoryName?.category ?? "0", referenceId: dropdownlist[index].reference, filterType: selectedFilterType, page: page)
+                upDatePerticularBooks()
+                print("===>>getsubdropdown", selectedCategoryName?.category ?? "0")
+                print("===>>getsubdropdown", selectedFilterType)
+                print("reference-->", dropdownlist[index].reference)
             }
         }
-        
-        // Adjust the content size of the scroll view to fit the content view
-        if let lastTextField = previousTextField {
-            contentView.trailingAnchor.constraint(equalTo: lastTextField.trailingAnchor).isActive = true
-        }
-    }
-    
-    func toggleDropdown(dropdown: CustomDropdown, isVisible: Bool, height: CGFloat, dropdownImage: UIImageView) {
-        dropdown.isHidden = !isVisible
-        dropdown.frame.size.height = isVisible ? height : 0
-        dropdownImage.image = isVisible ? UIImage(named: "vector-Up") : UIImage(named: "Vector-Down")
-    }
-    
-    @IBAction func onPressBooksButton(_ sender: UIButton) {
-        toggleDropdown(dropdown: customDropdown1, isVisible: customDropdown1.isHidden, height: 210, dropdownImage: firstDropdownImage)
-        toggleDropdown(dropdown: customDropdown2, isVisible: false, height: 0, dropdownImage: filterDropdownImage)
-    }
-    
-    @IBAction func onPressFilterButton(_ sender: UIButton) {
-        toggleDropdown(dropdown: customDropdown2, isVisible: customDropdown2.isHidden, height: 210, dropdownImage: filterDropdownImage)
-        toggleDropdown(dropdown: customDropdown1, isVisible: false, height: 0, dropdownImage: firstDropdownImage)
     }
     //MARK: oppress search button
     @IBAction func onPressSearchButton(_ sender: UIButton) {
         showIndicator()
-        isSearching = true
-        page = 1
+        selectedFilterType = "newlyUpdated"
+        filterDropdownSetUp()
+        //        isSearching = true
+        isMainCategoryLastApiCalled = false
+//        page = 1
         if let searchTerm = searchField.text, !searchTerm.isEmpty {
-            adesc = searchByDesButton.isSelected ? 1 : 0
-            let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryName?.category ?? "0")" : "0"
-            let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
-            searchedBooks.searchCat(with: searchTerm, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType.type, page: page)
-        } else {
+            onClickFilter()
+            searchField.text = ""
+        }else {
             stopLoading()
             upDatePerticularBooks()
         }
@@ -499,78 +519,34 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         let intValue = Int(title!) ?? 1
         print(intValue)
         let searchTerm = searchField.text
-        
-        if isSearching {
-            if intValue != page {
-                let adesc: Int = searchByDesButton.isSelected ? 1 : 0
-                let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryName?.category ?? "0")" : "0"
-                let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
+        if intValue != page {
                 page = intValue
-                searchedBooks.searchCat(with: searchTerm!, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType.type, page: intValue)
+                onClickFilter()
             } else {
                 stopLoading()
             }
-        } else {
-            if intValue != page {
-                let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
-                page = intValue
-                perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "1", filterType: selectedFilterType.type, page: intValue)
-            } else {
-                stopLoading()
-            }
-        }
+
     }
     @IBAction func onPressForwardButton(_ sender: Any) {
         showIndicator()
-        if isSearching {
             if page < totalPage {
                 page += 1
                 let intValue = page
                 page = intValue
-                let adesc: Int = searchByDesButton.isSelected ? 1 : 0
-                let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryName?.category ?? "0")" : "0"
-                let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
-                searchedBooks.searchCat(with: searchField.text!, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType.type, page: intValue)
+                onClickFilter()
             } else {
                 stopLoading()
             }
-        } else {
-            if page < totalPage {
-                page += 1
-                let intValue = page
-                page = intValue
-                let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
-                perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "1", filterType: selectedFilterType.type, page: intValue)
-                
-            } else {
-                stopLoading()
-            }
-        }
     }
     @IBAction func onPressBackwardButton(_ sender: Any) {
         showIndicator()
-        if isSearching {
             if page > 1 {
                 page -= 1
                 let intValue = page
-                let adesc: Int = searchByDesButton.isSelected ? 1 : 0
-                let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryName?.category ?? "0")" : "0"
-                let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
-                searchedBooks.searchCat(with: searchField.text!, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType.type, page: intValue)
+                onClickFilter()
             } else {
                 stopLoading()
             }
-        } else {
-            if page > 1 {
-                page -= 1
-                let intValue = page
-                let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
-                perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "1", filterType: selectedFilterType.type, page: intValue)
-                page = intValue
-            } else {
-                stopLoading()
-            }
-        }
     }
     @IBAction func onPressGoButton(_ sender: UIButton) {
         showIndicator()
@@ -578,12 +554,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             if let pageNumber = Int(text), pageNumber >= 1 && pageNumber <= totalPage {
                 if pageNumber != page {
                     page = pageNumber
-                    let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
-                    if isSearching {
-                        searchedBooks.searchCat(with: searchField.text!, adesc: adesc, categoryNumber: Int(selectedCategoryName?.category ?? "0")!, sortby: selectedFilterType.type, page: pageNumber)
-                    } else {
-                        perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "1", filterType: selectedFilterType.type, page: pageNumber)
-                    }
+                    onClickFilter()
                     numberTextField.text = ""
                     errorText.text = ""
                 } else {
@@ -604,120 +575,35 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
 extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        if collectionView == bookCollectionView {
-            return perticularBooks.count
-        }
-        return 0
+        return perticularBooks.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        if collectionView == bookCollectionView {
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellItems", for: indexPath) as! CollectibleCvCell
-            let book = perticularBooks[indexPath.item]
-            cell.cardAuthor.text = book.author
-            cell.cardTitle.text = book.title
-            cell.cardDescription.text = book.description
-            cell.cardPrice.text = ("£ \(book.price)")
-            if let imageUrlString = book.image.first, let imageUrl = URL(string: imageUrlString) {
-                cell.cardImage1.kf.setImage(with: imageUrl, placeholder: UIImage(named: "placeholderimg"), options: nil) { result in
-                    switch result {
-                    case .success(_): break
-                    case .failure(let error):
-                        print("Error in loading image \(error)")
-                    }
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellItems", for: indexPath) as! CollectibleCvCell
+        let book = perticularBooks[indexPath.item]
+        cell.cardAuthor.text = book.author
+        cell.cardTitle.text = book.title
+        cell.cardDescription.text = book.description
+        cell.cardPrice.text = ("£ \(book.price)")
+        if let imageUrlString = book.image.first, let imageUrl = URL(string: imageUrlString) {
+            cell.cardImage1.kf.setImage(with: imageUrl, placeholder: UIImage(named: "placeholderimg"), options: nil) { result in
+                switch result {
+                case .success(_): break
+                case .failure(let error):
+                    print("Error in loading image \(error)")
                 }
             }
-            return cell
         }
-        return UICollectionViewCell()
+        return cell
     }
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-        if collectionView == bookCollectionView {
-            let collectionWidth = collectionView.frame.width
-            let cellWidth = collectionWidth * 0.84
-            return CGSize(width: cellWidth, height: 445)
-        }
-        return CGSize(width: 0, height: 0)
+        let collectionWidth = collectionView.frame.width
+        let cellWidth = collectionWidth * 0.84
+        return CGSize(width: cellWidth, height: 445)
     }
 }
-//MARK: Converting html to normal string
-extension Data {
-    var html2AttributedString: NSAttributedString? {
-        do {
-            return try NSAttributedString(data: self, options: [.documentType: NSAttributedString.DocumentType.html, .characterEncoding: String.Encoding.utf8.rawValue], documentAttributes: nil)
-        } catch {
-            print("error:", error)
-            return  nil
-        }
-    }
-    var html2String: String { html2AttributedString?.string ?? "" }
-}
-extension StringProtocol {
-    var html2AttributedString: NSAttributedString? {
-        Data(utf8).html2AttributedString
-    }
-    var html2String: String {
-        html2AttributedString?.string ?? ""
-    }
-}
-//MARK: didtap for the dropdowns
-extension CatalougeListVc: CustomDropdownDelegate {
-    func didSelectOption(option: String) {
-        showIndicator()
-        if customDropdown1.isHidden == false {
-            // Handle selection for customDropdown1
-            if let selectedCategoryInfo = categoryInfoArray?.first(where: { $0.name == option }) {
-                selectedCategoryName = (name: selectedCategoryInfo.name, category: selectedCategoryInfo.number)
-                booksNameButton.setTitle(option, for: .normal)
-                
-                // Update the API call with the new categoryNumber
-                let selectedFilterType = filterData[selectedIndexPath?.row ?? 0]
-                if isSearching {
-                    searchedBooks.searchCat(with: searchField.text! , adesc: adesc, categoryNumber: Int(selectedCategoryName?.category ?? "0")!, sortby: selectedFilterType.type, page: page)
-                } else {
-                    perticularBookData.getPerticularCategories(
-                        with: selectedCategoryName?.category ?? "0",
-                        filterType: selectedFilterType.type,
-                        page: page
-                    )
-                }
-                firstDropdownImage.image = UIImage(named: "Vector-Down")
-                customDropdown1.isHidden = true
-                customDropdown1.reloadTableView()
-            }
-        }  else if customDropdown2.isHidden == false {
-            
-            if let selectedFilter = filterData.first(where: { $0.name == option }) {
-                selectedDropDown2 = selectedFilter
-                filterButton.setTitle(option, for: .normal)
-                
-                // Use the selected book's category and selectedFilter type for the API call
-                let selectedFilterType = selectedFilter.type
-                
-                // Check isSearching flag before making API call
-                if isSearching {
-                    // Handle search-related API call
-                    searchedBooks.searchCat(
-                        with: searchField.text!,
-                        adesc: adesc,
-                        categoryNumber: Int(selectedCategoryName?.category ?? "0") ?? 0,
-                        sortby: selectedFilterType,
-                        page: page
-                    )
-                } else {
-                    // Handle regular API call
-                    perticularBookData.getPerticularCategories(
-                        with: selectedCategoryName?.category ?? "0",
-                        filterType: selectedFilterType,
-                        page: page
-                    )
-                }
-                customDropdown2.isHidden = true
-                filterDropdownImage.image = UIImage(named: "Vector-Down")
-                customDropdown2.reloadTableView()
-            }
-        } else {
-            stopLoading()
-        }
+extension CatalougeListVc:UIGestureRecognizerDelegate {
+    func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
+        return true
     }
 }

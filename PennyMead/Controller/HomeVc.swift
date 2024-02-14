@@ -9,6 +9,7 @@ import UIKit
 import Kingfisher
 
 class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, collectibleManagerDelegate, DrawerDelegate {
+   
     func didGoToHomeVc() {
         self.navigationController?.popViewController(animated: true)
     }
@@ -64,7 +65,7 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
         registerCollectionCell2()
         
         categoryManager.delegate = self
-        categoryManager.getCategories()
+        self.categoryManager.getCategories()
         
         collectibleManager.delegate = self
         let selectedFilter = items[selectedIndexPath?.row ?? 0]
@@ -125,6 +126,7 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
         let selectedFilterType = items[defaultIndexPath.row]
         collectibleManager.getCollectibles(with: selectedFilterType.type, page: page)
         
+        
         hideKeyboardWhenTappedAround()
     }
     override func viewDidLayoutSubviews() {
@@ -135,25 +137,27 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
     override func viewWillAppear(_ animated: Bool) {
         SideMenuManager.shared.configureSideMenu(parentViewController: self)
         SideMenuManager.shared.sideMenuVc.delegate = self
+        scrollView.setContentOffset(.zero, animated: true)
     }
     
     //MARK: Category Collection
     func categoriesDidFetch(categories: [Book]) {
         DispatchQueue.main.async {
-            self.categories = categories
-            self.categoryCollection.reloadData()
+            self.categories.append(contentsOf: categories)
             self.stopLoading()
+            self.categoryCollection.reloadData()
         }
     }
-    func didFailWithError(error: Error) {
+    func didFailWithError(error: Error, response: HTTPURLResponse?) {
         DispatchQueue.main.async {
             self.stopLoading() // Assuming this is a method to hide the loading indicator
             
             if let networkError = error as? URLError, networkError.code == .notConnectedToInternet {
                 // No internet connection error
                 self.showCustomPopup(title: "No Internet Connection")
+            } else if let httpResponse = response, httpResponse.statusCode == 404 {
+                print(httpResponse.statusCode)
             } else {
-                // Other errors
                 self.showCustomPopup(title: "Error")
             }
         }
@@ -168,12 +172,10 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
             self.stopLoading()
         }
     }
-    func didGetError(error: Error) {
+    func didGetError(error: Error, response: HTTPURLResponse?) {
         DispatchQueue.main.async {
-            self.stopLoading() // Assuming this is a method to hide the loading indicator
-            
+            self.stopLoading()
             if let networkError = error as? URLError, networkError.code == .notConnectedToInternet {
-                // No internet connection error
                 self.showCustomPopup(title: "No Internet Connection")
             } else {
                 // Other errors
@@ -330,9 +332,13 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
             page = intValue
             handleScrollTo()
             collectibleManager.getCollectibles(with: selectedFilterType.type, page: intValue)
+            errorText.text = ""
+            numbersInputButton.text = ""
         } else {
             stopLoading()
             handleScrollTo()
+            errorText.text = ""
+            numbersInputButton.text = ""
         }
     }
     
@@ -346,6 +352,8 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
             let selectedFilterType = items[selectedIndexPath?.row ?? 0]
             collectibleManager.getCollectibles(with: selectedFilterType.type, page: intValue)
             page = intValue
+            errorText.text = ""
+            numbersInputButton.text = ""
         }
     }
     //MARK: forward button pressed
@@ -359,6 +367,8 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
             let selectedFilterType = items[selectedIndexPath?.row ?? 0]
             collectibleManager.getCollectibles(with: selectedFilterType.type, page: intValue)
             page = intValue
+            errorText.text = ""
+            numbersInputButton.text = ""
         }
     }
     @IBAction func onPressGoButton(_ sender: UIButton) {
@@ -373,7 +383,8 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
                     numbersInputButton.text = ""
                     errorText.text = ""
                 } else {
-                    errorText.text = "Entered same Page"
+//                    errorText.text = "Entered same Page"
+                    numbersInputButton.text = ""
                     stopLoading()
                     handleScrollTo()
                 }
@@ -425,7 +436,6 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         if collectionView == categoryCollection {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "collectionCell", for: indexPath) as! CollectionVc
             let book = categories[indexPath.item]
@@ -435,7 +445,6 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
                 cell.bookImage.kf.setImage(with: imageURL, placeholder: UIImage(named: "placeholderimg"), options: nil) { result in
                     switch result {
                     case .success(_): break
-                        //                        print("Image loaded: categories")
                     case .failure(let error):
                         print("Error loading image: \(error)")
                     }
@@ -471,25 +480,18 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollection {
             let data = categories[indexPath.item]
-            selectedData(with: data)
+            selectedData(with: data, at: indexPath.item )
         }
     }
     
-    func selectedData(with category: Book) {
-//        print("selectedCategory from Home vc \(category)")
-//        let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-//        if let catalougePage = storyBoard.instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
-//            catalougePage.selectedBook = category
-//            catalougePage.books = categories
-//            navigationController?.pushViewController(catalougePage, animated: true)
-//        }
-        
-        
+    func selectedData(with category: Book, at index: Int) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
         if let catalougePage = storyBoard.instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
             let categoryInfo = categories.map{(number: $0.category, name: $0.name)}
             catalougePage.categoryInfoArray = categoryInfo
             catalougePage.selectedCategoryName = (name: category.name, category: category.category)
+            catalougePage.selectedCategoryIndex = index
+            catalougePage.selectedFirstDropdownIndex = index
             navigationController?.pushViewController(catalougePage, animated: true)
         }
     }
@@ -536,14 +538,4 @@ extension HomeVc: UITableViewDelegate, UITableViewDataSource {
         }
     }
 }
-extension UIViewController {
-    func hideKeyboardWhenTappedAround() {
-        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
-        tap.cancelsTouchesInView = false
-        view.addGestureRecognizer(tap)
-    }
-    
-    @objc func dismissKeyboard() {
-        view.endEditing(true)
-    }
-}
+

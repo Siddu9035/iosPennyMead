@@ -60,6 +60,8 @@
 		ECB35B932B57036100384B46 /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB35B922B57036100384B46 /* SideMenuManager.swift */; };
 		ECB35B952B5708A400384B46 /* CatalougeListVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB35B942B5708A400384B46 /* CatalougeListVc.swift */; };
 		ECBB61632B7B542500E0A9ED /* FilterCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBB61622B7B542500E0A9ED /* FilterCategory.swift */; };
+		ECBB61662B7B83F400E0A9ED /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBB61652B7B83F400E0A9ED /* UIColorExtension.swift */; };
+		ECBB61682B7B843A00E0A9ED /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBB61672B7B843A00E0A9ED /* UIViewControllerExtension.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -119,6 +121,8 @@
 		ECB35B922B57036100384B46 /* SideMenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
 		ECB35B942B5708A400384B46 /* CatalougeListVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalougeListVc.swift; sourceTree = "<group>"; };
 		ECBB61622B7B542500E0A9ED /* FilterCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCategory.swift; sourceTree = "<group>"; };
+		ECBB61652B7B83F400E0A9ED /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
+		ECBB61672B7B843A00E0A9ED /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
 		F3A09DE55A28E45141F5A8FF /* Pods_PennyMead.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_PennyMead.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -172,6 +176,7 @@
 		EC3D10942B46BC2A002C8D40 /* PennyMead */ = {
 			isa = PBXGroup;
 			children = (
+				ECBB61642B7B838800E0A9ED /* Extensions */,
 				EC3D10B12B46ED16002C8D40 /* utils */,
 				EC3D10AC2B46BF1C002C8D40 /* Modal */,
 				EC3D10AD2B46BF34002C8D40 /* View */,
@@ -204,11 +209,9 @@
 				EC5858572B51238C006C5D78 /* CollectiblesManager.swift */,
 				EC5858592B51541A006C5D78 /* ApiConstants.swift */,
 				EC58585B2B51607E006C5D78 /* ActivityIndicator.swift */,
-				EC5412DB2B5EE94F0072F3CA /* GradientButton.swift */,
 				EC55C2962B60D859000994F7 /* FetchPerticularManager.swift */,
 				EC96FFD52B639EEF0096025B /* SearchBookManager.swift */,
 				EC9C5FCD2B6BD01500AE0A07 /* GetSubDropDownsManager.swift */,
-				EC6974DA2B7A00220032AB18 /* iOSDropDown.swift */,
 				ECBB61622B7B542500E0A9ED /* FilterCategory.swift */,
 			);
 			path = Modal;
@@ -299,6 +302,17 @@
 				ECB35B922B57036100384B46 /* SideMenuManager.swift */,
 			);
 			path = DrawerMenu;
+			sourceTree = "<group>";
+		};
+		ECBB61642B7B838800E0A9ED /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				ECBB61652B7B83F400E0A9ED /* UIColorExtension.swift */,
+				ECBB61672B7B843A00E0A9ED /* UIViewControllerExtension.swift */,
+				EC6974DA2B7A00220032AB18 /* iOSDropDown.swift */,
+				EC5412DB2B5EE94F0072F3CA /* GradientButton.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -451,8 +465,10 @@
 				ECB35B932B57036100384B46 /* SideMenuManager.swift in Sources */,
 				ECB35B902B56EE4A00384B46 /* Drawer.swift in Sources */,
 				EC4FAA972B4D2BD40068BA88 /* CollectibleCvCell.swift in Sources */,
+				ECBB61682B7B843A00E0A9ED /* UIViewControllerExtension.swift in Sources */,
 				EC8460482B4E709A00561424 /* FooterView.swift in Sources */,
 				EC810C6E2B49E12C00CF9EED /* FIlterData.swift in Sources */,
+				ECBB61662B7B83F400E0A9ED /* UIColorExtension.swift in Sources */,
 				EC55C2972B60D859000994F7 /* FetchPerticularManager.swift in Sources */,
 				EC38E2942B69667B0057C8E2 /* DropdownTableVc.swift in Sources */,
 				EC5858562B510ECB006C5D78 /* CategoryManager.swift in Sources */,

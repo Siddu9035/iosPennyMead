@@ -10,7 +10,7 @@ import Foundation
 protocol collectibleManagerDelegate {
     func didUpdateTheCollectibles(_ collectibles: [CollectibleItem])
     func didUpdateTotalPages(_ totalPages: Int)
-    func didGetError(error: Error)
+    func didGetError(error: Error, response: HTTPURLResponse?)
 }
 
 struct CollectiblesManager {
@@ -24,7 +24,7 @@ struct CollectiblesManager {
         
         let task = session.dataTask(with: urlString) { data, response, error in
             if let error = error{
-                self.delegate?.didGetError(error: error)
+                self.delegate?.didGetError(error: error, response: response as? HTTPURLResponse)
                 return
             }
             if let safeData = data {
@@ -39,7 +39,7 @@ struct CollectiblesManager {
                     let totalPage = collectibleData.totalpages
                     self.delegate?.didUpdateTotalPages(totalPage)
                 } catch {
-                    self.delegate?.didGetError(error: error)
+                    self.delegate?.didGetError(error: error, response: response as? HTTPURLResponse)
                 }
             }
         }

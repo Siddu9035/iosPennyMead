@@ -9,7 +9,7 @@ import Foundation
 
 protocol GetSubDropdownsManagerDelegate {
     func didGetSubDropdowns(response: [DropdownGroup])
-    func didGetError(error: Error)
+    func didGetErrors(error: Error, response: HTTPURLResponse?)
 }
 
 struct GetSubDropdownsManager {
@@ -18,10 +18,11 @@ struct GetSubDropdownsManager {
     func getSubDropdowns(with category: String) {
         
         let url = URL(string: "\(ApiConstants.baseUrl)view/getsubcat_dropdownlist/\(category)/")
+        print(url)
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: url!) { data, response, error in
             if let error = error {
-                delegate?.didGetError(error: error)
+                delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
                 return
             }
             
@@ -35,7 +36,7 @@ struct GetSubDropdownsManager {
                     delegate?.didGetSubDropdowns(response: categoryData.data)
                 } catch let error {
                     print("Error decoding JSON: \(error)")
-                    delegate?.didGetError(error: error)
+                    delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
                 }
             }
         }

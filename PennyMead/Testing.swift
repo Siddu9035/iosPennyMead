@@ -19,7 +19,7 @@ class Testing: UIViewController, UITextFieldDelegate, GetSubDropdownsManagerDele
         
     }
     
-    func didGetError(error: Error) {
+    func didGetErrors(error: Error, response: HTTPURLResponse?) {
         print("------->",error)
 
     }
@@ -50,7 +50,7 @@ class Testing: UIViewController, UITextFieldDelegate, GetSubDropdownsManagerDele
     var optionsArray = ["Option 1", "Option 2", "Option 3", "Option 4", "Option 5"]
     
     var filterData: [FilterData] = [
-        FilterData(name: "Newest Items", type: "newlyUpdated"),
+        FilterData(name: "Newest ItemsNewest ItemsNewest ItemsNewest ItemsNewest Items", type: "newlyUpdated"),
         FilterData(name: "Author", type: "author"),
         FilterData(name: "Title", type: "title"),
         FilterData(name: "Price-High", type: "price_high"),

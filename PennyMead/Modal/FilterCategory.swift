@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 protocol FilterItemsBySubCatDelegate {
-    func didGetErrors(error: Error)
+    func didGetErrors(error: Error, response: HTTPURLResponse?)
     func didUpdateTotalPages(_ totalPages: Int)
     func didRecieveDataForGetSub(response: [PerticularItemsFetch])
 }
@@ -25,7 +25,7 @@ struct FilterItemsBySubCat {
         let session = URLSession(configuration: .default)
         let task = session.dataTask(with: urlString!) { data, response, error in
             if let error = error {
-                delegate?.didGetErrors(error: error)
+                delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
             }
             
             if let safeData = data {
@@ -37,7 +37,7 @@ struct FilterItemsBySubCat {
                     let totaPage = response.data.totalpages
                     delegate?.didUpdateTotalPages(totaPage)
                 } catch {
-                    delegate?.didGetErrors(error: error)
+                    delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
                 }
             }
         }

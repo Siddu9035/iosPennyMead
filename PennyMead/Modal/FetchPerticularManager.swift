@@ -11,7 +11,7 @@ protocol FetchPerticularManagerDelegate {
     func didUpdateThePerticularCat(_ perticularCat: [PerticularItemsFetch])
     func didUpdateTotalPages(_ totalPages: Int)
     func didGetTheCatDes(_ categorydescription: [CategoryDescription])
-    func didGetErrors(error: Error)
+    func didGetErrors(error: Error, response: HTTPURLResponse?)
 }
 
 struct FetchPerticularManager {
@@ -19,13 +19,17 @@ struct FetchPerticularManager {
     var delegate: FetchPerticularManagerDelegate?
     
     func getPerticularCategories(with category: String, filterType: String, page: Int) {
-        let url = URL(string: "\(ApiConstants.baseUrl)view/category/\(category)/\(filterType)/\(page)/")!
-//        print(url)
+        guard let urlString = URL(string: "\(ApiConstants.baseUrl)view/category/\(category)/\(filterType)/\(page)/") else {
+            print("Invalid URL")
+            return
+        }
+        
+        print(urlString)
         let session = URLSession(configuration: .default)
-        let task = session.dataTask(with: url) { [self] data, response, error in
+        let task = session.dataTask(with: urlString) { [self] data, response, error in
             if let error = error {
-                delegate?.didGetErrors(error: error)
-               return
+                delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
+                return
             }
             if let safeData = data {
                 do {
@@ -34,17 +38,17 @@ struct FetchPerticularManager {
                     let response = try decoder.decode(PerticularBooks.self, from: safeData)
                     self.delegate?.didUpdateThePerticularCat(response.data.data)
                     
-//                    print(response.categorydescription)
                     let catDescription = response.categorydescription
                     self.delegate?.didGetTheCatDes(catDescription)
                     
                     let totalPage = response.data.totalpages
                     self.delegate?.didUpdateTotalPages(totalPage)
                 } catch {
-                    delegate?.didGetErrors(error: error)
+                    delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
                 }
             }
         }
         task.resume()
     }
+    
 }

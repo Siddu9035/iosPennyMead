@@ -46,7 +46,7 @@ class AboutUsVc: UIViewController, categoryManagerDelegate {
         }
     }
     
-    func didFailWithError(error: Error) {
+    func didFailWithError(error: Error, response: HTTPURLResponse?) {
         DispatchQueue.main.async {
             self.stopLoading() // Assuming this is a method to hide the loading indicator
             
