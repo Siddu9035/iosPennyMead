@@ -481,6 +481,19 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         if collectionView == categoryCollection {
             let data = categories[indexPath.item]
             selectedData(with: data, at: indexPath.item )
+        } else if collectionView == collectible_CollectionVC {
+            let data2 = collectiblesBooks[indexPath.item]
+            let sysidAndCategory = (sysid: data2.sysid, category: data2.category)
+            let categoryDetails = categories.map{(number: $0.category, name: $0.name)}
+            let categoriesName = categories.map {$0.name}
+            let cat = (name: categoriesName, category: data2.category)
+            print(cat)
+            if let productVc = storyboard?.instantiateViewController(withIdentifier: "productDetail") as? ProductDetailVc {
+                productVc.selectedSysid = sysidAndCategory
+                productVc.categoryInfoArray = categoryDetails
+                productVc.selectedCategoryIndex = indexPath.item
+                navigationController?.pushViewController(productVc, animated: true)
+            }
         }
     }
     

@@ -7,46 +7,29 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
-        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestingCell" customModule="PennyMead" customModuleProvider="target">
-            <connections>
-                <outlet property="dropdown" destination="ehM-dV-UuR" id="dJa-vB-kBX"/>
-            </connections>
-        </placeholder>
+        <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner" customClass="TestingCell" customModule="PennyMead" customModuleProvider="target"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
-        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testingCell" id="gTV-IL-0wX" customClass="TestingCell" customModule="PennyMead" customModuleProvider="target">
+        <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="testing" id="gTV-IL-0wX" customClass="TestingCell" customModule="PennyMead" customModuleProvider="target">
             <rect key="frame" x="0.0" y="0.0" width="415" height="79"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
                 <rect key="frame" x="0.0" y="0.0" width="415" height="79"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="ehM-dV-UuR" customClass="DropDown" customModule="PennyMead" customModuleProvider="target">
-                        <rect key="frame" x="5" y="5" width="405" height="69"/>
-                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
-                        <textInputTraits key="textInputTraits"/>
-                        <userDefinedRuntimeAttributes>
-                            <userDefinedRuntimeAttribute type="number" keyPath="rowHeight">
-                                <real key="value" value="20"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="listHeight">
-                                <real key="value" value="200"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="borderWidth">
-                                <real key="value" value="1"/>
-                            </userDefinedRuntimeAttribute>
-                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                <real key="value" value="5"/>
-                            </userDefinedRuntimeAttribute>
-                        </userDefinedRuntimeAttributes>
-                    </textField>
+                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="cDp-MP-MUe">
+                        <rect key="frame" x="30" y="10" width="355" height="59"/>
+                        <color key="backgroundColor" red="0.0" green="0.98106676339999999" blue="0.57369142770000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <state key="normal" title="Button"/>
+                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
+                    </button>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstAttribute="bottom" secondItem="ehM-dV-UuR" secondAttribute="bottom" constant="5" id="ESX-QP-sTi"/>
-                <constraint firstAttribute="trailing" secondItem="ehM-dV-UuR" secondAttribute="trailing" constant="5" id="Nsn-0I-dkW"/>
-                <constraint firstItem="ehM-dV-UuR" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="5" id="Zqh-Tg-Wxg"/>
-                <constraint firstItem="ehM-dV-UuR" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="5" id="o5F-1q-fum"/>
+                <constraint firstItem="cDp-MP-MUe" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" constant="30" id="Avz-jD-YSl"/>
+                <constraint firstAttribute="trailing" secondItem="cDp-MP-MUe" secondAttribute="trailing" constant="30" id="J7U-vx-g4J"/>
+                <constraint firstItem="cDp-MP-MUe" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="QG8-Bo-8x2"/>
+                <constraint firstAttribute="bottom" secondItem="cDp-MP-MUe" secondAttribute="bottom" constant="10" id="uPi-MA-8bA"/>
             </constraints>
             <size key="customSize" width="415" height="79"/>
             <point key="canvasLocation" x="233.07692307692307" y="19.549763033175356"/>

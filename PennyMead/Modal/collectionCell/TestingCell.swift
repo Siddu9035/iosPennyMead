@@ -9,13 +9,13 @@ import UIKit
 
 class TestingCell: UICollectionViewCell, UITextFieldDelegate {
 
-    @IBOutlet var dropdown: DropDown!
+//    @IBOutlet var dropdown: DropDown!
     
     
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
-        dropdown.delegate = self
+//        dropdown.delegate = self
     }
 
 }

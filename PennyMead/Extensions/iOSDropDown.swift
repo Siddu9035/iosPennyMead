@@ -7,13 +7,18 @@
 //  Copyright © 2018 JRiOSdev. All rights reserved.
 //
 import UIKit
+//protocol SelectedTextFieldDelagate {
+//    func didSelectTextfield(selectedIndex: Int)
+//}
 
-open class DropDown : UITextField{
+open class DropDown : UITextField {
     
     var arrow : Arrow!
     var table : UITableView!
     var shadow : UIView!
     public  var selectedIndex: Int?
+    var selectedTextFieldIndex: Int?
+//    var textDelegate: SelectedTextFieldDelagate?
     
     
     //MARK: IBInspectable
@@ -220,6 +225,10 @@ open class DropDown : UITextField{
             self.rightView?.addGestureRecognizer(gesture)
         }else{
             self.addGestureRecognizer(gesture)
+            //////////////////
+//            let selectedViewTag = self.tag
+//            selectedTextFieldIndex = selectedViewTag
+            
         }
         let gesture2 =  UITapGestureRecognizer(target: self, action:  #selector(touchAction))
         self.backgroundView.addGestureRecognizer(gesture2)
@@ -328,7 +337,7 @@ open class DropDown : UITextField{
     }
     
     @objc public func touchAction() {
-        
+//        textDelegate?.didSelectTextfield(selectedIndex: selectedTextFieldIndex ?? -1)
         isSelected ?  hideList() : showList()
     }
     func reSizeTable() {

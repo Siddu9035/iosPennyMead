@@ -35,9 +35,11 @@ struct CollectiblesBook: Codable {
 
 struct CollectibleItem: Codable {
     let author: String
+    let sysid: String
     let title: String
     let description: String
     let price: String
+    let category: String
     let image: [String]
 }
 
@@ -100,4 +102,28 @@ struct SecondData: Codable {
     let data: [PerticularItemsFetch]
     let relateddata: [PerticularItemsFetch]
     let totalpages: Int
+}
+
+// MARK: - product detail
+struct ProductResponse: Codable {
+    let status: Int
+    let message: String
+    let productdetail: Productdetail
+    let subcatdetail: [Subcatdetail]
+    let relateditems: [Productdetail]
+}
+
+// MARK: - Productdetail
+struct Productdetail: Codable {
+    let sysid, author, author2, title: String
+    let longtitle, publisher, pubdate, description: String
+    let price, quantity, keywords, footnote: String
+    let category: String
+    let image: [String]
+}
+
+// MARK: - Subcatdetail
+struct Subcatdetail: Codable {
+    let name, keywords, toshow, thegroup: String
+    let reference, icount: String
 }

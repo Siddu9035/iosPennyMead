@@ -36,13 +36,13 @@ struct FetchPerticularManager {
                     let decoder = JSONDecoder()
                     decoder.keyDecodingStrategy = .convertFromSnakeCase
                     let response = try decoder.decode(PerticularBooks.self, from: safeData)
-                    self.delegate?.didUpdateThePerticularCat(response.data.data)
+                    delegate?.didUpdateThePerticularCat(response.data.data)
                     
                     let catDescription = response.categorydescription
-                    self.delegate?.didGetTheCatDes(catDescription)
+                    delegate?.didGetTheCatDes(catDescription)
                     
                     let totalPage = response.data.totalpages
-                    self.delegate?.didUpdateTotalPages(totalPage)
+                    delegate?.didUpdateTotalPages(totalPage)
                 } catch {
                     delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
                 }
