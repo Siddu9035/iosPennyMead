@@ -42,13 +42,16 @@
                                 </constraints>
                             </imageView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="252" text="label" textAlignment="justified" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="5B4-in-hej">
-                                <rect key="frame" x="20.000000000000007" y="215" width="127.66666666666669" height="23.333333333333343"/>
+                                <rect key="frame" x="20" y="215" width="104" height="23.333333333333343"/>
                                 <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="17"/>
                                 <color key="textColor" name="TundoraBlack"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VlQ-JJ-I87">
-                                <rect key="frame" x="157.66666666666666" y="215" width="44.333333333333343" height="23.333333333333343"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VlQ-JJ-I87">
+                                <rect key="frame" x="134" y="215" width="68" height="23.333333333333343"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="68" id="lTy-aq-nhu"/>
+                                </constraints>
                                 <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="17"/>
                                 <color key="textColor" name="TundoraBlack"/>
                                 <nil key="highlightedColor"/>

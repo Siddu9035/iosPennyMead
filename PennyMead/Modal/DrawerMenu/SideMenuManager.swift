@@ -68,10 +68,10 @@ class SideMenuManager {
             switch gesture.direction {
             case .right:
                     toggleSideMenu(expanded: false)
-                print("right")
+//                print("right")
             case .left:
                     toggleSideMenu(expanded: true)
-                print("left")
+//                print("left")
             default:
                 break
             }

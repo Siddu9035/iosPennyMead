@@ -50,8 +50,8 @@ struct SearchBookManager {
                             let decoder = JSONDecoder()
                             decoder.keyDecodingStrategy = .convertFromSnakeCase
                             let response = try decoder.decode(SearchResults.self, from: data)
-                            
-                            self.delegate?.didUpdateThePerticularCatSearch(response.searchresults)
+                            let response2 = response.searchresults
+                            self.delegate?.didUpdateThePerticularCatSearch(response2)
                             let totalPage = response.totalpages
                             self.delegate?.didUpdateTotalPages(totalPage)
                         } catch {

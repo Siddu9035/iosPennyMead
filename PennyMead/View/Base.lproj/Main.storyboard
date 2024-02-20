@@ -527,6 +527,7 @@
                         <outlet property="scrollView" destination="5YU-o0-5fz" id="lC1-TK-J2H"/>
                         <outlet property="secondButton" destination="D57-sQ-CZn" id="tPX-tO-EPH"/>
                         <outlet property="secondLastButton" destination="Zr4-2k-9a0" id="rDe-nH-LVa"/>
+                        <segue destination="heg-2u-Wsm" kind="show" id="xNK-qH-zyE"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="fAG-8e-L03" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1458,11 +1459,11 @@ Knaresborough Online</string>
             <objects>
                 <viewController storyboardIdentifier="catlougePage" id="heg-2u-Wsm" customClass="CatalougeListVc" customModule="PennyMead" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="baO-aK-nWM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImg" translatesAutoresizingMaskIntoConstraints="NO" id="vgR-Tg-OcR">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="790"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fh2-OD-efb" userLabel="HeaderView">
                                 <rect key="frame" x="0.0" y="48" width="414" height="88"/>
@@ -1512,7 +1513,7 @@ Knaresborough Online</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9oi-U8-yBe">
-                                <rect key="frame" x="0.0" y="136" width="414" height="726"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="702"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swp-Nz-ZOW" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1112"/>
@@ -2075,6 +2076,7 @@ Knaresborough Online</string>
                         <outlet property="noDataFoundText" destination="5yg-al-oPv" id="ft7-2O-YjA"/>
                         <outlet property="numberTextField" destination="8Fi-7a-UvF" id="EaH-h2-rci"/>
                         <outlet property="paginationView" destination="jh4-se-o1Z" id="3W0-g5-Hdx"/>
+                        <outlet property="scrollView" destination="9oi-U8-yBe" id="nI7-U6-Wxn"/>
                         <outlet property="searchButton" destination="Gmd-An-FsH" id="DKb-WN-aOw"/>
                         <outlet property="searchByDesButton" destination="Bc2-p0-Gwm" id="uMW-co-G3k"/>
                         <outlet property="searchField" destination="fEj-79-97t" id="lDt-MB-5HO"/>
@@ -2084,9 +2086,11 @@ Knaresborough Online</string>
                         <outlet property="showingBookLabel" destination="OGc-jY-ebZ" id="PeT-qO-Fz8"/>
                         <outlet property="thisCategoryButton" destination="EiF-qh-Zin" id="YDU-js-tGB"/>
                         <outlet property="wholeCategoryButton" destination="ppS-F1-RR6" id="Uu1-Pr-1Jl"/>
+                        <segue destination="ezD-T2-ru7" kind="show" id="Csn-3t-36f"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lnp-iu-2g7" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <swipeGestureRecognizer direction="right" id="Xdq-VU-fEd"/>
             </objects>
             <point key="canvasLocation" x="4148" y="96"/>
         </scene>
@@ -2291,14 +2295,14 @@ Knaresborough Online</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCell" id="pTp-vh-af5">
-                                <rect key="frame" x="0.0" y="50" width="414" height="41.5"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="42"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pTp-vh-af5" id="GE5-3k-SNe">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="42"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkg-a2-rOo">
-                                            <rect key="frame" x="10" y="10" width="394" height="21.5"/>
+                                            <rect key="frame" x="10" y="10" width="394" height="22"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -2393,11 +2397,11 @@ Knaresborough Online</string>
             <objects>
                 <viewController storyboardIdentifier="productDetail" id="ezD-T2-ru7" customClass="ProductDetailVc" customModule="PennyMead" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t9D-gS-GGO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImg" translatesAutoresizingMaskIntoConstraints="NO" id="8fE-IF-9Nc">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="790"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvk-py-Rrl" userLabel="HeaderView">
                                 <rect key="frame" x="0.0" y="48" width="414" height="88"/>
@@ -2447,7 +2451,7 @@ Knaresborough Online</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rkJ-Tv-QlI">
-                                <rect key="frame" x="0.0" y="136" width="414" height="726"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="702"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RF5-J3-mKK" userLabel="contentView">
                                         <rect key="frame" x="0.0" y="0.0" width="414" height="1983"/>
@@ -2708,13 +2712,16 @@ Knaresborough Online</string>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Parsbro Lars" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11p-Bs-rv2">
-                                                        <rect key="frame" x="20" y="290" width="317.5" height="27.5"/>
+                                                        <rect key="frame" x="20" y="290" width="289" height="27.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50.00" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuE-6H-k7L">
-                                                        <rect key="frame" x="342.5" y="290" width="51.5" height="27.5"/>
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuE-6H-k7L">
+                                                        <rect key="frame" x="314" y="290" width="80" height="27.5"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="width" constant="80" id="mra-VF-9YP"/>
+                                                        </constraints>
                                                         <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
@@ -2907,6 +2914,7 @@ Knaresborough Online</string>
                         <outlet property="titleLabel" destination="11p-Bs-rv2" id="SGd-0d-BYB"/>
                         <outlet property="viewAllButton" destination="5i7-jT-5kq" id="ayL-nK-bd5"/>
                         <outlet property="wholeCatalouge" destination="4wE-oH-7kC" id="3mf-NO-KRJ"/>
+                        <segue destination="heg-2u-Wsm" kind="show" id="LXf-7P-bjh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVA-B6-NE0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2919,6 +2927,9 @@ Knaresborough Online</string>
             <size key="intrinsicContentSize" width="54" height="34"/>
         </designable>
     </designables>
+    <inferredMetricsTieBreakers>
+        <segue reference="LXf-7P-bjh"/>
+    </inferredMetricsTieBreakers>
     <resources>
         <image name="AboutUs1img" width="388" height="355"/>
         <image name="Authorimg" width="359" height="378"/>

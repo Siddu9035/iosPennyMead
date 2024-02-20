@@ -28,6 +28,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     @IBOutlet var dropdown1: DropDown!
     @IBOutlet var filterDropdown: DropDown!
     @IBOutlet var multipleDropdown: UICollectionView!
+    @IBOutlet var scrollView: UIScrollView!
     
     var perticularBooks: [PerticularItemsFetch] = []
     var perticularBookData = FetchPerticularManager()
@@ -56,6 +57,8 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     var filterItems = FilterItemsBySubCat()
     var selectedReference: String?
     var selectedSubDropdownIndex: Int?
+    var httpResponse1: Int = 0
+    var httpResponse2: Int = 0
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -79,29 +82,43 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         dropdownManager.getSubDropdowns(with: selectedCategoryName?.category ?? "0")
         
         filterItems.delegate = self
+        scrollView.delegate = self
         
         firstDropdownSetUp()
         filterDropdownSetUp()
         
-        
-        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+//        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
+//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
+//        swipeRight.direction = .right
+//        view.addGestureRecognizer(swipeRight)
     }
+//    @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
+//        if gesture.direction == .left {
+//            // Handle left swipe
+//            print("Left swipe detected")
+//        } else if gesture.direction == .right {
+//            // Handle right swipe
+//            print("Right swipe detected")
+//        }
+//    }
+
     override func viewWillAppear(_ animated: Bool) {
         SideMenuManager.shared.configureSideMenu(parentViewController: self)
         SideMenuManager.shared.sideMenuVc.delegate = self
     }
-    
     func handleAllThreeApiCalls() {
-        print("handleAllThreeApiCalls called")
         if isMainCategoryLastApiCalled {
             perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "0", filterType: selectedFilterType, page: page)
         } else {
-            if let searchTerm = searchField.text, !searchTerm.isEmpty {
+            if let searchTerm = searchField.text {
                 adesc = searchByDesButton.isSelected ? 1 : 0
                 let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryName?.category ?? "0")" : "0"
                 searchedBooks.searchCat(with: searchTerm, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType, page: page)
+            } else {
+                upDatePerticularBooks()
+                filterDropdownSetUp()
             }
-            filterDropdownSetUp()
+            
         }
     }
     
@@ -126,6 +143,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 selectedFilterType = "newlyUpdated"
                 page = 1
                 filterDropdownSetUp()
+                searchField.text = ""
                 isMainCategoryLastApiCalled = true
                 if let selectedCategoryInfo = categoryInfoArray?.first(where: { $0.name == selectedText }) {
                     selectedCategoryName = (name: selectedCategoryInfo.name, category: selectedCategoryInfo.number)
@@ -147,11 +165,16 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         if let defaultIndex = filterData.firstIndex(where: { $0.name == "Newest Items" }) {
             filterDropdown.selectedIndex = defaultIndex
         }
-        
+        if httpResponse1 == 400 || httpResponse2 == 404 {
+            filterDropdown.isEnabled = false
+        } else {
+            filterDropdown.isEnabled = true
+        }
         filterDropdown.didSelect { [self] (selectedText, index, id) in
             if selectedFilterIndex != index {
                 showIndicator()
-                filterDropdown.selectedIndex = index
+//                filterDropdown.selectedIndex = index
+                
                 selectedFilterIndex = index
                 if let selectedFilter = filterData.first(where: { $0.name == selectedText }) {
                     selectedFilterType = selectedFilter.type
@@ -162,7 +185,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                     handleAllThreeApiCalls()
                 }
                 page=1
-            }else {
+            } else {
                 stopLoading()
             }
         }
@@ -279,6 +302,8 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         DispatchQueue.main.async { [self] in
             perticularBooks = perticularCat
             upDatePerticularBooks()
+            print("--->",perticularBooks)
+            perticularBooks.append(contentsOf: perticularCat)
             configureText()
             stopLoading()
             bookCollectionView.reloadData()
@@ -302,6 +327,14 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         }
     }
     
+    func checkResponse(httpResponse1: Int, httpResponse2: Int) {
+        if httpResponse1 == 400 || httpResponse2 == 404 {
+            filterDropdown.isEnabled = false
+        } else {
+            filterDropdown.isEnabled = true
+        }
+    }
+    
     //MARK: error for both search and perticular
     func didGetErrors(error: Error, response: HTTPURLResponse?) {
         DispatchQueue.main.async { [weak self] in
@@ -309,10 +342,21 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             self.stopLoading()
             if let networkError = error as? URLError, networkError.code == .notConnectedToInternet {
                 self.showPopUp(title: "No internet connection")
-            } else if let httpResponse = response, httpResponse.statusCode == 404 {
-                print(httpResponse.statusCode)
+            } else if let httpResponse = response {
+                if httpResponse.statusCode == 400 || httpResponse.statusCode == 404 {
+                    // Show "No Data Found" text
+                    self.noDataFoundText.text = "No Data Found"
+                    self.paginationView.isHidden = true
+                    self.showingBookDesLabel.text = ""
+                    self.perticularBooks.removeAll()
+                    self.bookCollectionView.reloadData()
+                    self.checkResponse(httpResponse1: response!.statusCode, httpResponse2: response!.statusCode)
+                } else {
+                    self.noDataFoundText.text = ""
+                    self.paginationView.isHidden = false
+                    self.bookCollectionView.reloadData()
+                }
             } else {
-                // Show popup for other errors
                 print("Unexpected error: \(error)")
                 self.showPopUp(title: "Something went wrong")
             }
@@ -328,9 +372,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     func didUpdateTotalPages(_ totalPages: Int) {
         DispatchQueue.main.async { [self] in
             self.totalPage = totalPages
-            print("===>main response",self.totalPage)
-            self.updatePaginationUi(with: self.page, totalPageNo: self.totalPage)
-        }
+            self.updatePaginationUi(with: self.page, totalPageNo: self.totalPage)        }
     }
     //MARK: category description
     func didGetTheCatDes(_ categorydescription: [CategoryDescription]) {
@@ -352,15 +394,55 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         }
         bookCollectionView.reloadData()
     }
+    //MARK: scroll till descriptionlabel
+    func handleScrollTo() {
+        if let labelFrame = showingBookDesLabel.superview?.convert(showingBookDesLabel.frame, to: scrollView) {
+            // Scroll to the position of the showingBookDesLabel
+            let labelOffset = CGPoint(x: 0, y: labelFrame.origin.y - scrollView.contentInset.top)
+            scrollView.setContentOffset(labelOffset, animated: true)
+        }
+    }
     
     //MARK: func for button pagination
     func updatePaginationUi(with page: Int, totalPageNo: Int) {
         DispatchQueue.main.async { [self] in
-            self.totalPage = totalPageNo
-            print("==>>variable", totalPage)
-            print("---->>underpagination func", totalPageNo)
-            let halftotalPage = Int(round(Double(totalPageNo) / 2.0))
-            if totalPageNo < 6 {
+            if totalPageNo>5{
+                let halftotalPage = Int(round(Double(totalPageNo) / 2.0))
+                if page < halftotalPage {
+                    firstButton.setTitle("\(page)", for: .normal)
+                    self.page = page
+                    firstButton.backgroundColor = UIColor(named: "borderColor")
+                    firstButton.setTitleColor(.white, for: .normal)
+                    lastButton.backgroundColor = UIColor.clear
+                    secondButton.setTitle("\(page + 1)", for: .normal)
+                    midButton.isHidden = false
+                    midButton.isEnabled = false
+                    secondLastButton.setTitle("\(totalPageNo - 1)", for: .normal)
+                    lastButton.setTitle("\(totalPageNo)", for: .normal)
+                    lastButton.setTitleColor(UIColor(named: "borderColor"), for: .normal)
+                } else {
+                    lastButton.setTitle("\(page)", for: .normal)
+                    lastButton.backgroundColor = UIColor(named: "borderColor")
+                    lastButton.setTitleColor(.white, for: .normal)
+                    firstButton.backgroundColor = UIColor.clear
+                    firstButton.setTitleColor(UIColor(named: "borderColor"), for: .normal)
+                    secondLastButton.setTitle("\(page - 1)", for: .normal)
+                    midButton.isHidden = false
+                    midButton.isEnabled = false
+                    firstButton.setTitle("1", for: .normal)
+                    secondButton.setTitle("2", for: .normal)
+                }
+                
+                secondButton.isHidden = false
+                midButton.isHidden = false
+                midButton.setTitle("---", for: .normal)
+                secondLastButton.isHidden = false
+                lastButton.isHidden = false
+                backWardButton.isHidden = false
+                forwardButton.isHidden = false
+            }else{
+                self.totalPage = totalPageNo
+                self.page = page
                 secondButton.isHidden = totalPageNo == 1 ? true : false
                 midButton.isHidden = totalPageNo < 3 ? true : false
                 secondLastButton.isHidden = totalPageNo < 4 ? true : false
@@ -381,38 +463,13 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                 secondLastButton.setTitleColor(page == 4 ? .white : UIColor(named: "borderColor"), for: .normal)
                 lastButton.backgroundColor = page == 5 ? UIColor(named: "borderColor") : .clear
                 lastButton.setTitleColor(page == 5 ? .white : UIColor(named: "borderColor"), for: .normal)
-            } else if page < halftotalPage {
-                // Display pages in the first half
-                print("-->halftotalPage", totalPageNo)
-                print("-->totalPage", totalPage)
-                firstButton.setTitle("\(page)", for: .normal)
-                self.page = page
-                firstButton.backgroundColor = UIColor(named: "borderColor")
-                firstButton.setTitleColor(.white, for: .normal)
-                lastButton.backgroundColor = UIColor.clear
-                secondButton.setTitle("\(page + 1)", for: .normal)
-                midButton.isHidden = false
-                midButton.isEnabled = false
-                secondLastButton.setTitle("\(totalPageNo - 1)", for: .normal)
-                lastButton.setTitle("\(totalPageNo)", for: .normal)
-                lastButton.setTitleColor(UIColor(named: "borderColor"), for: .normal)
-            } else {
-                // Display pages in the second half
-                lastButton.setTitle("\(page)", for: .normal)
-                lastButton.backgroundColor = UIColor(named: "borderColor")
-                lastButton.setTitleColor(.white, for: .normal)
-                firstButton.backgroundColor = UIColor.clear
-                firstButton.setTitleColor(UIColor(named: "borderColor"), for: .normal)
-                secondLastButton.setTitle("\(page - 1)", for: .normal)
-                midButton.isHidden = false
-                midButton.isEnabled = false
-                firstButton.setTitle("1", for: .normal)
-                secondButton.setTitle("2", for: .normal)
+                
             }
             backWardButton.isHidden = page == 1 ? true : false
             forwardButton.isHidden = page == totalPageNo ? true : false
         }
     }
+    
     //MARK: Api call for the subdropdowns
     func didGetSubDropdowns(response: [DropdownGroup]) {
         DispatchQueue.main.async { [self] in
@@ -426,12 +483,15 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         selectedFilterType = "newlyUpdated"
         filterDropdownSetUp()
         isMainCategoryLastApiCalled = false
+        isdropdownapicalled = false
+        
         if let searchTerm = searchField.text, !searchTerm.isEmpty {
             handleAllThreeApiCalls()
-            searchField.text = ""
-        }else {
-            stopLoading()
+            configureText()
             upDatePerticularBooks()
+            bookCollectionView.reloadData()
+        } else {
+            stopLoading()
         }
     }
     @IBAction func onPressRadioButtons(_ sender: UIButton) {
@@ -454,7 +514,9 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         if intValue != page {
             page = intValue
             handleAllThreeApiCalls()
+            handleScrollTo()
         } else {
+            handleScrollTo()
             stopLoading()
         }
         
@@ -489,8 +551,10 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                     handleAllThreeApiCalls()
                     numberTextField.text = ""
                     errorText.text = ""
+                    handleScrollTo()
                 } else {
-                    errorText.text = "Entered same Page"
+//                    errorText.text = "Entered same Page"
+                    handleScrollTo()
                     stopLoading()
                 }
             } else {
@@ -557,20 +621,18 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
     func dropdownDidSelectItem(_ selectedText: String, atIndex index: Int, withId id: Int, atIndexPath indexPath: IndexPath) {
         isMainCategoryLastApiCalled = true
         showIndicator()
+        searchField.text = ""
         let data = dropdownData[indexPath.item].dropdownlist[index]
-        if data != nil {
-            if selectedReference != data.reference {
-                filterItems.getFilterItemsBySubCat(category: selectedCategoryName?.category ?? "0", referenceId: data.reference, filterType: "newlyUpdated", page: 1)
-                page = 1
-                selectedFilterType = "newlyUpdated"
-                filterDropdownSetUp()
-            } else {
-                stopLoading()
-            }
+        if selectedReference != data.reference {
+            filterItems.getFilterItemsBySubCat(category: selectedCategoryName?.category ?? "0", referenceId: data.reference, filterType: "newlyUpdated", page: 1)
+            page = 1
+            selectedFilterType = "newlyUpdated"
+            filterDropdownSetUp()
+        } else {
+            stopLoading()
         }
         selectedReference = data.reference
         isdropdownapicalled = true
-        updatePaginationUi(with: page, totalPageNo: totalPage)
     }
 }
 extension CatalougeListVc:UIGestureRecognizerDelegate {
@@ -578,3 +640,4 @@ extension CatalougeListVc:UIGestureRecognizerDelegate {
         return true
     }
 }
+
