@@ -60,6 +60,7 @@ struct PerticularItemsFetch: Codable {
     let title: String
     let description: String
     let price: String
+    let category: String
     let image: [String]
 }
 

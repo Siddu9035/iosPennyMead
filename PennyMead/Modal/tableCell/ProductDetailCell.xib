@@ -56,8 +56,8 @@
                                 <color key="textColor" name="TundoraBlack"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="description" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkR-Jt-bqa">
-                                <rect key="frame" x="20" y="281.33333333333331" width="221" height="24.666666666666686"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="HDGHFHGFHGHFHGFHGHGFHFHGFHFHFHGFHGFHGFHGFGHFHFHFHGFHGFHGFHFHHGFHGFHGFHGFHFHGFHG" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NkR-Jt-bqa">
+                                <rect key="frame" x="20" y="281.33333333333331" width="221" height="73.666666666666686"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                 <color key="textColor" name="TundoraBlack"/>
                                 <nil key="highlightedColor"/>

@@ -36,7 +36,8 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
     @IBOutlet var paginationCardView: UIView!
     @IBOutlet var errorText: UILabel!
     @IBOutlet var addToCartButton: UIButton!
-    
+    @IBOutlet var filtersText: UILabel!
+    @IBOutlet var filterImage: UIImageView!
     
     var categories: [Book] = []
     var collectiblesBooks: [CollectibleItem] = []
@@ -267,7 +268,7 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
     
     //MARK: func for button pagination
     func updatePaginationUi(with page: Int, totalPage: Int) {
-        
+//        let totalPage = 2
         DispatchQueue.main.async { [self] in
             let halftotalPage = Int(round(Double(totalPage) / 2.0))
             if totalPage < 6 {
@@ -476,28 +477,6 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
         }
         return UICollectionViewCell()
     }
-    
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//        if collectionView == categoryCollection {
-//            let data = categories[indexPath.item]
-//            selectedData(with: data, at: indexPath.item )
-//        } else if collectionView == collectible_CollectionVC {
-//            let data2 = collectiblesBooks[indexPath.item]
-//            let sysidAndCategory = (sysid: data2.sysid, category: data2.category)
-//            let categoryDetails = categories.map{(number: $0.category, name: $0.name)}
-////            let categoriesName = categories.map {$0.name}
-////            let cat = (name: categoriesName, category: data2.category)
-//            let collectible = collectiblesBooks[indexPath.item]
-//            let selectedCategory = categories[collectible.category]
-//            if let productVc = storyboard?.instantiateViewController(withIdentifier: "productDetail") as? ProductDetailVc {
-//                productVc.selectedSysid = sysidAndCategory
-//                productVc.categoryInfoArray = categoryDetails
-//                productVc.selectedCategoryName = (name: selectedCategory.name, category: selectedCategory.category)
-//                productVc.selectedCategoryIndex = indexPath.item
-//                navigationController?.pushViewController(productVc, animated: true)
-//            }
-//        }
-//    }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == categoryCollection {
             // Handle category collection view selection
@@ -509,10 +488,6 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             if let selectedCategory = categories.first(where: { $0.category == collectible.category }) {
                 let sysidAndCategory = (sysid: collectible.sysid, category: collectible.category)
                 let categoryDetails = categories.map { (number: $0.category, name: $0.name) }
-//                print("==>>book", selectedCategory.name, selectedCategory.category)
-//                print("--->>>sysid", sysidAndCategory)
-//                print("array-->>", categoryDetails)
-                 //Instantiate ProductDetailVc from storyboard
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
                 if let productVc = storyboard.instantiateViewController(withIdentifier: "productDetail") as? ProductDetailVc {
                     // Pass data to ProductDetailVc

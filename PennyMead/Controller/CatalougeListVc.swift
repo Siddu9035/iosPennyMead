@@ -29,8 +29,13 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     @IBOutlet var filterDropdown: DropDown!
     @IBOutlet var multipleDropdown: UICollectionView!
     @IBOutlet var scrollView: UIScrollView!
+    @IBOutlet var filtersText: UILabel!
+    @IBOutlet var filterImage: UIImageView!
+    
     
     var perticularBooks: [PerticularItemsFetch] = []
+    var categories: [Book] = []
+    var collectiblesBooks: [CollectibleItem] = []
     var perticularBookData = FetchPerticularManager()
     var searchedBooks = SearchBookManager()
     var totalPage: Int = 0
@@ -88,19 +93,16 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         filterDropdownSetUp()
         
 //        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
-//        let swipeRight = UISwipeGestureRecognizer(target: self, action: #selector(handleSwipe(_:)))
-//        swipeRight.direction = .right
-//        view.addGestureRecognizer(swipeRight)
+        let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(leftEdgeSwipe))
+        edgePan.edges = .left
+        view.addGestureRecognizer(edgePan)
     }
-//    @objc func handleSwipe(_ gesture: UISwipeGestureRecognizer) {
-//        if gesture.direction == .left {
-//            // Handle left swipe
-//            print("Left swipe detected")
-//        } else if gesture.direction == .right {
-//            // Handle right swipe
-//            print("Right swipe detected")
-//        }
-//    }
+    @objc func leftEdgeSwipe(_ recognizer: UIScreenEdgePanGestureRecognizer) {
+       if recognizer.state == .recognized {
+           print("swiped")
+          self.navigationController?.popViewController(animated: true)
+       }
+    }
 
     override func viewWillAppear(_ animated: Bool) {
         SideMenuManager.shared.configureSideMenu(parentViewController: self)
@@ -302,10 +304,10 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         DispatchQueue.main.async { [self] in
             perticularBooks = perticularCat
             upDatePerticularBooks()
-            print("--->",perticularBooks)
             perticularBooks.append(contentsOf: perticularCat)
             configureText()
             stopLoading()
+            checkResponse(httpResponse1: httpResponse1, httpResponse2: httpResponse2)
             bookCollectionView.reloadData()
         }
     }
@@ -315,6 +317,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             perticularBooks = perticularCat
             upDatePerticularBooks()
             stopLoading()
+            checkResponse(httpResponse1: httpResponse1, httpResponse2: httpResponse2)
             bookCollectionView.reloadData()
         }
     }
@@ -323,15 +326,20 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             perticularBooks = response
             upDatePerticularBooks()
             stopLoading()
+            checkResponse(httpResponse1: httpResponse1, httpResponse2: httpResponse2)
             bookCollectionView.reloadData()
         }
     }
     
     func checkResponse(httpResponse1: Int, httpResponse2: Int) {
         if httpResponse1 == 400 || httpResponse2 == 404 {
-            filterDropdown.isEnabled = false
+            filterDropdown.isHidden = true
+            filtersText.isHidden = true
+            filterImage.isHidden = true
         } else {
-            filterDropdown.isEnabled = true
+            filterDropdown.isHidden = false
+            filtersText.isHidden = false
+            filterImage.isHidden = false
         }
     }
     
@@ -355,6 +363,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                     self.noDataFoundText.text = ""
                     self.paginationView.isHidden = false
                     self.bookCollectionView.reloadData()
+                    self.checkResponse(httpResponse1: response!.statusCode, httpResponse2: response!.statusCode)
                 }
             } else {
                 print("Unexpected error: \(error)")
@@ -372,7 +381,8 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     func didUpdateTotalPages(_ totalPages: Int) {
         DispatchQueue.main.async { [self] in
             self.totalPage = totalPages
-            self.updatePaginationUi(with: self.page, totalPageNo: self.totalPage)        }
+            self.updatePaginationUi(with: self.page, totalPageNo: self.totalPage)
+        }
     }
     //MARK: category description
     func didGetTheCatDes(_ categorydescription: [CategoryDescription]) {
@@ -618,6 +628,24 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
         }
         return CGSize(width: 0, height: 0)
     }
+//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+//         if collectionView == bookCollectionView {
+//            let book = perticularBooks[indexPath.item]
+//             let sysidAndCategory = (sysid: book.sysid, category: book.category)
+//                let categoryDetails = categories.map { (number: $0.category, name: $0.name) }
+//                print("--->>>sysid", sysidAndCategory)
+//                print("array-->>", categoryDetails)
+//                // Instantiate ProductDetailVc from storyboard
+//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
+//                if let productVc = storyboard.instantiateViewController(withIdentifier: "productDetail") as? ProductDetailVc {
+//                    // Pass data to ProductDetailVc
+//                    productVc.selectedSysid = sysidAndCategory
+//                    productVc.categoryInfoArray = categoryDetails
+//                    productVc.selectedCategoryIndex = indexPath.item
+//                    navigationController?.pushViewController(productVc, animated: true)
+//                }
+//        }
+//    }
     func dropdownDidSelectItem(_ selectedText: String, atIndex index: Int, withId id: Int, atIndexPath indexPath: IndexPath) {
         isMainCategoryLastApiCalled = true
         showIndicator()

@@ -157,12 +157,13 @@
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7H-bv-mzW">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="M7H-bv-mzW">
                                                         <rect key="frame" x="147" y="58.5" width="227" height="40"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="5iY-HX-BfA"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
+                                                        <inset key="titleEdgeInsets" minX="5" minY="0.0" maxX="0.0" maxY="0.0"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="Newest Items">
                                                             <color key="titleColor" name="TundoraBlack"/>
@@ -515,8 +516,10 @@
                         <outlet property="dropdownimage" destination="WOu-Vn-8oM" id="FvK-eR-fcJ"/>
                         <outlet property="errorText" destination="W8d-K5-cNR" id="bwg-2D-sns"/>
                         <outlet property="filterButton" destination="M7H-bv-mzW" id="ZUK-hI-v6S"/>
+                        <outlet property="filterImage" destination="hnB-PV-tfq" id="asV-cv-0B2"/>
                         <outlet property="filterTable" destination="a8C-kR-UFG" id="8YH-yd-z25"/>
                         <outlet property="filterTableViewHeight" destination="nwB-9m-JLz" id="ZhE-TP-nYj"/>
+                        <outlet property="filtersText" destination="kFW-MR-qtn" id="W1g-wl-tZT"/>
                         <outlet property="firstButton" destination="l8e-gb-vt9" id="GQx-EJ-fYv"/>
                         <outlet property="forwardButton" destination="Jqv-sB-nvf" id="ipM-Uf-0ah"/>
                         <outlet property="goButton" destination="hgw-WX-cnL" id="Lbr-A4-vqu"/>
@@ -810,10 +813,10 @@
                                 <rect key="frame" x="0.0" y="108" width="414" height="754"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="TjJ-V3-0bw" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2155.5"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="2055.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Kg2-ma-6a7">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="767"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="714.5"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="AboutUs1img" translatesAutoresizingMaskIntoConstraints="NO" id="2J0-OE-ie6">
                                                         <rect key="frame" x="19.5" y="15" width="375" height="340"/>
@@ -823,20 +826,20 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Vintage Enthusiasts Rejoice: Uncover Hidden Gems in our website" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dno-8J-C8m">
-                                                        <rect key="frame" x="20" y="365" width="374" height="47.5"/>
+                                                        <rect key="frame" x="20" y="365" width="374" height="42"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="18"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KRL-tM-Ysw">
-                                                        <rect key="frame" x="20" y="422.5" width="374" height="185.5"/>
+                                                        <rect key="frame" x="20" y="417" width="374" height="158.5"/>
                                                         <string key="text">Attention vintage enthusiasts! Get ready to explore a treasure trove of hidden gems that have been carefully sourced from around the world. Our auction showcases a diverse range of vintage collectables, each with its own unique allure. From elegant Victorian-era pieces to mid-century modern marvels, there's something for everyone</string>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bTK-iu-Yqk">
-                                                        <rect key="frame" x="20" y="618" width="374" height="139"/>
+                                                        <rect key="frame" x="20" y="585.5" width="374" height="119"/>
                                                         <string key="text">Don't let these one-of-a-kind items slip through your fingers – place your bids today! Whether you're a seasoned collector or a newcomer to the vintage world, this is your chance to find that perfect piece to elevate your collection. Start bidding now and make history your own!</string>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                                         <color key="textColor" name="TundoraBlack"/>
@@ -860,7 +863,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="JHN-gM-Xv7">
-                                                <rect key="frame" x="20" y="767" width="374" height="776.5"/>
+                                                <rect key="frame" x="20" y="714.5" width="374" height="733"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Authorimg" translatesAutoresizingMaskIntoConstraints="NO" id="QSC-xv-XLo">
                                                         <rect key="frame" x="19.5" y="10" width="335" height="330"/>
@@ -870,14 +873,14 @@
                                                         </constraints>
                                                     </imageView>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TQJ-It-rNJ">
-                                                        <rect key="frame" x="0.0" y="460" width="374" height="162.5"/>
+                                                        <rect key="frame" x="0.0" y="460" width="374" height="139"/>
                                                         <string key="text">I am delighted to introduce myself as the proud owner of [Your Business Name], a passion-driven venture dedicated to providing exceptional [product/service]. As the driving force behind this enterprise, my commitment is to deliver unparalleled quality, innovation, and customer satisfaction.</string>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="fMv-Qy-U8l">
-                                                        <rect key="frame" x="0.0" y="627.5" width="374" height="139"/>
+                                                        <rect key="frame" x="0.0" y="604" width="374" height="119"/>
                                                         <string key="text">Our commitment extends beyond financial success; we are also dedicated to giving back to the community that supports us. As a socially responsible company, we actively participate in various philanthropic endeavors, striving to make a positive impact on society.</string>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                                         <color key="textColor" name="TundoraBlack"/>
@@ -891,16 +894,16 @@
                                                         </constraints>
                                                     </imageView>
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="3oJ-DQ-eIL">
-                                                        <rect key="frame" x="0.0" y="373" width="234" height="54.5"/>
+                                                        <rect key="frame" x="0.0" y="376" width="234" height="48.5"/>
                                                         <subviews>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Mr David N Druett" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="5rn-Z7-aQX">
-                                                                <rect key="frame" x="0.0" y="0.0" width="234" height="26.5"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="234" height="23.5"/>
                                                                 <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="20"/>
                                                                 <color key="textColor" name="TundoraBlack"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="-  Pennymead administrator" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ukz-fR-fzd">
-                                                                <rect key="frame" x="0.0" y="32.5" width="234" height="22"/>
+                                                                <rect key="frame" x="0.0" y="29.5" width="234" height="19"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                                                 <nil key="textColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -927,16 +930,16 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="hfB-xD-xvs">
-                                                <rect key="frame" x="0.0" y="1543.5" width="414" height="182"/>
+                                                <rect key="frame" x="0.0" y="1447.5" width="414" height="178"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Collectables" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="NqI-Ck-Cxh">
-                                                        <rect key="frame" x="20" y="20" width="374" height="37"/>
+                                                        <rect key="frame" x="20" y="20" width="374" height="33"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="28"/>
                                                         <nil key="textColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="JI7-yv-kwt">
-                                                        <rect key="frame" x="20" y="82" width="394" height="100"/>
+                                                        <rect key="frame" x="20" y="78" width="394" height="100"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="100" id="DE9-bb-iFD"/>
@@ -971,7 +974,7 @@
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="X0g-se-GAX" customClass="FooterView" customModule="PennyMead" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1745.5" width="414" height="400"/>
+                                                <rect key="frame" x="0.0" y="1645.5" width="414" height="400"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="400" id="TtY-Eq-vXM"/>
@@ -1127,13 +1130,13 @@
                                 <rect key="frame" x="0.0" y="166" width="414" height="696"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="c0I-OG-6D0" userLabel="ContentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="5806"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="4970"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zHV-mf-laI">
-                                                <rect key="frame" x="20" y="8" width="374" height="5378"/>
+                                                <rect key="frame" x="20" y="8" width="374" height="4542"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="QIz-qE-zhQ">
-                                                        <rect key="frame" x="0.0" y="5" width="374" height="414"/>
+                                                        <rect key="frame" x="0.0" y="5" width="374" height="332.5"/>
                                                         <string key="text">Pennymead Auctions and Books. Proprietor David Druett. VAT Reg. No. 355701208
 
 1 Brewerton
@@ -1149,25 +1152,25 @@ Pennymead Auctions/Books is a one man business which I started in 1982. I trade 
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Terms of Business" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0Kk-3U-gwb">
-                                                        <rect key="frame" x="0.0" y="429" width="374" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="347.5" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="All goods are described accurately and in good faith. Any found not to be as described may be returned for a full refund." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1f6-a3-l4r">
-                                                        <rect key="frame" x="0.0" y="465.5" width="374" height="103.5"/>
+                                                        <rect key="frame" x="0.0" y="381" width="374" height="66.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="19"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZzR-ub-5d7">
-                                                        <rect key="frame" x="0.0" y="579" width="374" height="28"/>
+                                                        <rect key="frame" x="0.0" y="457.5" width="374" height="24.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="21"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0xV-zS-cnP">
-                                                        <rect key="frame" x="0.0" y="622" width="374" height="417"/>
+                                                        <rect key="frame" x="0.0" y="497" width="374" height="336"/>
                                                         <string key="text">Postage and packing are charged as an extra but this includes insurance cover while in transit.
 
 Stamps, covers and postcards have a flat rate postage charge. You may order as many as you wish and the charges will remain as follows:- Inland £1 Europe £2 Worldwide £2.50
@@ -1178,38 +1181,38 @@ On orders of books and maps I will advise the shipping cost having weighed the i
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Payment" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="cMB-bi-497">
-                                                        <rect key="frame" x="0.0" y="1059" width="374" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="853" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="dBZ-bA-o8s">
-                                                        <rect key="frame" x="0.0" y="1105.5" width="374" height="147.5"/>
+                                                        <rect key="frame" x="0.0" y="896.5" width="374" height="126"/>
                                                         <string key="text">Payment can be made by credit or debit card (except AMEX) or by Sterling cheque or U.S. or Canadian dollar cheque or in Euros in cash. (Credit card transactions are handled by Sage Pay directly - a link will be given to take you to their site)</string>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Cancellations" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="xD4-fm-54X">
-                                                        <rect key="frame" x="0.0" y="1273" width="374" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="1042.5" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Orders may be cancelled without penalty before dispatch. Please send an e mail to let me know you have changed your mind." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="qLS-8s-bqx">
-                                                        <rect key="frame" x="0.0" y="1314.5" width="374" height="74"/>
+                                                        <rect key="frame" x="0.0" y="1081" width="374" height="63"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Privacy policy" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KZE-lT-GMM">
-                                                        <rect key="frame" x="0.0" y="1408.5" width="374" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="1164" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WgO-1e-4vF">
-                                                        <rect key="frame" x="0.0" y="1455" width="374" height="466"/>
+                                                        <rect key="frame" x="0.0" y="1207.5" width="374" height="377.5"/>
                                                         <string key="text">This privacy policy sets out how pennymead.com uses and protects any information that you give pennymead.com when you use this website.
 
 Pennymead.com is committed to ensuring that your privacy is protected. Should we ask you to provide certain information by which you can be identified when using this website, then you can be assured that it will only be used in accordance with this privacy statement.
@@ -1220,13 +1223,13 @@ Pennymead.com may change this policy from time to time by updating this page. Yo
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="What we collect" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2Gq-zA-bOm">
-                                                        <rect key="frame" x="0.0" y="1941" width="374" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="1605" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="OM6-vM-nOP">
-                                                        <rect key="frame" x="0.0" y="1987.5" width="374" height="539.5"/>
+                                                        <rect key="frame" x="0.0" y="1648.5" width="374" height="440.5"/>
                                                         <string key="text">We may collect the following information:
 name and job title
 contact information including email address
@@ -1244,26 +1247,26 @@ We may periodically send promotional emails about new products, special offers o
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Security" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="oq9-HO-4wV">
-                                                        <rect key="frame" x="0.0" y="2547" width="374" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="2109" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ZoJ-mU-ev3">
-                                                        <rect key="frame" x="0.0" y="2593.5" width="374" height="147.5"/>
+                                                        <rect key="frame" x="0.0" y="2152.5" width="374" height="126"/>
                                                         <string key="text">We are committed to ensuring that your information is secure. In order to prevent unauthorised access or disclosure, we have put in place suitable physical, electronic and managerial procedures to safeguard and secure the information we collect online.</string>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="How we use cookies" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="ypb-af-UNB">
-                                                        <rect key="frame" x="0.0" y="2761" width="374" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="2298.5" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Adm-KN-Oxw">
-                                                        <rect key="frame" x="0.0" y="2807.5" width="374" height="833.5"/>
+                                                        <rect key="frame" x="0.0" y="2342" width="374" height="692.5"/>
                                                         <string key="text">A cookie is a small file which asks permission to be placed on your computer's hard drive. Once you agree, the file is added and the cookie helps analyse web traffic or lets you know when you visit a particular site. Cookies allow web applications to respond to you as an individual. The web application can tailor its operations to your needs, likes and dislikes by gathering and remembering information about your preferences.
 
 We use traffic log cookies to identify which pages are being used. This helps us analyse data about web page traffic and improve our website in order to tailor it to customer needs. We only use this information for statistical analysis purposes and then the data is removed from the system.
@@ -1276,13 +1279,13 @@ You can choose to accept or decline cookies. Most web browsers automatically acc
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Links to other websites" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="1BG-5i-daJ">
-                                                        <rect key="frame" x="0.0" y="3661" width="374" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="3054.5" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="iQP-O7-eMz">
-                                                        <rect key="frame" x="0.0" y="3707.5" width="374" height="1128"/>
+                                                        <rect key="frame" x="0.0" y="3098" width="374" height="965"/>
                                                         <string key="text">Our website may contain links to other websites of interest. However, once you have used these links to leave our site, you should note that we do not have any control over that other website. Therefore, we cannot be responsible for the protection and privacy of any information which you provide whilst visiting such sites and such sites are not governed by this privacy statement. You should exercise caution and look at the privacy statement applicable to the website in question.
 
 Controlling your personal information
@@ -1301,13 +1304,13 @@ If you believe that any information we are holding on you is incorrect or incomp
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The town of Knaresborough" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="mux-Iy-l8m">
-                                                        <rect key="frame" x="0.0" y="4855.5" width="374" height="26.5"/>
+                                                        <rect key="frame" x="0.0" y="4083" width="374" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="0WS-bb-T04">
-                                                        <rect key="frame" x="0.0" y="4902" width="374" height="417"/>
+                                                        <rect key="frame" x="0.0" y="4126.5" width="374" height="356.5"/>
                                                         <string key="text">The town of Knaresborough has plenty to offer visitors, particularly on warm summer days. It makes a good base to explore the Yorkshire Dales and cities of York and Leeds.
 
 I can recommend a good hotel and also a very good B. &amp; B. both in Knaresborough town centre, also several good pubs.
@@ -1323,7 +1326,7 @@ Knaresborough Online</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Bd-LD-S2g">
-                                                        <rect key="frame" x="0.0" y="5339" width="374" height="34"/>
+                                                        <rect key="frame" x="0.0" y="4503" width="374" height="34"/>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" title="http://www.knaresborough.co.uk/">
                                                             <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
@@ -1402,7 +1405,7 @@ Knaresborough Online</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="8sb-PY-3Bo" customClass="FooterView" customModule="PennyMead" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="5396" width="414" height="400"/>
+                                                <rect key="frame" x="0.0" y="4560" width="414" height="400"/>
                                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="400" id="uav-30-E3T"/>
@@ -1459,11 +1462,11 @@ Knaresborough Online</string>
             <objects>
                 <viewController storyboardIdentifier="catlougePage" id="heg-2u-Wsm" customClass="CatalougeListVc" customModule="PennyMead" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="baO-aK-nWM">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImg" translatesAutoresizingMaskIntoConstraints="NO" id="vgR-Tg-OcR">
-                                <rect key="frame" x="0.0" y="48" width="414" height="790"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="fh2-OD-efb" userLabel="HeaderView">
                                 <rect key="frame" x="0.0" y="48" width="414" height="88"/>
@@ -1513,20 +1516,19 @@ Knaresborough Online</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="9oi-U8-yBe">
-                                <rect key="frame" x="0.0" y="136" width="414" height="702"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="726"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Swp-Nz-ZOW" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1112"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1107"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="0Wp-eS-WyA">
                                                 <rect key="frame" x="0.0" y="0.0" width="414" height="305.5"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="fEj-79-97t">
-                                                        <rect key="frame" x="20" y="123" width="300" height="40"/>
+                                                        <rect key="frame" x="20" y="123" width="304" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="Mpo-r9-Rmx"/>
-                                                            <constraint firstAttribute="width" constant="300" id="cNk-o7-BJq"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
@@ -1708,6 +1710,7 @@ Knaresborough Online</string>
                                                     <constraint firstAttribute="bottom" secondItem="1Zs-ts-q91" secondAttribute="bottom" constant="10" id="eza-ft-asL"/>
                                                     <constraint firstItem="Bc2-p0-Gwm" firstAttribute="leading" secondItem="0Wp-eS-WyA" secondAttribute="leading" constant="20" id="fJg-4K-lNk"/>
                                                     <constraint firstAttribute="trailing" secondItem="OGc-jY-ebZ" secondAttribute="trailing" constant="20" id="hbb-Z0-QjX"/>
+                                                    <constraint firstItem="Gmd-An-FsH" firstAttribute="leading" secondItem="fEj-79-97t" secondAttribute="trailing" constant="20" id="ke4-M5-kyn"/>
                                                     <constraint firstAttribute="trailing" secondItem="fxp-ui-Ixm" secondAttribute="trailing" constant="20" id="lN2-7u-i06"/>
                                                     <constraint firstItem="jMi-np-fN6" firstAttribute="centerY" secondItem="Bc2-p0-Gwm" secondAttribute="centerY" id="o0Y-di-mVf"/>
                                                     <constraint firstItem="OGc-jY-ebZ" firstAttribute="top" secondItem="jMi-np-fN6" secondAttribute="bottom" constant="10" id="oEK-bn-QaG"/>
@@ -1829,42 +1832,49 @@ Knaresborough Online</string>
                                                     <constraint firstItem="5yg-al-oPv" firstAttribute="leading" secondItem="ZPk-Uc-yJ3" secondAttribute="leading" constant="10" id="xiA-qC-GZX"/>
                                                 </constraints>
                                             </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="jh4-se-o1Z">
-                                                <rect key="frame" x="20" y="502" width="374" height="180"/>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQX-G7-p5x" customClass="FooterView" customModule="PennyMead" customModuleProvider="target">
+                                                <rect key="frame" x="0.0" y="697" width="414" height="400"/>
+                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="height" constant="400" id="Bxp-cX-XSV"/>
+                                                </constraints>
+                                            </view>
+                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="r0i-fe-eny">
+                                                <rect key="frame" x="20" y="497" width="374" height="180"/>
                                                 <subviews>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Gvy-03-sUq">
-                                                        <rect key="frame" x="327" y="25" width="28" height="30"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="lF5-UO-5Ix">
+                                                        <rect key="frame" x="307" y="25" width="28" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="28" id="MSL-U6-gEj"/>
-                                                            <constraint firstAttribute="height" constant="30" id="ddR-h7-970"/>
+                                                            <constraint firstAttribute="width" constant="28" id="2Qo-tq-rh2"/>
+                                                            <constraint firstAttribute="height" constant="30" id="uQ4-Rr-vuN"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="right"/>
                                                         <connections>
-                                                            <action selector="onPressForwardButton:" destination="heg-2u-Wsm" eventType="touchUpInside" id="Uuz-Ba-lbX"/>
+                                                            <action selector="onPressForwardButton:" destination="heg-2u-Wsm" eventType="touchUpInside" id="cn4-f0-Cu3"/>
                                                         </connections>
                                                     </button>
-                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="8Fi-7a-UvF">
+                                                    <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="vlW-Gg-31E">
                                                         <rect key="frame" x="164.5" y="85" width="45" height="45"/>
                                                         <color key="backgroundColor" name="CardColor"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="MSL-QY-jZQ"/>
-                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="VvO-gX-hYI"/>
+                                                            <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="45" id="prq-Rr-cKo"/>
+                                                            <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="45" id="udU-Bv-B91"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                         <textInputTraits key="textInputTraits"/>
                                                     </textField>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v3P-Og-CCg">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Go to page" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lyg-2I-GJn">
                                                         <rect key="frame" x="68" y="95.5" width="86.5" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="UKe-Uv-Eza">
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" hasAttributedTitle="YES" translatesAutoresizingMaskIntoConstraints="NO" id="s1E-3q-BHt">
                                                         <rect key="frame" x="219.5" y="82.5" width="50" height="50"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="50" id="2Ob-uB-9y8"/>
-                                                            <constraint firstAttribute="height" constant="50" id="n4T-nd-9bg"/>
+                                                            <constraint firstAttribute="height" constant="50" id="R9H-OC-O8w"/>
+                                                            <constraint firstAttribute="width" constant="50" id="scY-JA-QKF"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal">
@@ -1879,23 +1889,23 @@ Knaresborough Online</string>
                                                             </attributedString>
                                                         </state>
                                                         <connections>
-                                                            <action selector="onPressGoButton:" destination="heg-2u-Wsm" eventType="touchUpInside" id="A1v-6N-2H5"/>
+                                                            <action selector="onPressGoButton:" destination="heg-2u-Wsm" eventType="touchUpInside" id="VPb-Jj-Ge4"/>
                                                         </connections>
                                                     </button>
-                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="B5Q-AG-w08">
+                                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="vw0-aS-f0I">
                                                         <rect key="frame" x="20" y="140.5" width="334" height="0.0"/>
                                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
                                                         <color key="textColor" systemColor="systemRedColor"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
-                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="rRa-E9-igO">
-                                                        <rect key="frame" x="67" y="20" width="240" height="40"/>
+                                                    <stackView opaque="NO" contentMode="scaleToFill" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="cCg-i9-Adh">
+                                                        <rect key="frame" x="77" y="20" width="220" height="40"/>
                                                         <subviews>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QeO-Vo-KK3">
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tzl-RT-wsi">
                                                                 <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="40" id="K76-wH-a6B"/>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="RYZ-wM-D54"/>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="oFy-WV-tpG"/>
+                                                                    <constraint firstAttribute="width" constant="40" id="sQV-5F-LnI"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -1903,14 +1913,14 @@ Knaresborough Online</string>
                                                                     <color key="titleColor" name="borderColor"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="onPressNumberButtons:" destination="heg-2u-Wsm" eventType="touchUpInside" id="fKQ-4P-19X"/>
+                                                                    <action selector="onPressNumberButtons:" destination="heg-2u-Wsm" eventType="touchUpInside" id="4yB-lT-oQb"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Ogx-WA-WfB">
-                                                                <rect key="frame" x="50" y="0.0" width="40" height="40"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ATT-CC-Vht">
+                                                                <rect key="frame" x="45" y="0.0" width="40" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="width" constant="40" id="e96-UC-EmK"/>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="wKX-VE-ZAJ"/>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="XSQ-ns-LRv"/>
+                                                                    <constraint firstAttribute="width" constant="40" id="clm-9A-6gV"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -1918,14 +1928,14 @@ Knaresborough Online</string>
                                                                     <color key="titleColor" name="borderColor"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="onPressNumberButtons:" destination="heg-2u-Wsm" eventType="touchUpInside" id="JM2-P3-6Af"/>
+                                                                    <action selector="onPressNumberButtons:" destination="heg-2u-Wsm" eventType="touchUpInside" id="fmF-hL-pth"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="fbq-BK-iJA">
-                                                                <rect key="frame" x="100" y="0.0" width="40" height="40"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="x1s-gY-OhO">
+                                                                <rect key="frame" x="90" y="0.0" width="40" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Qzh-Sp-9GP"/>
-                                                                    <constraint firstAttribute="width" constant="40" id="VCd-MU-lv7"/>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="Kcd-wk-IcC"/>
+                                                                    <constraint firstAttribute="width" constant="40" id="RY8-w3-eLM"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -1933,14 +1943,14 @@ Knaresborough Online</string>
                                                                     <color key="titleColor" name="borderColor"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="onPressNumberButtons:" destination="heg-2u-Wsm" eventType="touchUpInside" id="oGz-ca-CWH"/>
+                                                                    <action selector="onPressNumberButtons:" destination="heg-2u-Wsm" eventType="touchUpInside" id="Siu-0k-oM5"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="eZJ-hk-dDL">
-                                                                <rect key="frame" x="150" y="0.0" width="40" height="40"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ImU-bO-aGc">
+                                                                <rect key="frame" x="135" y="0.0" width="40" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="VV5-pp-SQz"/>
-                                                                    <constraint firstAttribute="width" constant="40" id="hd1-1q-kFV"/>
+                                                                    <constraint firstAttribute="width" constant="40" id="1xw-V3-nvr"/>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="9z2-pI-PIh"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -1948,14 +1958,14 @@ Knaresborough Online</string>
                                                                     <color key="titleColor" name="borderColor"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="onPressNumberButtons:" destination="heg-2u-Wsm" eventType="touchUpInside" id="NOr-RD-4id"/>
+                                                                    <action selector="onPressNumberButtons:" destination="heg-2u-Wsm" eventType="touchUpInside" id="kOk-DF-EmQ"/>
                                                                 </connections>
                                                             </button>
-                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="FwJ-Zg-ppu">
-                                                                <rect key="frame" x="200" y="0.0" width="40" height="40"/>
+                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IGk-gD-u06">
+                                                                <rect key="frame" x="180" y="0.0" width="40" height="40"/>
                                                                 <constraints>
-                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="fK8-87-09Q"/>
-                                                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="40" id="tof-be-jb8"/>
+                                                                    <constraint firstAttribute="width" constant="40" id="FFm-Zj-lLL"/>
+                                                                    <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="40" id="StB-DY-Jui"/>
                                                                 </constraints>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
@@ -1963,72 +1973,65 @@ Knaresborough Online</string>
                                                                     <color key="titleColor" name="borderColor"/>
                                                                 </state>
                                                                 <connections>
-                                                                    <action selector="onPressNumberButtons:" destination="heg-2u-Wsm" eventType="touchUpInside" id="Fwm-7R-o2T"/>
+                                                                    <action selector="onPressNumberButtons:" destination="heg-2u-Wsm" eventType="touchUpInside" id="cYp-hy-eFe"/>
                                                                 </connections>
                                                             </button>
                                                         </subviews>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="40" id="MmY-FH-JhY"/>
+                                                            <constraint firstAttribute="height" constant="40" id="dO3-dc-Sfm"/>
                                                         </constraints>
                                                     </stackView>
-                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Yf4-rm-viI">
-                                                        <rect key="frame" x="19" y="25" width="28" height="30"/>
+                                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Dyh-hm-ofx">
+                                                        <rect key="frame" x="39" y="25" width="28" height="30"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="height" constant="30" id="4yg-bE-7RB"/>
-                                                            <constraint firstAttribute="width" constant="28" id="EiY-JJ-chA"/>
+                                                            <constraint firstAttribute="height" constant="30" id="pFi-AU-oEK"/>
+                                                            <constraint firstAttribute="width" constant="28" id="x2m-ix-QD4"/>
                                                         </constraints>
                                                         <inset key="imageEdgeInsets" minX="0.0" minY="0.0" maxX="2.2250738585072014e-308" maxY="0.0"/>
                                                         <state key="normal" image="left">
                                                             <color key="titleColor" name="borderColor"/>
                                                         </state>
                                                         <connections>
-                                                            <action selector="onPressBackwardButton:" destination="heg-2u-Wsm" eventType="touchUpInside" id="nrp-DS-hVe"/>
+                                                            <action selector="onPressBackwardButton:" destination="heg-2u-Wsm" eventType="touchUpInside" id="TOY-WO-zqx"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
                                                 <color key="backgroundColor" name="CardColor"/>
                                                 <constraints>
-                                                    <constraint firstItem="8Fi-7a-UvF" firstAttribute="centerY" secondItem="v3P-Og-CCg" secondAttribute="centerY" id="6m0-bi-uRg"/>
-                                                    <constraint firstItem="UKe-Uv-Eza" firstAttribute="leading" secondItem="8Fi-7a-UvF" secondAttribute="trailing" constant="10" id="8wR-ea-Wjy"/>
-                                                    <constraint firstItem="Gvy-03-sUq" firstAttribute="leading" secondItem="rRa-E9-igO" secondAttribute="trailing" constant="20" id="DuB-4h-dXZ"/>
-                                                    <constraint firstItem="rRa-E9-igO" firstAttribute="centerX" secondItem="jh4-se-o1Z" secondAttribute="centerX" id="E5r-EA-lMY"/>
-                                                    <constraint firstItem="UKe-Uv-Eza" firstAttribute="centerY" secondItem="v3P-Og-CCg" secondAttribute="centerY" id="Hdy-oM-gJv"/>
-                                                    <constraint firstItem="8Fi-7a-UvF" firstAttribute="centerX" secondItem="jh4-se-o1Z" secondAttribute="centerX" id="I1v-vJ-Aca"/>
-                                                    <constraint firstItem="Gvy-03-sUq" firstAttribute="centerY" secondItem="Yf4-rm-viI" secondAttribute="centerY" id="LTh-iK-2gh"/>
-                                                    <constraint firstItem="rRa-E9-igO" firstAttribute="top" secondItem="jh4-se-o1Z" secondAttribute="top" constant="20" id="TA7-Ab-HXe"/>
-                                                    <constraint firstItem="rRa-E9-igO" firstAttribute="leading" secondItem="Yf4-rm-viI" secondAttribute="trailing" constant="20" id="W7H-9Q-pW3"/>
-                                                    <constraint firstItem="8Fi-7a-UvF" firstAttribute="top" secondItem="rRa-E9-igO" secondAttribute="bottom" constant="25" id="bI2-Ff-hq3"/>
-                                                    <constraint firstItem="8Fi-7a-UvF" firstAttribute="leading" secondItem="v3P-Og-CCg" secondAttribute="trailing" constant="10" id="dzR-wT-2XI"/>
-                                                    <constraint firstItem="B5Q-AG-w08" firstAttribute="leading" secondItem="jh4-se-o1Z" secondAttribute="leading" constant="20" id="hJL-Mz-tWN"/>
-                                                    <constraint firstItem="B5Q-AG-w08" firstAttribute="top" secondItem="UKe-Uv-Eza" secondAttribute="bottom" constant="8" id="qV2-tS-DTf"/>
-                                                    <constraint firstItem="Yf4-rm-viI" firstAttribute="top" secondItem="jh4-se-o1Z" secondAttribute="top" constant="25" id="sRD-M4-fMo"/>
-                                                    <constraint firstAttribute="height" constant="180" id="tPA-A7-itT"/>
-                                                    <constraint firstAttribute="trailing" secondItem="B5Q-AG-w08" secondAttribute="trailing" constant="20" id="tag-zZ-6IE"/>
-                                                </constraints>
-                                            </view>
-                                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="XQX-G7-p5x" customClass="FooterView" customModule="PennyMead" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="702" width="414" height="400"/>
-                                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="height" constant="400" id="Bxp-cX-XSV"/>
+                                                    <constraint firstItem="vw0-aS-f0I" firstAttribute="leading" secondItem="r0i-fe-eny" secondAttribute="leading" constant="20" id="0O3-sF-xql"/>
+                                                    <constraint firstItem="vlW-Gg-31E" firstAttribute="top" secondItem="cCg-i9-Adh" secondAttribute="bottom" constant="25" id="11n-fb-xdO"/>
+                                                    <constraint firstItem="lF5-UO-5Ix" firstAttribute="leading" secondItem="cCg-i9-Adh" secondAttribute="trailing" constant="10" id="CiN-Ub-7fG"/>
+                                                    <constraint firstItem="Dyh-hm-ofx" firstAttribute="top" secondItem="r0i-fe-eny" secondAttribute="top" constant="25" id="E7p-We-vE1"/>
+                                                    <constraint firstAttribute="height" constant="180" id="IJd-qY-kao"/>
+                                                    <constraint firstItem="vlW-Gg-31E" firstAttribute="centerY" secondItem="lyg-2I-GJn" secondAttribute="centerY" id="IsA-Ya-jp2"/>
+                                                    <constraint firstItem="s1E-3q-BHt" firstAttribute="centerY" secondItem="lyg-2I-GJn" secondAttribute="centerY" id="ODO-Wx-3SJ"/>
+                                                    <constraint firstItem="vw0-aS-f0I" firstAttribute="top" secondItem="s1E-3q-BHt" secondAttribute="bottom" constant="8" id="afi-Uo-3xN"/>
+                                                    <constraint firstItem="lF5-UO-5Ix" firstAttribute="centerY" secondItem="Dyh-hm-ofx" secondAttribute="centerY" id="eNl-G7-Pti"/>
+                                                    <constraint firstAttribute="trailing" secondItem="vw0-aS-f0I" secondAttribute="trailing" constant="20" id="jJz-ba-zzo"/>
+                                                    <constraint firstItem="cCg-i9-Adh" firstAttribute="centerX" secondItem="r0i-fe-eny" secondAttribute="centerX" id="mGX-kI-Xns"/>
+                                                    <constraint firstItem="cCg-i9-Adh" firstAttribute="top" secondItem="r0i-fe-eny" secondAttribute="top" constant="20" id="mnZ-Gy-NLu"/>
+                                                    <constraint firstItem="vlW-Gg-31E" firstAttribute="leading" secondItem="lyg-2I-GJn" secondAttribute="trailing" constant="10" id="pvS-3i-hRb"/>
+                                                    <constraint firstItem="vlW-Gg-31E" firstAttribute="centerX" secondItem="r0i-fe-eny" secondAttribute="centerX" id="rFJ-I6-Y7U"/>
+                                                    <constraint firstItem="s1E-3q-BHt" firstAttribute="leading" secondItem="vlW-Gg-31E" secondAttribute="trailing" constant="10" id="rxl-Hu-tde"/>
+                                                    <constraint firstItem="cCg-i9-Adh" firstAttribute="leading" secondItem="Dyh-hm-ofx" secondAttribute="trailing" constant="10" id="t3V-xU-mcs"/>
                                                 </constraints>
                                             </view>
                                         </subviews>
                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <constraints>
+                                            <constraint firstItem="r0i-fe-eny" firstAttribute="top" secondItem="ZPk-Uc-yJ3" secondAttribute="bottom" constant="10" id="34V-o5-eoq"/>
                                             <constraint firstItem="ZPk-Uc-yJ3" firstAttribute="top" secondItem="0Wp-eS-WyA" secondAttribute="bottom" constant="10" id="90x-Cf-Ooy"/>
                                             <constraint firstAttribute="trailing" secondItem="0Wp-eS-WyA" secondAttribute="trailing" id="JJV-zu-7Ii"/>
-                                            <constraint firstItem="jh4-se-o1Z" firstAttribute="leading" secondItem="Swp-Nz-ZOW" secondAttribute="leading" constant="20" id="Tcf-kT-bgM"/>
-                                            <constraint firstItem="jh4-se-o1Z" firstAttribute="top" secondItem="ZPk-Uc-yJ3" secondAttribute="bottom" constant="15" id="akl-8Q-p7Q"/>
+                                            <constraint firstAttribute="trailing" secondItem="r0i-fe-eny" secondAttribute="trailing" constant="20" id="Wv6-rv-InT"/>
+                                            <constraint firstItem="r0i-fe-eny" firstAttribute="leading" secondItem="Swp-Nz-ZOW" secondAttribute="leading" constant="20" id="Xov-d0-TWi"/>
                                             <constraint firstItem="0Wp-eS-WyA" firstAttribute="top" secondItem="Swp-Nz-ZOW" secondAttribute="top" id="dF7-MI-GN6"/>
+                                            <constraint firstItem="XQX-G7-p5x" firstAttribute="top" secondItem="r0i-fe-eny" secondAttribute="bottom" constant="20" id="eGO-J8-Ary"/>
                                             <constraint firstItem="XQX-G7-p5x" firstAttribute="leading" secondItem="Swp-Nz-ZOW" secondAttribute="leading" id="jnz-wj-0VN"/>
                                             <constraint firstItem="0Wp-eS-WyA" firstAttribute="leading" secondItem="Swp-Nz-ZOW" secondAttribute="leading" id="mPv-QR-7qI"/>
                                             <constraint firstAttribute="trailing" secondItem="XQX-G7-p5x" secondAttribute="trailing" id="pzk-EG-sJ9"/>
                                             <constraint firstAttribute="bottom" secondItem="XQX-G7-p5x" secondAttribute="bottom" constant="10" id="rN4-CW-gDL"/>
-                                            <constraint firstAttribute="trailing" secondItem="jh4-se-o1Z" secondAttribute="trailing" constant="20" id="tel-u0-GNk"/>
                                             <constraint firstItem="ZPk-Uc-yJ3" firstAttribute="leading" secondItem="Swp-Nz-ZOW" secondAttribute="leading" constant="10" id="vWx-uf-bXH"/>
                                             <constraint firstAttribute="trailing" secondItem="ZPk-Uc-yJ3" secondAttribute="trailing" constant="10" id="zJq-OG-7qp"/>
-                                            <constraint firstItem="XQX-G7-p5x" firstAttribute="top" secondItem="jh4-se-o1Z" secondAttribute="bottom" constant="20" id="zc2-mc-b77"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -2061,27 +2064,29 @@ Knaresborough Online</string>
                     </view>
                     <navigationItem key="navigationItem" id="tVG-Ts-dRy"/>
                     <connections>
-                        <outlet property="backWardButton" destination="Yf4-rm-viI" id="IDh-A7-DfV"/>
+                        <outlet property="backWardButton" destination="Dyh-hm-ofx" id="Af4-aS-whZ"/>
                         <outlet property="bookCollectionHeight" destination="ptg-n4-yTF" id="qUH-8s-gKI"/>
                         <outlet property="bookCollectionView" destination="R0N-fT-r1E" id="zhm-m9-7M0"/>
                         <outlet property="dropdown1" destination="fxp-ui-Ixm" id="hKA-Li-pcQ"/>
-                        <outlet property="errorText" destination="B5Q-AG-w08" id="v8K-av-Uuv"/>
+                        <outlet property="errorText" destination="vw0-aS-f0I" id="XPB-cb-iZW"/>
                         <outlet property="filterDropdown" destination="0wq-QG-AKG" id="ycS-jc-oY6"/>
-                        <outlet property="firstButton" destination="QeO-Vo-KK3" id="XoA-nl-k7W"/>
-                        <outlet property="forwardButton" destination="Gvy-03-sUq" id="9MA-Bh-Ahb"/>
-                        <outlet property="goButton" destination="UKe-Uv-Eza" id="R4V-ZN-Wwf"/>
-                        <outlet property="lastButton" destination="FwJ-Zg-ppu" id="lza-U2-l4f"/>
-                        <outlet property="midButton" destination="fbq-BK-iJA" id="Dmp-nG-Fej"/>
+                        <outlet property="filterImage" destination="GNW-72-oLf" id="6Bd-FR-urn"/>
+                        <outlet property="filtersText" destination="teu-Gn-Xh3" id="Q8M-of-Atv"/>
+                        <outlet property="firstButton" destination="tzl-RT-wsi" id="kJl-cZ-d88"/>
+                        <outlet property="forwardButton" destination="lF5-UO-5Ix" id="igx-qc-dHo"/>
+                        <outlet property="goButton" destination="s1E-3q-BHt" id="Vjw-yF-Ucu"/>
+                        <outlet property="lastButton" destination="IGk-gD-u06" id="2X7-Yf-xtN"/>
+                        <outlet property="midButton" destination="x1s-gY-OhO" id="9Px-A4-suQ"/>
                         <outlet property="multipleDropdown" destination="7b4-nz-sr9" id="NpU-wx-zd3"/>
                         <outlet property="noDataFoundText" destination="5yg-al-oPv" id="ft7-2O-YjA"/>
-                        <outlet property="numberTextField" destination="8Fi-7a-UvF" id="EaH-h2-rci"/>
-                        <outlet property="paginationView" destination="jh4-se-o1Z" id="3W0-g5-Hdx"/>
+                        <outlet property="numberTextField" destination="vlW-Gg-31E" id="6Mr-yc-ucH"/>
+                        <outlet property="paginationView" destination="r0i-fe-eny" id="RrV-SP-DkK"/>
                         <outlet property="scrollView" destination="9oi-U8-yBe" id="nI7-U6-Wxn"/>
                         <outlet property="searchButton" destination="Gmd-An-FsH" id="DKb-WN-aOw"/>
                         <outlet property="searchByDesButton" destination="Bc2-p0-Gwm" id="uMW-co-G3k"/>
                         <outlet property="searchField" destination="fEj-79-97t" id="lDt-MB-5HO"/>
-                        <outlet property="secondButton" destination="Ogx-WA-WfB" id="n44-6c-4I9"/>
-                        <outlet property="secondLastButton" destination="eZJ-hk-dDL" id="CDs-Og-Dbn"/>
+                        <outlet property="secondButton" destination="ATT-CC-Vht" id="Ceh-jl-46U"/>
+                        <outlet property="secondLastButton" destination="ImU-bO-aGc" id="QHP-r1-GuT"/>
                         <outlet property="showingBookDesLabel" destination="1Zs-ts-q91" id="LJF-bG-4op"/>
                         <outlet property="showingBookLabel" destination="OGc-jY-ebZ" id="PeT-qO-Fz8"/>
                         <outlet property="thisCategoryButton" destination="EiF-qh-Zin" id="YDU-js-tGB"/>
@@ -2295,14 +2300,14 @@ Knaresborough Online</string>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <prototypes>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="myCell" id="pTp-vh-af5">
-                                <rect key="frame" x="0.0" y="50" width="414" height="42"/>
+                                <rect key="frame" x="0.0" y="50" width="414" height="41.5"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="pTp-vh-af5" id="GE5-3k-SNe">
-                                    <rect key="frame" x="0.0" y="0.0" width="414" height="42"/>
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="41.5"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                     <subviews>
                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Jkg-a2-rOo">
-                                            <rect key="frame" x="10" y="10" width="394" height="22"/>
+                                            <rect key="frame" x="10" y="10" width="394" height="21.5"/>
                                             <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                             <nil key="textColor"/>
                                             <nil key="highlightedColor"/>
@@ -2397,11 +2402,11 @@ Knaresborough Online</string>
             <objects>
                 <viewController storyboardIdentifier="productDetail" id="ezD-T2-ru7" customClass="ProductDetailVc" customModule="PennyMead" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t9D-gS-GGO">
-                        <rect key="frame" x="0.0" y="0.0" width="414" height="838"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImg" translatesAutoresizingMaskIntoConstraints="NO" id="8fE-IF-9Nc">
-                                <rect key="frame" x="0.0" y="48" width="414" height="790"/>
+                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="zvk-py-Rrl" userLabel="HeaderView">
                                 <rect key="frame" x="0.0" y="48" width="414" height="88"/>
@@ -2451,19 +2456,18 @@ Knaresborough Online</string>
                                 </constraints>
                             </view>
                             <scrollView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rkJ-Tv-QlI">
-                                <rect key="frame" x="0.0" y="136" width="414" height="702"/>
+                                <rect key="frame" x="0.0" y="136" width="414" height="726"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="RF5-J3-mKK" userLabel="contentView">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1983"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="1902.5"/>
                                         <subviews>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="w3T-yY-m8x">
-                                                <rect key="frame" x="0.0" y="0.0" width="414" height="259"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="414" height="257"/>
                                                 <subviews>
                                                     <textField opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="248" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="P7U-TK-uJx">
-                                                        <rect key="frame" x="20" y="123" width="300" height="40"/>
+                                                        <rect key="frame" x="20" y="123" width="304" height="40"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
-                                                            <constraint firstAttribute="width" constant="300" id="3vY-uZ-ts9"/>
                                                             <constraint firstAttribute="height" constant="40" id="DhJ-J6-JJo"/>
                                                         </constraints>
                                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
@@ -2499,13 +2503,13 @@ Knaresborough Online</string>
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Whole Catalogue" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="p5V-0d-xqY">
-                                                                <rect key="frame" x="40" y="0.0" width="134" height="30"/>
+                                                                <rect key="frame" x="40" y="0.0" width="130.5" height="30"/>
                                                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                                                 <color key="textColor" name="borderColor"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
                                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aUy-p4-sdu">
-                                                                <rect key="frame" x="184" y="0.0" width="30" height="30"/>
+                                                                <rect key="frame" x="180.5" y="0.0" width="30" height="30"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="width" constant="30" id="2NF-NT-cNu"/>
@@ -2517,7 +2521,7 @@ Knaresborough Online</string>
                                                                 </connections>
                                                             </button>
                                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="249" verticalHuggingPriority="251" text="This Category" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WsX-25-kDJ">
-                                                                <rect key="frame" x="224" y="0.0" width="150" height="30"/>
+                                                                <rect key="frame" x="220.5" y="0.0" width="153.5" height="30"/>
                                                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                                                 <color key="textColor" name="borderColor"/>
                                                                 <nil key="highlightedColor"/>
@@ -2542,7 +2546,7 @@ Knaresborough Online</string>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Search by description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ul6-aa-uXw">
-                                                        <rect key="frame" x="58" y="225.5" width="336" height="23.5"/>
+                                                        <rect key="frame" x="58" y="227" width="336" height="20"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                                         <color key="textColor" name="borderColor"/>
                                                         <nil key="highlightedColor"/>
@@ -2629,6 +2633,7 @@ Knaresborough Online</string>
                                                     <constraint firstItem="BMv-ra-vpg" firstAttribute="centerX" secondItem="w3T-yY-m8x" secondAttribute="centerX" id="aou-yl-QdV"/>
                                                     <constraint firstAttribute="trailing" secondItem="524-oq-cxF" secondAttribute="trailing" constant="20" id="daP-2q-YS0"/>
                                                     <constraint firstItem="Ul6-aa-uXw" firstAttribute="leading" secondItem="5WA-Wh-Tze" secondAttribute="trailing" constant="10" id="eNz-7E-2ei"/>
+                                                    <constraint firstItem="5Ah-WV-EZF" firstAttribute="leading" secondItem="P7U-TK-uJx" secondAttribute="trailing" constant="20" id="hj8-E3-6xM"/>
                                                     <constraint firstItem="P7U-TK-uJx" firstAttribute="top" secondItem="524-oq-cxF" secondAttribute="bottom" constant="10" id="jPL-vP-M32"/>
                                                     <constraint firstItem="524-oq-cxF" firstAttribute="leading" secondItem="w3T-yY-m8x" secondAttribute="leading" constant="20" id="oxf-Mm-8Vl"/>
                                                     <constraint firstAttribute="trailing" secondItem="BMv-ra-vpg" secondAttribute="trailing" constant="20" id="qqT-7E-0Xq"/>
@@ -2637,16 +2642,16 @@ Knaresborough Online</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ysd-85-wbP">
-                                                <rect key="frame" x="10" y="1257" width="394" height="196"/>
+                                                <rect key="frame" x="10" y="1180" width="394" height="192.5"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Related Items" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="lfJ-g4-LLI">
-                                                        <rect key="frame" x="20" y="10" width="354" height="33"/>
+                                                        <rect key="frame" x="20" y="10" width="354" height="29.5"/>
                                                         <fontDescription key="fontDescription" name="RobotoSlab-Regular_SemiBold" family="Roboto Slab" pointSize="25"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" showsHorizontalScrollIndicator="NO" showsVerticalScrollIndicator="NO" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="-1" estimatedSectionHeaderHeight="-1" sectionFooterHeight="-1" estimatedSectionFooterHeight="-1" translatesAutoresizingMaskIntoConstraints="NO" id="9jP-42-BBi">
-                                                        <rect key="frame" x="0.0" y="68" width="394" height="128"/>
+                                                        <rect key="frame" x="0.0" y="64.5" width="394" height="128"/>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="128" id="swO-eQ-CLC"/>
@@ -2667,14 +2672,14 @@ Knaresborough Online</string>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Z7X-lP-EyT" customClass="FooterView" customModule="PennyMead" customModuleProvider="target">
-                                                <rect key="frame" x="0.0" y="1573" width="414" height="400"/>
+                                                <rect key="frame" x="0.0" y="1492.5" width="414" height="400"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="400" id="oil-2m-AYj"/>
                                                 </constraints>
                                             </view>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Erz-Ed-8Zd">
-                                                <rect key="frame" x="0.0" y="269" width="414" height="536.5"/>
+                                                <rect key="frame" x="0.0" y="267" width="414" height="515"/>
                                                 <subviews>
                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="T4b-MW-VbW">
                                                         <rect key="frame" x="85" y="20" width="244" height="250"/>
@@ -2712,13 +2717,13 @@ Knaresborough Online</string>
                                                         </connections>
                                                     </button>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Parsbro Lars" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="11p-Bs-rv2">
-                                                        <rect key="frame" x="20" y="290" width="289" height="27.5"/>
+                                                        <rect key="frame" x="20" y="290" width="289" height="23.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-SemiBold" family="Open Sans" pointSize="20"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="50.00" textAlignment="right" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="TuE-6H-k7L">
-                                                        <rect key="frame" x="314" y="290" width="80" height="27.5"/>
+                                                        <rect key="frame" x="314" y="290" width="80" height="23.5"/>
                                                         <constraints>
                                                             <constraint firstAttribute="width" constant="80" id="mra-VF-9YP"/>
                                                         </constraints>
@@ -2727,19 +2732,19 @@ Knaresborough Online</string>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="The Three Cents postal stationary card of North Borneo" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2R1-97-l3Z">
-                                                        <rect key="frame" x="20" y="327.5" width="374" height="49.5"/>
+                                                        <rect key="frame" x="20" y="323.5" width="374" height="42"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Medium" family="Open Sans" pointSize="18"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Stockholm (1997)24pp. 1st ed., fine in card covers.A shame about the spelling mistake in the title." lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Mqe-aO-Jar">
-                                                        <rect key="frame" x="20" y="387" width="374" height="69.5"/>
+                                                        <rect key="frame" x="20" y="375.5" width="374" height="59.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="17"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="YDO-xK-XH2">
-                                                        <rect key="frame" x="157" y="476.5" width="100" height="40"/>
+                                                        <rect key="frame" x="157" y="455" width="100" height="40"/>
                                                         <color key="backgroundColor" name="borderColor"/>
                                                         <constraints>
                                                             <constraint firstAttribute="height" constant="40" id="1Mf-YN-rIB"/>
@@ -2781,7 +2786,7 @@ Knaresborough Online</string>
                                                 </constraints>
                                             </view>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="5i7-jT-5kq">
-                                                <rect key="frame" x="147" y="1488" width="120" height="45"/>
+                                                <rect key="frame" x="147" y="1407.5" width="120" height="45"/>
                                                 <color key="backgroundColor" name="borderColor"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="45" id="993-yu-bkg"/>
@@ -2794,29 +2799,29 @@ Knaresborough Online</string>
                                                 </connections>
                                             </button>
                                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="R7F-Gy-Uhc">
-                                                <rect key="frame" x="0.0" y="815.5" width="414" height="431.5"/>
+                                                <rect key="frame" x="0.0" y="792" width="414" height="378"/>
                                                 <subviews>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Shipping" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="PW4-mj-cnr">
-                                                        <rect key="frame" x="20" y="10" width="374" height="26"/>
+                                                        <rect key="frame" x="20" y="10" width="374" height="22.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Medium" family="Open Sans" pointSize="19"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="v2f-gJ-ZRB">
-                                                        <rect key="frame" x="20" y="46" width="374" height="123"/>
+                                                        <rect key="frame" x="20" y="42.5" width="374" height="105"/>
                                                         <string key="text">US $74.99 eBay International Shipping. See details for shipping                                          Located in: Prospect, New York, United States This item may be subject to duties and taxes upon delivery</string>
                                                         <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="18"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Delivery" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="coN-l1-CEq">
-                                                        <rect key="frame" x="20" y="179" width="374" height="26"/>
+                                                        <rect key="frame" x="20" y="157.5" width="374" height="22.5"/>
                                                         <fontDescription key="fontDescription" name="OpenSans-Medium" family="Open Sans" pointSize="19"/>
                                                         <color key="textColor" name="TundoraBlack"/>
                                                         <nil key="highlightedColor"/>
                                                     </label>
                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Nvr-RW-N7m">
-                                                        <rect key="frame" x="20" y="215" width="374" height="196.5"/>
+                                                        <rect key="frame" x="20" y="190" width="374" height="168"/>
                                                         <string key="text">Estimated between Thu, Aug 24 and Mon, Sep 18 to 560001     
                                                                                     Please note the delivery estimate is greater than 26 business days.    
                                                                                                             Seller ships within 1 day after receiving cleared payment.</string>
@@ -2914,7 +2919,6 @@ Knaresborough Online</string>
                         <outlet property="titleLabel" destination="11p-Bs-rv2" id="SGd-0d-BYB"/>
                         <outlet property="viewAllButton" destination="5i7-jT-5kq" id="ayL-nK-bd5"/>
                         <outlet property="wholeCatalouge" destination="4wE-oH-7kC" id="3mf-NO-KRJ"/>
-                        <segue destination="heg-2u-Wsm" kind="show" id="LXf-7P-bjh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AVA-B6-NE0" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -2927,9 +2931,6 @@ Knaresborough Online</string>
             <size key="intrinsicContentSize" width="54" height="34"/>
         </designable>
     </designables>
-    <inferredMetricsTieBreakers>
-        <segue reference="LXf-7P-bjh"/>
-    </inferredMetricsTieBreakers>
     <resources>
         <image name="AboutUs1img" width="388" height="355"/>
         <image name="Authorimg" width="359" height="378"/>
