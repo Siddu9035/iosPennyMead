@@ -8,7 +8,7 @@
 import UIKit
 
 class CartScreen: UIViewController, CollectibleItemsManagerDelegate {
-   
+    
     
     @IBOutlet var collectibleDropdown: DropDown!
     @IBOutlet var cartProducts: UITableView!
@@ -51,6 +51,7 @@ class CartScreen: UIViewController, CollectibleItemsManagerDelegate {
         cartManager.getCollectibles()
         registerTable1()
         registerTable2()
+        showingEmptyCartImage()
     }
     override func viewDidLayoutSubviews() {
         cartProductsHeight.constant = cartProducts.contentSize.height
@@ -88,8 +89,39 @@ class CartScreen: UIViewController, CollectibleItemsManagerDelegate {
         print(error.localizedDescription)
     }
     
-    
-
+    func showingEmptyCartImage() {
+        if cartItems.isEmpty {
+            cartProducts.isHidden = true
+            formView.isHidden = true
+            formView.heightAnchor.constraint(equalToConstant: 0).isActive = true
+            let imageView = UIImageView()
+            imageView.image = UIImage(named: "emptyCart")
+            imageView.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(imageView)
+            let label = UILabel()
+            label.text = "Your cart is empty"
+            label.font = UIFont.systemFont(ofSize: 16)
+            label.textColor = UIColor.black
+            label.sizeToFit()
+            label.translatesAutoresizingMaskIntoConstraints = false
+            view.addSubview(label)
+            NSLayoutConstraint.activate([
+                imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
+                imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+                imageView.widthAnchor.constraint(equalToConstant: 250),
+                imageView.heightAnchor.constraint(equalToConstant: 300)
+            ])
+            NSLayoutConstraint.activate([
+                label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
+                label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+            ])
+        } else {
+            cartProducts.isHidden = false
+            formView.isHidden = false
+            cartProductsHeight.constant = cartProducts.contentSize.height
+        }
+        view.layoutIfNeeded()
+    }
 }
 extension CartScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
