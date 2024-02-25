@@ -25,14 +25,14 @@
         <placeholder placeholderIdentifier="IBFilesOwner" id="-1" userLabel="File's Owner"/>
         <placeholder placeholderIdentifier="IBFirstResponder" id="-2" customClass="UIResponder"/>
         <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="cellItems" id="gTV-IL-0wX" customClass="CollectibleCvCell" customModule="PennyMead" customModuleProvider="target">
-            <rect key="frame" x="0.0" y="0.0" width="242" height="412"/>
+            <rect key="frame" x="0.0" y="0.0" width="242" height="445"/>
             <autoresizingMask key="autoresizingMask"/>
             <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
-                <rect key="frame" x="0.0" y="0.0" width="242" height="412"/>
+                <rect key="frame" x="0.0" y="0.0" width="242" height="445"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcq-Gm-Po1">
-                        <rect key="frame" x="10" y="10" width="222" height="392"/>
+                        <rect key="frame" x="10" y="10" width="222" height="425"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="1Sq-gL-zsb">
                                 <rect key="frame" x="41" y="15" width="140" height="180"/>
@@ -56,20 +56,20 @@
                                 <color key="textColor" name="TundoraBlack"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMQ-b5-jja">
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" verticalHuggingPriority="251" text="Label" lineBreakMode="tailTruncation" numberOfLines="3" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FMQ-b5-jja">
                                 <rect key="frame" x="20" y="243.33333333333334" width="182" height="22.000000000000028"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Medium" family="Open Sans" pointSize="16"/>
                                 <color key="textColor" name="TundoraBlack"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="jgjhgjhjgjhgjjjgjhgjgjgjhgjgjgjhgjhgjhgjhgjhgjhgjgjgjgjgjgjgjhgjgjgjgjgFGGFDGFDGDGDGngjhgjgjgjgjgjgjgjhgjhghjgj" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sv7-1w-RlY">
-                                <rect key="frame" x="20" y="273.33333333333331" width="182" height="43.666666666666686"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="sv7-1w-RlY">
+                                <rect key="frame" x="20" y="269.33333333333331" width="182" height="22"/>
                                 <fontDescription key="fontDescription" name="OpenSans-Regular" family="Open Sans" pointSize="16"/>
                                 <color key="textColor" name="TundoraBlack"/>
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b1C-VR-bI6">
-                                <rect key="frame" x="92" y="337" width="110" height="40"/>
+                                <rect key="frame" x="92" y="370" width="110" height="40"/>
                                 <color key="backgroundColor" name="borderColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="02U-hD-T43"/>
@@ -97,9 +97,10 @@
                             <constraint firstItem="FMQ-b5-jja" firstAttribute="leading" secondItem="pcq-Gm-Po1" secondAttribute="leading" constant="20" id="dfZ-SA-wU0"/>
                             <constraint firstItem="1Sq-gL-zsb" firstAttribute="centerX" secondItem="pcq-Gm-Po1" secondAttribute="centerX" id="eOm-M6-zWg"/>
                             <constraint firstAttribute="trailing" secondItem="b1C-VR-bI6" secondAttribute="trailing" constant="20" id="hgy-hZ-ee5"/>
-                            <constraint firstItem="sv7-1w-RlY" firstAttribute="top" secondItem="FMQ-b5-jja" secondAttribute="bottom" constant="8" id="plt-Cp-3NH"/>
+                            <constraint firstItem="sv7-1w-RlY" firstAttribute="top" secondItem="FMQ-b5-jja" secondAttribute="bottom" constant="4" id="plt-Cp-3NH"/>
                             <constraint firstItem="1Sq-gL-zsb" firstAttribute="top" secondItem="pcq-Gm-Po1" secondAttribute="top" constant="15" id="sHw-ZN-uA9"/>
                             <constraint firstItem="5B4-in-hej" firstAttribute="leading" secondItem="pcq-Gm-Po1" secondAttribute="leading" constant="20" id="t8j-be-AfB"/>
+                            <constraint firstItem="b1C-VR-bI6" firstAttribute="top" relation="greaterThanOrEqual" secondItem="sv7-1w-RlY" secondAttribute="bottom" constant="3" id="tBq-Pe-1RZ"/>
                         </constraints>
                     </view>
                 </subviews>
@@ -112,7 +113,7 @@
                 <constraint firstAttribute="trailing" secondItem="pcq-Gm-Po1" secondAttribute="trailing" constant="10" id="Swb-Tu-ivG"/>
                 <constraint firstItem="pcq-Gm-Po1" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" constant="10" id="mw4-Jn-hp4"/>
             </constraints>
-            <size key="customSize" width="242" height="352"/>
+            <size key="customSize" width="242" height="385"/>
             <connections>
                 <outlet property="cardAuthor" destination="5B4-in-hej" id="pfA-dq-as0"/>
                 <outlet property="cardButton" destination="b1C-VR-bI6" id="twa-Nn-XGo"/>
@@ -122,7 +123,7 @@
                 <outlet property="cardTitle" destination="FMQ-b5-jja" id="IVo-SZ-XNO"/>
                 <outlet property="cardView" destination="pcq-Gm-Po1" id="c37-lD-c5E"/>
             </connections>
-            <point key="canvasLocation" x="-187.69230769230768" y="127.96208530805687"/>
+            <point key="canvasLocation" x="-187.69230769230768" y="139.69194312796208"/>
         </collectionViewCell>
     </objects>
     <resources>

@@ -45,6 +45,7 @@ struct FetchPerticularManager {
                     delegate?.didUpdateTotalPages(totalPage)
                 } catch {
                     delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
+                    print("mainerror--->>", error)
                 }
             }
         }

@@ -32,7 +32,7 @@ class Drawer: UIViewController {
             delegate?.didPressBacbutton()
         } else {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let catLouge = storyBoard.instantiateViewController(withIdentifier: "HomeVc") as! HomeVc
+            let catLouge = storyBoard.instantiateViewController(withIdentifier: "HomeVc") as? HomeVc
             navigationController?.popViewController(animated: true)
         }
     }

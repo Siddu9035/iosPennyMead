@@ -39,4 +39,5 @@ struct ProductDetailManager {
         }
         task.resume()
     }
+    
 }

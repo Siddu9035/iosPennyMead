@@ -20,6 +20,7 @@ struct SearchBookManager {
     
     func searchCat(with term: String, adesc: Int, categoryNumber: Int, sortby: String, page: Int) {
         let urlComponents = URLComponents(string: ApiConstants.baseUrl + "view/search-keyword/")!
+        print(urlComponents)
         
         let requestBody: [String: Any] = [
             "term": term,
@@ -51,11 +52,13 @@ struct SearchBookManager {
                             decoder.keyDecodingStrategy = .convertFromSnakeCase
                             let response = try decoder.decode(SearchResults.self, from: data)
                             let response2 = response.searchresults
+//                            print("search data ----->>>", response2)
                             self.delegate?.didUpdateThePerticularCatSearch(response2)
                             let totalPage = response.totalpages
                             self.delegate?.didUpdateTotalPages(totalPage)
                         } catch {
                             self.delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
+                            print("error search--->>>", error)
                         }
                     }
                 }

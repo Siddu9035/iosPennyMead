@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, collectibleManagerDelegate, DrawerDelegate {
+class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, collectibleManagerDelegate, DrawerDelegate, CollectibleCvCellDelegate {
    
     func didGoToHomeVc() {
         self.navigationController?.popViewController(animated: true)
@@ -38,6 +38,7 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
     @IBOutlet var addToCartButton: UIButton!
     @IBOutlet var filtersText: UILabel!
     @IBOutlet var filterImage: UIImageView!
+    @IBOutlet var cartCountLabel: UILabel!
     
     var categories: [Book] = []
     var collectiblesBooks: [CollectibleItem] = []
@@ -55,6 +56,7 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
         FilterData(name: "Price-High", type: "price_high"),
         FilterData(name: "Price-Low", type: "price_low")
     ]
+//    var cartItems: [CartItem] = []
     
     
     override func viewDidLoad() {
@@ -127,6 +129,11 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
         let selectedFilterType = items[defaultIndexPath.row]
         collectibleManager.getCollectibles(with: selectedFilterType.type, page: page)
         
+        cartCountLabel.layer.cornerRadius = cartCountLabel.frame.size.height / 2
+        cartCountLabel.layer.borderWidth = 1
+        cartCountLabel.layer.borderColor = UIColor.MyTheme.cardBGColor.cgColor
+        cartCountLabel.isHidden = true
+        cartCountLabel.clipsToBounds = true
         
         hideKeyboardWhenTappedAround()
     }
@@ -398,6 +405,30 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
             stopLoading()
         }
     }
+    @IBAction func onPressAddToCartButton(_ sender: UIButton) {
+        let cartScreen = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "cartScreen") as? CartScreen
+        self.navigationController?.pushViewController(cartScreen!, animated: true)
+    }
+    //MARK: add to cart functionality of the items
+    func addToCartButtonTapped(for cell: CollectibleCvCell) {
+        if let indexPath = collectible_CollectionVC.indexPath(for: cell) {
+            let collectible = collectiblesBooks[indexPath.item]
+            if !CartManager.shared.cartContainsItem(withSysid: collectible.sysid) {
+                CartManager.shared.addToCart(item: collectible)
+                updateCartCount()
+                showToast(message: "Items has been added to cart View Details", font: .systemFont(ofSize: 18.0))
+            } else {
+                showToast(message: "Items has been added to cart View Details", font: .systemFont(ofSize: 18.0))
+            }
+        }
+        
+    }
+    func updateCartCount() {
+        let cartCount = CartManager.shared.cartCount()
+        cartCountLabel.isHidden = false
+        cartCountLabel.text = "\(cartCount)"
+    }
+    
 }
 
 //MARK: extension for the collectionView
@@ -456,6 +487,7 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
             return cell
         } else if collectionView == collectible_CollectionVC {
             let cell2 = collectionView.dequeueReusableCell(withReuseIdentifier: "cellItems", for: indexPath) as! CollectibleCvCell
+            cell2.delegate = self
             let books = collectiblesBooks[indexPath.item]
             cell2.cardAuthor.text = books.author
             cell2.cardPrice.text = ("£ \(books.price)")

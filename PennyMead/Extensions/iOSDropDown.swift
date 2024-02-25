@@ -225,9 +225,6 @@ open class DropDown : UITextField {
             self.rightView?.addGestureRecognizer(gesture)
         }else{
             self.addGestureRecognizer(gesture)
-            //////////////////
-//            let selectedViewTag = self.tag
-//            selectedTextFieldIndex = selectedViewTag
             
         }
         let gesture2 =  UITapGestureRecognizer(target: self, action:  #selector(touchAction))

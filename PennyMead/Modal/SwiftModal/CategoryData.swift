@@ -128,3 +128,18 @@ struct Subcatdetail: Codable {
     let name, keywords, toshow, thegroup: String
     let reference, icount: String
 }
+// MARK: - Welcome
+struct Collectible: Codable {
+    let status: Int
+    let message: String
+    let collectableitems: [Collectableitems]
+}
+
+// MARK: - Collectableitem
+struct Collectableitems: Codable {
+    let sysid, author, author2, title: String
+    let longtitle, publisher, pubdate, description: String
+    let price, quantity, keywords, footnote: String
+    let category: String
+    let image: [String]
+}

@@ -8,7 +8,7 @@
 import UIKit
 
 protocol DropdownCVDelegate: AnyObject {
-    func dropdownDidSelectItem(_ selectedText: String, atIndex index: Int, withId id: Int, atIndexPath indexPath: IndexPath)
+    func dropdownDidSelectItem(_ selectedText: String, atIndex index: Int, withId id: Int, atIndexPath indexPath: IndexPath, selectedItem item:  UICollectionView)
     
 }
 
@@ -30,7 +30,7 @@ class DropdownCV: UICollectionViewCell, UITextFieldDelegate {
         dropdown.setGradient(startColor: UIColor.MyTheme.brandingColorGradient, endColor: UIColor.MyTheme.brandingColor)
         dropdown.textColor = UIColor.MyTheme.whiteColor
         dropdown.didSelect(completion: { [self] selectedText, index, id in
-            delegate?.dropdownDidSelectItem(selectedText, atIndex: index, withId: id, atIndexPath: indexPath!)
+            delegate?.dropdownDidSelectItem(selectedText, atIndex: index, withId: id, atIndexPath: indexPath!, selectedItem: self.superview as! UICollectionView)
         })
     }
     

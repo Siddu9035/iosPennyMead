@@ -35,7 +35,6 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
     var productDetailManager = ProductDetailManager()
     var selectedSysid: (sysid: String, category: String)?
     var categoryInfoArray: [(number: String, name: String)]?
-//    var selectedCategory: (name: String, category: String)?
     var selectedCategoryName: (name: String, category: String)?
     var selectedCategoryIndex: Int?
     var filterItems = FilterItemsBySubCat()
@@ -44,6 +43,9 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
     var dropdownData: [DropdownGroup] = []
     var selectedReference: String?
     var selectedSubDropdownIndex: Int?
+    var adesc: Int = 0
+    var searchTerm: String = ""
+    var isMainCategoryLastApiCalled: Bool = true
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -144,21 +146,29 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
     func firstdropDown() {
         firstDropdown.delegate = self
         firstDropdown.setPadding(left: 10)
-        let categoryIndex = Int(selectedCategoryName!.category)! - 1
-        firstDropdown.attributedPlaceholder = NSAttributedString(string: selectedCategoryName!.name, attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
-        if let categoryInfoArray = categoryInfoArray {
-            let categoryOptions = categoryInfoArray.map{$0.name}
-            firstDropdown.optionArray = categoryOptions
-            firstDropdown.selectedIndex = categoryIndex
-        }
-        firstDropdown.didSelect { [self] selectedText, index, id in
-            if let storyBoard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
-                storyBoard.selectedCategoryName = selectedCategoryName
-                storyBoard.categoryInfoArray = categoryInfoArray
-                storyBoard.selectedCategoryIndex = categoryIndex
-                navigationController?.pushViewController(storyBoard, animated: true)
+        if let selectedCategoryName = selectedCategoryName,
+           let categoryInfoArray = categoryInfoArray {
+            // Find the index of the selected category in the categoryInfoArray
+            if let categoryIndex = categoryInfoArray.firstIndex(where: { $0.name == selectedCategoryName.name }) {
+                firstDropdown.attributedPlaceholder = NSAttributedString(string: selectedCategoryName.name, attributes: [NSAttributedString.Key.foregroundColor : UIColor.white])
+                let categoryOptions = categoryInfoArray.map { $0.name }
+                firstDropdown.optionArray = categoryOptions
+                firstDropdown.selectedIndex = categoryIndex
+                
+                // Configure didSelect closure
+                firstDropdown.didSelect { [self] selectedText, index, id in
+                    // Retrieve selected category number and name from categoryInfoArray
+                    let selectedCategoryNumber = categoryInfoArray[index].number
+                    let selectedCategoryName = categoryInfoArray[index].name
+                    let bothCatAndName = (name: selectedCategoryName, category: selectedCategoryNumber)
+                    if let storyBoard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
+                        storyBoard.selectedCategoryName = bothCatAndName
+                        storyBoard.categoryInfoArray = categoryInfoArray
+                        storyBoard.selectedCategoryIndex = index
+                        navigationController?.pushViewController(storyBoard, animated: true)
+                    }
+                }
             }
-            
         }
     }
     
@@ -167,6 +177,24 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
     }
     
     @IBAction func onPressSearchButton(_ sender: UIButton) {
+        adesc = searchByDescription.isSelected ? 1 : 0
+        let categoryNumber = thisCategory.isSelected ? selectedCategoryName?.category : "0"
+        let categoryName = selectedCategoryName?.name ?? ""
+        let catNumber = selectedCategoryName?.category ?? "0"
+        let catNumAndCat = (name: categoryName, category: catNumber)
+        let categoryIndex = Int(selectedCategoryName!.category)!
+        searchTerm = searchField.text ?? ""
+        if let catlougeListVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
+            catlougeListVc.selectedCategoryName = catNumAndCat
+            catlougeListVc.selectedCategoryIndex = categoryIndex
+            catlougeListVc.categoryInfoArray = categoryInfoArray
+            catlougeListVc.searchTerm = searchTerm
+            catlougeListVc.isMainCategoryLastApiCalled = false
+            catlougeListVc.isdropdownapicalled = false
+            catlougeListVc.selectedCategoryNumberForSearch = categoryNumber
+            catlougeListVc.adesc = adesc
+            navigationController?.pushViewController(catlougeListVc, animated: true)
+        }
     }
     
     @IBAction func onPressRadioButtons(_ sender: UIButton) {
@@ -228,8 +256,7 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
     }
 }
 extension ProductDetailVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DropdownCVDelegate {
-    
-    
+   
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dropdownData.count
     }
@@ -245,15 +272,16 @@ extension ProductDetailVc: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
         return CGSize(width: 200, height: 50)
     }
-    func dropdownDidSelectItem(_ selectedText: String, atIndex index: Int, withId id: Int, atIndexPath indexPath: IndexPath) {
-        let categoryIndex = Int(selectedCategoryName!.category)! - 1
-        print("----->>>", categoryIndex)
+    func dropdownDidSelectItem(_ selectedText: String, atIndex index: Int, withId id: Int, atIndexPath indexPath: IndexPath, selectedItem item: UICollectionView) {
+        let categoryIndex = Int(selectedCategoryName!.category)!
         let data = dropdownData[indexPath.item].dropdownlist[index]
        if let catlougeVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
            catlougeVc.selectedCategoryName = selectedCategoryName
            catlougeVc.categoryInfoArray = categoryInfoArray
            catlougeVc.selectedCategoryIndex = categoryIndex
            catlougeVc.selectedReference = data.reference
+           catlougeVc.isdropdownapicalled = true
+           catlougeVc.isMainCategoryLastApiCalled = false
            navigationController?.pushViewController(catlougeVc, animated: true)
         }
     }

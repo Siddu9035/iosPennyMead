@@ -1,7 +1,6 @@
 
 import UIKit
 import Kingfisher
-
 class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerDelegate, SearchBookManagerDelegate, GetSubDropdownsManagerDelegate, UITextFieldDelegate, FilterItemsBySubCatDelegate {
     
     @IBOutlet var searchField: UITextField!
@@ -64,6 +63,10 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     var selectedSubDropdownIndex: Int?
     var httpResponse1: Int = 0
     var httpResponse2: Int = 0
+    var searchTerm: String = ""
+    var selectedCategoryNumberForSearch: String?
+    let productDetailVc = ProductDetailVc() // Initialize your ProductDetailVc
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -85,25 +88,29 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         
         dropdownManager.delegate = self
         dropdownManager.getSubDropdowns(with: selectedCategoryName?.category ?? "0")
+    
         
         filterItems.delegate = self
+        if let aSelectedReference = selectedReference {
+            filterItems.getFilterItemsBySubCat(category: selectedCategoryName?.category ?? "0", referenceId: aSelectedReference, filterType: "newlyUpdated", page: 1)
+        }
+        bookCollectionView.reloadData()
         scrollView.delegate = self
         
         firstDropdownSetUp()
         filterDropdownSetUp()
         
-//        self.navigationController?.interactivePopGestureRecognizer!.delegate = self
         let edgePan = UIScreenEdgePanGestureRecognizer(target: self, action: #selector(leftEdgeSwipe))
         edgePan.edges = .left
         view.addGestureRecognizer(edgePan)
+        
     }
     @objc func leftEdgeSwipe(_ recognizer: UIScreenEdgePanGestureRecognizer) {
-       if recognizer.state == .recognized {
-           print("swiped")
-          self.navigationController?.popViewController(animated: true)
-       }
+        if recognizer.state == .recognized {
+            print("swiped")
+            self.navigationController?.popViewController(animated: true)
+        }
     }
-
     override func viewWillAppear(_ animated: Bool) {
         SideMenuManager.shared.configureSideMenu(parentViewController: self)
         SideMenuManager.shared.sideMenuVc.delegate = self
@@ -112,9 +119,10 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         if isMainCategoryLastApiCalled {
             perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "0", filterType: selectedFilterType, page: page)
         } else {
-            if let searchTerm = searchField.text {
+            if !searchTerm.isEmpty {
                 adesc = searchByDesButton.isSelected ? 1 : 0
-                let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryName?.category ?? "0")" : "0"
+
+                let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryNumberForSearch ?? "")" : "0"
                 searchedBooks.searchCat(with: searchTerm, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType, page: page)
             } else {
                 upDatePerticularBooks()
@@ -123,7 +131,6 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
             
         }
     }
-    
     
     func firstDropdownSetUp() {
         dropdown1.setPadding(left: 10)
@@ -175,7 +182,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         filterDropdown.didSelect { [self] (selectedText, index, id) in
             if selectedFilterIndex != index {
                 showIndicator()
-//                filterDropdown.selectedIndex = index
+                //                filterDropdown.selectedIndex = index
                 
                 selectedFilterIndex = index
                 if let selectedFilter = filterData.first(where: { $0.name == selectedText }) {
@@ -301,10 +308,12 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     }
     //MARK: searchCat api call
     func didUpdateThePerticularCatSearch(_ perticularCat: [PerticularItemsFetch]) {
+        
         DispatchQueue.main.async { [self] in
             perticularBooks = perticularCat
             upDatePerticularBooks()
-            perticularBooks.append(contentsOf: perticularCat)
+            //            perticularBooks.append(contentsOf: perticularCat)
+            print("search data ----->>>", perticularBooks)
             configureText()
             stopLoading()
             checkResponse(httpResponse1: httpResponse1, httpResponse2: httpResponse2)
@@ -494,24 +503,30 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         filterDropdownSetUp()
         isMainCategoryLastApiCalled = false
         isdropdownapicalled = false
-        
-        if let searchTerm = searchField.text, !searchTerm.isEmpty {
+        searchTerm = searchField.text ?? ""
+        if !searchTerm.isEmpty {
             handleAllThreeApiCalls()
             configureText()
             upDatePerticularBooks()
             bookCollectionView.reloadData()
+            searchField.text = ""
         } else {
             stopLoading()
         }
+        
+        
     }
     @IBAction func onPressRadioButtons(_ sender: UIButton) {
         if sender == wholeCategoryButton {
             wholeCategoryButton.isSelected = true
             thisCategoryButton.isSelected = false
+            selectedCategoryNumberForSearch = "0"
         } else if sender == thisCategoryButton {
             wholeCategoryButton.isSelected = false
             thisCategoryButton.isSelected = true
-        } else if sender == searchByDesButton {
+            selectedCategoryNumberForSearch = selectedCategoryName?.category
+        }
+        if sender == searchByDesButton {
             searchByDesButton.isSelected = !searchByDesButton.isSelected
         }
     }
@@ -563,7 +578,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                     errorText.text = ""
                     handleScrollTo()
                 } else {
-//                    errorText.text = "Entered same Page"
+                    //                    errorText.text = "Entered same Page"
                     handleScrollTo()
                     stopLoading()
                 }
@@ -594,6 +609,7 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
         if collectionView == bookCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellItems", for: indexPath) as! CollectibleCvCell
             let book = perticularBooks[indexPath.item]
+            
             cell.cardAuthor.text = book.author
             cell.cardTitle.text = book.title
             cell.cardDescription.text = book.description
@@ -628,28 +644,36 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
         }
         return CGSize(width: 0, height: 0)
     }
-//    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-//         if collectionView == bookCollectionView {
-//            let book = perticularBooks[indexPath.item]
-//             let sysidAndCategory = (sysid: book.sysid, category: book.category)
-//                let categoryDetails = categories.map { (number: $0.category, name: $0.name) }
-//                print("--->>>sysid", sysidAndCategory)
-//                print("array-->>", categoryDetails)
-//                // Instantiate ProductDetailVc from storyboard
-//                let storyboard = UIStoryboard(name: "Main", bundle: nil)
-//                if let productVc = storyboard.instantiateViewController(withIdentifier: "productDetail") as? ProductDetailVc {
-//                    // Pass data to ProductDetailVc
-//                    productVc.selectedSysid = sysidAndCategory
-//                    productVc.categoryInfoArray = categoryDetails
-//                    productVc.selectedCategoryIndex = indexPath.item
-//                    navigationController?.pushViewController(productVc, animated: true)
-//                }
-//        }
-//    }
-    func dropdownDidSelectItem(_ selectedText: String, atIndex index: Int, withId id: Int, atIndexPath indexPath: IndexPath) {
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        if collectionView == bookCollectionView {
+            let book = perticularBooks[indexPath.item]
+            let sysidAndCategory = (sysid: book.sysid, category: book.category)
+            let categoryDetails = categories.map { (number: $0.category, name: $0.name) }
+            let categoryName = selectedCategoryName?.name ?? ""
+            let category = selectedCategoryName?.category ?? "0"
+            let categoryNameAndCat = (name: categoryName, category: category)
+            print("array-->>", categoryNameAndCat)
+            
+            print("--->>>sysid", sysidAndCategory)
+            print("array-->>", categoryInfoArray)
+            
+            // Instantiate ProductDetailVc from storyboard
+            let storyboard = UIStoryboard(name: "Main", bundle: nil)
+            if let productVc = storyboard.instantiateViewController(withIdentifier: "productDetail") as? ProductDetailVc {
+                // Pass data to ProductDetailVc
+                productVc.selectedSysid = sysidAndCategory
+                productVc.categoryInfoArray = categoryInfoArray
+                productVc.selectedCategoryName = categoryNameAndCat
+                productVc.selectedCategoryIndex = indexPath.item
+                navigationController?.pushViewController(productVc, animated: true)
+            }
+        }
+    }
+    func dropdownDidSelectItem(_ selectedText: String, atIndex index: Int, withId id: Int, atIndexPath indexPath: IndexPath, selectedItem item: UICollectionView) {
         isMainCategoryLastApiCalled = true
         showIndicator()
         searchField.text = ""
+        
         let data = dropdownData[indexPath.item].dropdownlist[index]
         if selectedReference != data.reference {
             filterItems.getFilterItemsBySubCat(category: selectedCategoryName?.category ?? "0", referenceId: data.reference, filterType: "newlyUpdated", page: 1)
@@ -662,6 +686,7 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
         selectedReference = data.reference
         isdropdownapicalled = true
     }
+
 }
 extension CatalougeListVc:UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
