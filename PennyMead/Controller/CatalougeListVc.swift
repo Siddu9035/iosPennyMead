@@ -88,12 +88,14 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         
         dropdownManager.delegate = self
         dropdownManager.getSubDropdowns(with: selectedCategoryName?.category ?? "0")
-    
+        
         
         filterItems.delegate = self
         if let aSelectedReference = selectedReference {
             filterItems.getFilterItemsBySubCat(category: selectedCategoryName?.category ?? "0", referenceId: aSelectedReference, filterType: "newlyUpdated", page: 1)
         }
+        let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryNumberForSearch ?? "")" : "0"
+        searchedBooks.searchCat(with: searchTerm, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType, page: page)
         bookCollectionView.reloadData()
         scrollView.delegate = self
         
@@ -121,7 +123,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         } else {
             if !searchTerm.isEmpty {
                 adesc = searchByDesButton.isSelected ? 1 : 0
-
+                
                 let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryNumberForSearch ?? "")" : "0"
                 searchedBooks.searchCat(with: searchTerm, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType, page: page)
             } else {
@@ -686,7 +688,7 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
         selectedReference = data.reference
         isdropdownapicalled = true
     }
-
+    
 }
 extension CatalougeListVc:UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {

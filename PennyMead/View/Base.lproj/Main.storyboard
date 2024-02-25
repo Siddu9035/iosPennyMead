@@ -2358,7 +2358,7 @@ Knaresborough Online</string>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleToFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="backgroundImg" translatesAutoresizingMaskIntoConstraints="NO" id="C5d-MC-UH4">
-                                <rect key="frame" x="0.0" y="48" width="414" height="814"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="Logo 1" translatesAutoresizingMaskIntoConstraints="NO" id="uHr-L1-7Yr">
                                 <rect key="frame" x="132" y="373" width="150" height="150"/>
@@ -2379,11 +2379,11 @@ Knaresborough Online</string>
                         <constraints>
                             <constraint firstItem="uHr-L1-7Yr" firstAttribute="centerY" secondItem="xL8-aH-fZk" secondAttribute="centerY" id="8Cl-a8-DL5"/>
                             <constraint firstItem="uHr-L1-7Yr" firstAttribute="centerX" secondItem="xL8-aH-fZk" secondAttribute="centerX" id="bEa-Kb-WFT"/>
-                            <constraint firstItem="C5d-MC-UH4" firstAttribute="bottom" secondItem="Dpq-01-rto" secondAttribute="bottom" id="bht-VS-49h"/>
+                            <constraint firstItem="C5d-MC-UH4" firstAttribute="bottom" secondItem="xL8-aH-fZk" secondAttribute="bottom" id="bht-VS-49h"/>
                             <constraint firstItem="Dpq-01-rto" firstAttribute="trailing" secondItem="8FP-uB-Z2D" secondAttribute="trailing" constant="20" id="j0a-F1-QIW"/>
-                            <constraint firstItem="C5d-MC-UH4" firstAttribute="top" secondItem="Dpq-01-rto" secondAttribute="top" id="lY8-sc-23i"/>
-                            <constraint firstItem="C5d-MC-UH4" firstAttribute="leading" secondItem="Dpq-01-rto" secondAttribute="leading" id="sY9-Ay-nTL"/>
-                            <constraint firstItem="Dpq-01-rto" firstAttribute="trailing" secondItem="C5d-MC-UH4" secondAttribute="trailing" id="uIC-3o-4GC"/>
+                            <constraint firstItem="C5d-MC-UH4" firstAttribute="top" secondItem="xL8-aH-fZk" secondAttribute="top" id="lY8-sc-23i"/>
+                            <constraint firstItem="C5d-MC-UH4" firstAttribute="leading" secondItem="xL8-aH-fZk" secondAttribute="leading" id="sY9-Ay-nTL"/>
+                            <constraint firstAttribute="trailing" secondItem="C5d-MC-UH4" secondAttribute="trailing" id="uIC-3o-4GC"/>
                             <constraint firstItem="8FP-uB-Z2D" firstAttribute="top" secondItem="uHr-L1-7Yr" secondAttribute="bottom" constant="20" id="vg5-6Z-bwb"/>
                             <constraint firstItem="8FP-uB-Z2D" firstAttribute="leading" secondItem="Dpq-01-rto" secondAttribute="leading" constant="20" id="yDb-Pd-tkn"/>
                         </constraints>
