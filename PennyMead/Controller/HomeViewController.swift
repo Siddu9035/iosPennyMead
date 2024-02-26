@@ -521,7 +521,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
                 let sysidAndCategory = (sysid: collectible.sysid, category: collectible.category)
                 let categoryDetails = categories.map { (number: $0.category, name: $0.name) }
                 let storyboard = UIStoryboard(name: "Main", bundle: nil)
-                if let productVc = storyboard.instantiateViewController(withIdentifier: "productDetail") as? ProductDetailVc {
+                if let productVc = storyboard.instantiateViewController(withIdentifier: "productDetail") as? ProductDetailViewController {
                     // Pass data to ProductDetailVc
                     productVc.selectedSysid = sysidAndCategory
                     productVc.categoryInfoArray = categoryDetails
@@ -536,7 +536,7 @@ extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func selectedData(with category: Book, at index: Int) {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        if let catalougePage = storyBoard.instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
+        if let catalougePage = storyBoard.instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListViewController {
             let categoryInfo = categories.map{(number: $0.category, name: $0.name)}
             catalougePage.categoryInfoArray = categoryInfo
             catalougePage.selectedCategoryName = (name: category.name, category: category.category)

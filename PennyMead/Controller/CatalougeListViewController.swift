@@ -1,7 +1,7 @@
 
 import UIKit
 import Kingfisher
-class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerDelegate, SearchBookManagerDelegate, GetSubDropdownsManagerDelegate, UITextFieldDelegate, FilterItemsBySubCatDelegate {
+class CatalougeListViewController: UIViewController, DrawerDelegate, FetchPerticularManagerDelegate, SearchBookManagerDelegate, GetSubDropdownsManagerDelegate, UITextFieldDelegate, FilterItemsBySubCatDelegate {
     
     @IBOutlet var searchField: UITextField!
     @IBOutlet var searchButton: UIButton!
@@ -32,10 +32,10 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     @IBOutlet var filterImage: UIImageView!
     
     
-    var perticularBooks: [PerticularItemsFetch] = []
+    var particularBooks: [PerticularItemsFetch] = []
     var categories: [Book] = []
     var collectiblesBooks: [CollectibleItem] = []
-    var perticularBookData = FetchPerticularManager()
+    var particularBookData = FetchPerticularManager()
     var searchedBooks = SearchBookManager()
     var totalPage: Int = 0
     var page: Int = 1
@@ -65,7 +65,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     var httpResponse2: Int = 0
     var searchTerm: String = ""
     var selectedCategoryNumberForSearch: String?
-    let productDetailVc = ProductDetailVc() // Initialize your ProductDetailVc
+    let productDetailVc = ProductDetailViewController() // Initialize your ProductDetailVc
     
     
     override func viewDidLoad() {
@@ -78,7 +78,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         paginationStyles()
         configureSearchStyles()
         
-        perticularBookData.delegate = self
+        particularBookData.delegate = self
         
         handleAllThreeApiCalls()
         searchedBooks.delegate = self
@@ -119,7 +119,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     }
     func handleAllThreeApiCalls() {
         if isMainCategoryLastApiCalled {
-            perticularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "0", filterType: selectedFilterType, page: page)
+            particularBookData.getPerticularCategories(with: selectedCategoryName?.category ?? "0", filterType: selectedFilterType, page: page)
         } else {
             if !searchTerm.isEmpty {
                 adesc = searchByDesButton.isSelected ? 1 : 0
@@ -312,10 +312,10 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     func didUpdateThePerticularCatSearch(_ perticularCat: [PerticularItemsFetch]) {
         
         DispatchQueue.main.async { [self] in
-            perticularBooks = perticularCat
+            particularBooks = perticularCat
             upDatePerticularBooks()
             //            perticularBooks.append(contentsOf: perticularCat)
-            print("search data ----->>>", perticularBooks)
+            print("search data ----->>>", particularBooks)
             configureText()
             stopLoading()
             checkResponse(httpResponse1: httpResponse1, httpResponse2: httpResponse2)
@@ -325,7 +325,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     //MARK: perticular api call
     func didUpdateThePerticularCat(_ perticularCat: [PerticularItemsFetch]) {
         DispatchQueue.main.async { [self] in
-            perticularBooks = perticularCat
+            particularBooks = perticularCat
             upDatePerticularBooks()
             stopLoading()
             checkResponse(httpResponse1: httpResponse1, httpResponse2: httpResponse2)
@@ -334,7 +334,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     }
     func didRecieveDataForGetSub(response: [PerticularItemsFetch]) {
         DispatchQueue.main.async { [self] in
-            perticularBooks = response
+            particularBooks = response
             upDatePerticularBooks()
             stopLoading()
             checkResponse(httpResponse1: httpResponse1, httpResponse2: httpResponse2)
@@ -367,7 +367,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
                     self.noDataFoundText.text = "No Data Found"
                     self.paginationView.isHidden = true
                     self.showingBookDesLabel.text = ""
-                    self.perticularBooks.removeAll()
+                    self.particularBooks.removeAll()
                     self.bookCollectionView.reloadData()
                     self.checkResponse(httpResponse1: response!.statusCode, httpResponse2: response!.statusCode)
                 } else {
@@ -406,7 +406,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     }
     //MARK: show text for no data found
     func upDatePerticularBooks() {
-        if perticularBooks.isEmpty {
+        if particularBooks.isEmpty {
             noDataFoundText.text = "No Data Found"
             paginationView.isHidden = true
         } else {
@@ -595,12 +595,12 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
     }
 }
 //MARK: COllectionView Datasource and Delegate
-extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DropdownCVDelegate {
+extension CatalougeListViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DropdownCVDelegate {
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if collectionView == bookCollectionView {
-            return perticularBooks.count
+            return particularBooks.count
         } else if collectionView == multipleDropdown {
             return dropdownData.count
         }
@@ -610,7 +610,7 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         if collectionView == bookCollectionView {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cellItems", for: indexPath) as! CollectibleCvCell
-            let book = perticularBooks[indexPath.item]
+            let book = particularBooks[indexPath.item]
             
             cell.cardAuthor.text = book.author
             cell.cardTitle.text = book.title
@@ -648,7 +648,7 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
     }
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         if collectionView == bookCollectionView {
-            let book = perticularBooks[indexPath.item]
+            let book = particularBooks[indexPath.item]
             let sysidAndCategory = (sysid: book.sysid, category: book.category)
             let categoryDetails = categories.map { (number: $0.category, name: $0.name) }
             let categoryName = selectedCategoryName?.name ?? ""
@@ -661,7 +661,7 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
             
             // Instantiate ProductDetailVc from storyboard
             let storyboard = UIStoryboard(name: "Main", bundle: nil)
-            if let productVc = storyboard.instantiateViewController(withIdentifier: "productDetail") as? ProductDetailVc {
+            if let productVc = storyboard.instantiateViewController(withIdentifier: "productDetail") as? ProductDetailViewController {
                 // Pass data to ProductDetailVc
                 productVc.selectedSysid = sysidAndCategory
                 productVc.categoryInfoArray = categoryInfoArray
@@ -690,7 +690,7 @@ extension CatalougeListVc: UICollectionViewDelegate, UICollectionViewDataSource,
     }
     
 }
-extension CatalougeListVc:UIGestureRecognizerDelegate {
+extension CatalougeListViewController:UIGestureRecognizerDelegate {
     func gestureRecognizer(_ gestureRecognizer: UIGestureRecognizer, shouldBeRequiredToFailBy otherGestureRecognizer: UIGestureRecognizer) -> Bool {
         return true
     }

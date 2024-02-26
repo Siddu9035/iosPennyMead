@@ -1475,10 +1475,10 @@ Knaresborough Online</string>
             </objects>
             <point key="canvasLocation" x="7297" y="-665"/>
         </scene>
-        <!--Catalouge List Vc-->
+        <!--Catalouge List View Controller-->
         <scene sceneID="Ir4-wF-UVm">
             <objects>
-                <viewController storyboardIdentifier="catlougePage" id="heg-2u-Wsm" customClass="CatalougeListVc" customModule="PennyMead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="catlougePage" id="heg-2u-Wsm" customClass="CatalougeListViewController" customModule="PennyMead" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="baO-aK-nWM">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -2415,10 +2415,10 @@ Knaresborough Online</string>
             </objects>
             <point key="canvasLocation" x="1150.7246376811595" y="95.758928571428569"/>
         </scene>
-        <!--Product Detail Vc-->
+        <!--Product Detail View Controller-->
         <scene sceneID="sML-N0-kqK">
             <objects>
-                <viewController storyboardIdentifier="productDetail" id="ezD-T2-ru7" customClass="ProductDetailVc" customModule="PennyMead" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="productDetail" id="ezD-T2-ru7" customClass="ProductDetailViewController" customModule="PennyMead" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="t9D-gS-GGO">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

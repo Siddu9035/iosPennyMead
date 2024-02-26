@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDelegate, UITextFieldDelegate, GetSubDropdownsManagerDelegate {
+class ProductDetailViewController: UIViewController, ProductDetailManagerDelegate, DrawerDelegate, UITextFieldDelegate, GetSubDropdownsManagerDelegate {
     
     //MARK: outlets
     @IBOutlet var firstDropdown: DropDown!
@@ -161,7 +161,7 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
                     let selectedCategoryNumber = categoryInfoArray[index].number
                     let selectedCategoryName = categoryInfoArray[index].name
                     let bothCatAndName = (name: selectedCategoryName, category: selectedCategoryNumber)
-                    if let storyBoard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
+                    if let storyBoard = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListViewController {
                         storyBoard.selectedCategoryName = bothCatAndName
                         storyBoard.categoryInfoArray = categoryInfoArray
                         storyBoard.selectedCategoryIndex = index
@@ -184,7 +184,7 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
         let catNumAndCat = (name: categoryName, category: catNumber)
         let categoryIndex = Int(selectedCategoryName!.category)!
         searchTerm = searchField.text ?? ""
-        if let catlougeListVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
+        if let catlougeListVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListViewController {
             catlougeListVc.selectedCategoryName = catNumAndCat
             catlougeListVc.selectedCategoryIndex = categoryIndex
             catlougeListVc.categoryInfoArray = categoryInfoArray
@@ -255,7 +255,7 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
     @IBAction func onPressViewAllButton(_ sender: UIButton) {
     }
 }
-extension ProductDetailVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DropdownCVDelegate {
+extension ProductDetailViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DropdownCVDelegate {
    
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         return dropdownData.count
@@ -275,7 +275,7 @@ extension ProductDetailVc: UICollectionViewDelegate, UICollectionViewDataSource,
     func dropdownDidSelectItem(_ selectedText: String, atIndex index: Int, withId id: Int, atIndexPath indexPath: IndexPath, selectedItem item: UICollectionView) {
         let categoryIndex = Int(selectedCategoryName!.category)!
         let data = dropdownData[indexPath.item].dropdownlist[index]
-       if let catlougeVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
+       if let catlougeVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListViewController {
            catlougeVc.selectedCategoryName = selectedCategoryName
            catlougeVc.categoryInfoArray = categoryInfoArray
            catlougeVc.selectedCategoryIndex = categoryIndex
@@ -287,7 +287,7 @@ extension ProductDetailVc: UICollectionViewDelegate, UICollectionViewDataSource,
     }
 }
 
-extension ProductDetailVc: UITableViewDelegate, UITableViewDataSource {
+extension ProductDetailViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return relatedItems.count
     }

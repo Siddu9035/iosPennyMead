@@ -46,7 +46,7 @@
 		EC6697992B89EED00035B287 /* CartCV.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC6697972B89EED00035B287 /* CartCV.xib */; };
 		EC67029E2B7DE3720091A3D5 /* DropdownCV.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67029C2B7DE3720091A3D5 /* DropdownCV.swift */; };
 		EC67029F2B7DE3720091A3D5 /* DropdownCV.xib in Resources */ = {isa = PBXBuildFile; fileRef = EC67029D2B7DE3720091A3D5 /* DropdownCV.xib */; };
-		EC67FABB2B7F2C4F008B1CA2 /* ProductDetailVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67FABA2B7F2C4F008B1CA2 /* ProductDetailVc.swift */; };
+		EC67FABB2B7F2C4F008B1CA2 /* ProductDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67FABA2B7F2C4F008B1CA2 /* ProductDetailViewController.swift */; };
 		EC67FABD2B7F6E0D008B1CA2 /* ProductDetailManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC67FABC2B7F6E0D008B1CA2 /* ProductDetailManager.swift */; };
 		EC6974DB2B7A00220032AB18 /* iOSDropDown.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6974DA2B7A00220032AB18 /* iOSDropDown.swift */; };
 		EC6974DE2B7A27110032AB18 /* TestingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC6974DC2B7A27110032AB18 /* TestingCell.swift */; };
@@ -67,7 +67,7 @@
 		ECA6F3FC2B70F98B0019BA11 /* AboutUsVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECA6F3FB2B70F98B0019BA11 /* AboutUsVc.swift */; };
 		ECB35B902B56EE4A00384B46 /* Drawer.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB35B8F2B56EE4A00384B46 /* Drawer.swift */; };
 		ECB35B932B57036100384B46 /* SideMenuManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB35B922B57036100384B46 /* SideMenuManager.swift */; };
-		ECB35B952B5708A400384B46 /* CatalougeListVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB35B942B5708A400384B46 /* CatalougeListVc.swift */; };
+		ECB35B952B5708A400384B46 /* CatalougeListViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECB35B942B5708A400384B46 /* CatalougeListViewController.swift */; };
 		ECBB61632B7B542500E0A9ED /* FilterCategory.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBB61622B7B542500E0A9ED /* FilterCategory.swift */; };
 		ECBB61662B7B83F400E0A9ED /* UIColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBB61652B7B83F400E0A9ED /* UIColorExtension.swift */; };
 		ECBB61682B7B843A00E0A9ED /* UIViewControllerExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = ECBB61672B7B843A00E0A9ED /* UIViewControllerExtension.swift */; };
@@ -116,7 +116,7 @@
 		EC6697972B89EED00035B287 /* CartCV.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = CartCV.xib; sourceTree = "<group>"; };
 		EC67029C2B7DE3720091A3D5 /* DropdownCV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DropdownCV.swift; sourceTree = "<group>"; };
 		EC67029D2B7DE3720091A3D5 /* DropdownCV.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = DropdownCV.xib; sourceTree = "<group>"; };
-		EC67FABA2B7F2C4F008B1CA2 /* ProductDetailVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailVc.swift; sourceTree = "<group>"; };
+		EC67FABA2B7F2C4F008B1CA2 /* ProductDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailViewController.swift; sourceTree = "<group>"; };
 		EC67FABC2B7F6E0D008B1CA2 /* ProductDetailManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductDetailManager.swift; sourceTree = "<group>"; };
 		EC6974DA2B7A00220032AB18 /* iOSDropDown.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = iOSDropDown.swift; sourceTree = "<group>"; };
 		EC6974DC2B7A27110032AB18 /* TestingCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestingCell.swift; sourceTree = "<group>"; };
@@ -137,7 +137,7 @@
 		ECA6F3FB2B70F98B0019BA11 /* AboutUsVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutUsVc.swift; sourceTree = "<group>"; };
 		ECB35B8F2B56EE4A00384B46 /* Drawer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Drawer.swift; sourceTree = "<group>"; };
 		ECB35B922B57036100384B46 /* SideMenuManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SideMenuManager.swift; sourceTree = "<group>"; };
-		ECB35B942B5708A400384B46 /* CatalougeListVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalougeListVc.swift; sourceTree = "<group>"; };
+		ECB35B942B5708A400384B46 /* CatalougeListViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CatalougeListViewController.swift; sourceTree = "<group>"; };
 		ECBB61622B7B542500E0A9ED /* FilterCategory.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FilterCategory.swift; sourceTree = "<group>"; };
 		ECBB61652B7B83F400E0A9ED /* UIColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIColorExtension.swift; sourceTree = "<group>"; };
 		ECBB61672B7B843A00E0A9ED /* UIViewControllerExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIViewControllerExtension.swift; sourceTree = "<group>"; };
@@ -241,10 +241,10 @@
 			children = (
 				EC3D10AF2B46E370002C8D40 /* SplashVc.swift */,
 				EC3D10AA2B46BCB5002C8D40 /* HomeViewController.swift */,
-				ECB35B942B5708A400384B46 /* CatalougeListVc.swift */,
+				ECB35B942B5708A400384B46 /* CatalougeListViewController.swift */,
 				ECA6F3FB2B70F98B0019BA11 /* AboutUsVc.swift */,
 				EC24681A2B711DF400427EB8 /* ContactVc.swift */,
-				EC67FABA2B7F2C4F008B1CA2 /* ProductDetailVc.swift */,
+				EC67FABA2B7F2C4F008B1CA2 /* ProductDetailViewController.swift */,
 				EC6697942B88E0660035B287 /* CartScreen.swift */,
 			);
 			path = Controller;
@@ -522,7 +522,7 @@
 				EC62C96F2B74EC4500AD583D /* Test2.swift in Sources */,
 				EC810C782B4AA02100CF9EED /* ProductDetailCell.swift in Sources */,
 				EC67FABD2B7F6E0D008B1CA2 /* ProductDetailManager.swift in Sources */,
-				EC67FABB2B7F2C4F008B1CA2 /* ProductDetailVc.swift in Sources */,
+				EC67FABB2B7F2C4F008B1CA2 /* ProductDetailViewController.swift in Sources */,
 				EC38E28C2B68E3820057C8E2 /* CustomDropdown.swift in Sources */,
 				EC38E2912B68E4D90057C8E2 /* CustomDropdownCell.swift in Sources */,
 				EC3D10B02B46E370002C8D40 /* SplashVc.swift in Sources */,
@@ -548,7 +548,7 @@
 				EC24681B2B711DF400427EB8 /* ContactVc.swift in Sources */,
 				EC3D10982B46BC2A002C8D40 /* SceneDelegate.swift in Sources */,
 				EC58585F2B554866006C5D78 /* CustomPopUp.swift in Sources */,
-				ECB35B952B5708A400384B46 /* CatalougeListVc.swift in Sources */,
+				ECB35B952B5708A400384B46 /* CatalougeListViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
