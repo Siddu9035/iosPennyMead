@@ -25,7 +25,7 @@ class SplashVc: UIViewController {
     
     @objc func navigateToHomeVc() {
         let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-        let homeVc = storyBoard.instantiateViewController(withIdentifier: "HomeVc") as! HomeVc
+        let homeVc = storyBoard.instantiateViewController(withIdentifier: "HomeVc") as! HomeViewController
         navigationController?.pushViewController(homeVc, animated: true)
     }
 }

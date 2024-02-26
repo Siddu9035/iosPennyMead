@@ -28,11 +28,11 @@ class Drawer: UIViewController {
     }
     
     @IBAction func onPressHomeButton(_ sender: Any) {
-        if let navigationController = navigationController, let currentVc = navigationController.topViewController, currentVc is HomeVc {
+        if let navigationController = navigationController, let currentVc = navigationController.topViewController, currentVc is HomeViewController {
             delegate?.didPressBacbutton()
         } else {
             let storyBoard = UIStoryboard(name: "Main", bundle: nil)
-            let catLouge = storyBoard.instantiateViewController(withIdentifier: "HomeVc") as? HomeVc
+            let catLouge = storyBoard.instantiateViewController(withIdentifier: "HomeViewController") as? HomeViewController
             navigationController?.popViewController(animated: true)
         }
     }

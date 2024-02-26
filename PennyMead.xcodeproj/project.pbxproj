@@ -19,7 +19,7 @@
 		EC3D109D2B46BC2A002C8D40 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC3D109B2B46BC2A002C8D40 /* Main.storyboard */; };
 		EC3D109F2B46BC2C002C8D40 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = EC3D109E2B46BC2C002C8D40 /* Assets.xcassets */; };
 		EC3D10A22B46BC2C002C8D40 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = EC3D10A02B46BC2C002C8D40 /* LaunchScreen.storyboard */; };
-		EC3D10AB2B46BCB5002C8D40 /* HomeVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10AA2B46BCB5002C8D40 /* HomeVc.swift */; };
+		EC3D10AB2B46BCB5002C8D40 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10AA2B46BCB5002C8D40 /* HomeViewController.swift */; };
 		EC3D10B02B46E370002C8D40 /* SplashVc.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10AF2B46E370002C8D40 /* SplashVc.swift */; };
 		EC3D10B42B46EDDA002C8D40 /* RobotoSlab-VariableFont_wght.ttf in Resources */ = {isa = PBXBuildFile; fileRef = EC3D10B32B46EDD9002C8D40 /* RobotoSlab-VariableFont_wght.ttf */; };
 		EC3D10B62B473296002C8D40 /* CategoryData.swift in Sources */ = {isa = PBXBuildFile; fileRef = EC3D10B52B473296002C8D40 /* CategoryData.swift */; };
@@ -89,7 +89,7 @@
 		EC3D109E2B46BC2C002C8D40 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		EC3D10A12B46BC2C002C8D40 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		EC3D10A32B46BC2C002C8D40 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		EC3D10AA2B46BCB5002C8D40 /* HomeVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeVc.swift; sourceTree = "<group>"; };
+		EC3D10AA2B46BCB5002C8D40 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		EC3D10AF2B46E370002C8D40 /* SplashVc.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SplashVc.swift; sourceTree = "<group>"; };
 		EC3D10B32B46EDD9002C8D40 /* RobotoSlab-VariableFont_wght.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "RobotoSlab-VariableFont_wght.ttf"; sourceTree = "<group>"; };
 		EC3D10B52B473296002C8D40 /* CategoryData.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryData.swift; sourceTree = "<group>"; };
@@ -240,7 +240,7 @@
 			isa = PBXGroup;
 			children = (
 				EC3D10AF2B46E370002C8D40 /* SplashVc.swift */,
-				EC3D10AA2B46BCB5002C8D40 /* HomeVc.swift */,
+				EC3D10AA2B46BCB5002C8D40 /* HomeViewController.swift */,
 				ECB35B942B5708A400384B46 /* CatalougeListVc.swift */,
 				ECA6F3FB2B70F98B0019BA11 /* AboutUsVc.swift */,
 				EC24681A2B711DF400427EB8 /* ContactVc.swift */,
@@ -510,7 +510,7 @@
 				EC9DEC472B6BB319002D08E4 /* DropDownCollection.swift in Sources */,
 				EC96FFD62B639EEF0096025B /* SearchBookManager.swift in Sources */,
 				EC6974DE2B7A27110032AB18 /* TestingCell.swift in Sources */,
-				EC3D10AB2B46BCB5002C8D40 /* HomeVc.swift in Sources */,
+				EC3D10AB2B46BCB5002C8D40 /* HomeViewController.swift in Sources */,
 				EC6974DB2B7A00220032AB18 /* iOSDropDown.swift in Sources */,
 				EC3D10B62B473296002C8D40 /* CategoryData.swift in Sources */,
 				ECBB61632B7B542500E0A9ED /* FilterCategory.swift in Sources */,

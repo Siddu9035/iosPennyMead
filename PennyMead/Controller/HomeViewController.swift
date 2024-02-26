@@ -8,7 +8,7 @@
 import UIKit
 import Kingfisher
 
-class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, collectibleManagerDelegate, DrawerDelegate, CollectibleCvCellDelegate {
+class HomeViewController: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, collectibleManagerDelegate, DrawerDelegate, CollectibleCvCellDelegate {
    
     func didGoToHomeVc() {
         self.navigationController?.popViewController(animated: true)
@@ -432,7 +432,7 @@ class HomeVc: UIViewController, UIScrollViewDelegate, categoryManagerDelegate, c
 }
 
 //MARK: extension for the collectionView
-extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
+extension HomeViewController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
@@ -548,7 +548,7 @@ extension HomeVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollec
     
 }
 //MARK: extension for the tableview
-extension HomeVc: UITableViewDelegate, UITableViewDataSource {
+extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return items.count
     }
