@@ -37,6 +37,14 @@ class CartScreen: UIViewController, CollectibleItemsManagerDelegate {
     @IBOutlet var collectibleTableView: UITableView!
     @IBOutlet var collectibleTBHeight: NSLayoutConstraint!
     @IBOutlet var formView: UIView!
+    @IBOutlet var headerView: UIView!
+    @IBOutlet var footerView: FooterView!
+    @IBOutlet var collectiblesText: UILabel!
+    @IBOutlet var checkOutText: UILabel!
+    @IBOutlet var emptyCartIcon: UIImageView!
+    @IBOutlet var emptyCartText: UILabel!
+    
+    
     
     var cartItems: [CollectibleItem] = []
     var collectibles: [Collectableitems] = []
@@ -79,7 +87,7 @@ class CartScreen: UIViewController, CollectibleItemsManagerDelegate {
     func didGetCollectibles(collectible: [Collectableitems]) {
         DispatchQueue.main.async {
             self.collectibles = collectible
-            print(self.collectibles)
+            //            print(self.collectibles)
             self.collectibleTableView.reloadData()
             self.stopLoading()
         }
@@ -91,37 +99,51 @@ class CartScreen: UIViewController, CollectibleItemsManagerDelegate {
     
     func showingEmptyCartImage() {
         if cartItems.isEmpty {
-            cartProducts.isHidden = true
+            collectibleTableView.isHidden = true
             formView.isHidden = true
             formView.heightAnchor.constraint(equalToConstant: 0).isActive = true
-            let imageView = UIImageView()
-            imageView.image = UIImage(named: "emptyCart")
-            imageView.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(imageView)
-            let label = UILabel()
-            label.text = "Your cart is empty"
-            label.font = UIFont.systemFont(ofSize: 16)
-            label.textColor = UIColor.black
-            label.sizeToFit()
-            label.translatesAutoresizingMaskIntoConstraints = false
-            view.addSubview(label)
-            NSLayoutConstraint.activate([
-                imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor),
-                imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-                imageView.widthAnchor.constraint(equalToConstant: 250),
-                imageView.heightAnchor.constraint(equalToConstant: 300)
-            ])
-            NSLayoutConstraint.activate([
-                label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
-                label.centerXAnchor.constraint(equalTo: view.centerXAnchor)
-            ])
+            collectibleTableView.heightAnchor.constraint(equalToConstant: 0).isActive = true
+            collectiblesText.isHidden = true
+            checkOutText.isHidden = true
+            emptyCartIcon.image = UIImage(named: "emptyCart")
+            emptyCartText.text = "Your Cart is Empty"
+            
+//            let imageView = UIImageView()
+//            imageView.image = UIImage(named: "emptyCart")
+//            imageView.translatesAutoresizingMaskIntoConstraints = false
+//            view.addSubview(imageView)
+//
+//            let label = UILabel()
+//            label.text = "Your cart is empty"
+//            label.font = UIFont.systemFont(ofSize: 18)
+//            label.textColor = UIColor.MyTheme.brandingColor
+//            label.sizeToFit()
+//            label.translatesAutoresizingMaskIntoConstraints = false
+//            view.addSubview(label)
+//
+//            NSLayoutConstraint.activate([
+//                imageView.topAnchor.constraint(equalTo: collectibleDropdown.bottomAnchor, constant: 20),
+//                imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//                imageView.widthAnchor.constraint(equalToConstant: 200),
+//                imageView.heightAnchor.constraint(equalToConstant: 250),
+//
+//                label.topAnchor.constraint(equalTo: imageView.bottomAnchor, constant: 20),
+//                label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+//
+//                label.bottomAnchor.constraint(equalTo: footerView.topAnchor, constant: -20)
+//            ])
         } else {
-            cartProducts.isHidden = false
+            // If there are items in the cart, show relevant views
+            collectiblesText.isHidden = false
+            checkOutText.isHidden = false
+            collectibleTableView.isHidden = false
             formView.isHidden = false
             cartProductsHeight.constant = cartProducts.contentSize.height
+            collectibleTBHeight.constant = collectibleTableView.contentSize.height
         }
         view.layoutIfNeeded()
     }
+    
 }
 extension CartScreen: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {

@@ -94,9 +94,7 @@ class CatalougeListVc: UIViewController, DrawerDelegate, FetchPerticularManagerD
         if let aSelectedReference = selectedReference {
             filterItems.getFilterItemsBySubCat(category: selectedCategoryName?.category ?? "0", referenceId: aSelectedReference, filterType: "newlyUpdated", page: 1)
         }
-        let categoryNumber = thisCategoryButton.isSelected ? "\(selectedCategoryNumberForSearch ?? "")" : "0"
-        searchedBooks.searchCat(with: searchTerm, adesc: adesc, categoryNumber: Int(categoryNumber)!, sortby: selectedFilterType, page: page)
-        bookCollectionView.reloadData()
+       
         scrollView.delegate = self
         
         firstDropdownSetUp()

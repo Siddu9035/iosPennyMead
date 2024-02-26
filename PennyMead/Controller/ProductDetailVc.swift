@@ -29,6 +29,8 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
     @IBOutlet var viewAllButton: UIButton!
     @IBOutlet var relatedItemsTV: UITableView!
     @IBOutlet var relatedItemsTvHeight: NSLayoutConstraint!
+    @IBOutlet var scrollView: UIScrollView!
+    
     //MARK: Variables
     var productDetail: Productdetail?
     var relatedItems: [Productdetail] = []
@@ -58,7 +60,7 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
         firstdropDown()
         dropdownManager.delegate = self
         dropdownManager.getSubDropdowns(with: selectedCategoryName!.category)
-        print("productDetail", selectedCategoryName?.category)
+        scrollView.delegate = self
     }
     override func viewDidLayoutSubviews() {
         relatedItemsTvHeight.constant = relatedItemsTV.contentSize.height
@@ -115,7 +117,7 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
         DispatchQueue.main.async {
             self.productDetail = productDetail
             self.relatedItems = relatedItems
-            self.showProducts()
+            self.showProducts(for: productDetail)
             self.relatedItemsTV.reloadData()
             self.stopLoading()
             self.view.layoutIfNeeded()
@@ -130,17 +132,17 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
         SideMenuManager.shared.toggleSideMenu(expanded: false)
     }
     
-    func showProducts() {
-        if let product = productDetail {
-            titleLabel.text = product.title
-            authorText.text = product.author
-            priceText.text = "£ \(product.price)"
-            descriptionText.text = product.description
-            updateButtonState()
-            if let firstImageUrlString = product.image.first, let firstImageUrl = URL(string: firstImageUrlString) {
-                productImage.kf.setImage(with: firstImageUrl)
-            }
+    func showProducts(for productDetail: Productdetail) {
+        //        if let product = productDetail {
+        titleLabel.text = productDetail.title
+        authorText.text = productDetail.author
+        priceText.text = "£ \(productDetail.price)"
+        descriptionText.text = productDetail.description
+        updateButtonState()
+        if let firstImageUrlString = productDetail.image.first, let firstImageUrl = URL(string: firstImageUrlString) {
+            productImage.kf.setImage(with: firstImageUrl)
         }
+        //        }
     }
     
     func firstdropDown() {
@@ -253,6 +255,15 @@ class ProductDetailVc: UIViewController, ProductDetailManagerDelegate, DrawerDel
     }
     
     @IBAction func onPressViewAllButton(_ sender: UIButton) {
+        let categoryNumber = selectedCategoryName?.category ?? "0"
+        let categoryName = selectedCategoryName?.name ?? ""
+        let bothCatAndName = (name: categoryName, category: categoryNumber)
+        if let catlougeListVc = UIStoryboard(name: "Main", bundle: nil).instantiateViewController(withIdentifier: "catlougePage") as? CatalougeListVc {
+            catlougeListVc.selectedCategoryName = bothCatAndName
+            catlougeListVc.categoryInfoArray = categoryInfoArray
+            catlougeListVc.selectedCategoryIndex = Int(categoryNumber)! - 1
+            navigationController?.pushViewController(catlougeListVc, animated: true)
+        }
     }
 }
 extension ProductDetailVc: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout, DropdownCVDelegate {
@@ -312,6 +323,14 @@ extension ProductDetailVc: UITableViewDelegate, UITableViewDataSource {
     }
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 480
+    }
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        let selectedProductDetail = relatedItems[indexPath.row]
+        showProducts(for: selectedProductDetail)
+        
+        // Scroll to the product image view inside the main scroll view
+        let productImageFrameInScrollView = scrollView.convert(productImage.frame, from: productImage.superview)
+        scrollView.setContentOffset(CGPoint(x: 0, y: productImageFrameInScrollView.origin.y), animated: true)
     }
     
 }

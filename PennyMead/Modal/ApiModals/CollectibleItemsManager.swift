@@ -24,10 +24,9 @@ struct CollectibleItemsManager {
             }
             if let safeData = data {
                 do {
-                  let decode = JSONDecoder()
+                    let decode = JSONDecoder()
                     decode.keyDecodingStrategy = .convertFromSnakeCase
                     let response = try decode.decode(Collectible.self, from: safeData)
-                    print(response.collectableitems)
                     delegate?.didGetCollectibles(collectible: response.collectableitems)
                 } catch {
                     delegate?.didGetErrors(error: error, response: response as? HTTPURLResponse)
